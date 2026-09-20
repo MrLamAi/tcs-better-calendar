@@ -300,7 +300,7 @@
     const tags = [];
     const general = !subject || /^(ALL|NOT APPLICABLE|全部|不適用)$/i.test(subject);
     if (general) tags.push("general");
-    if (/ENGLISH LANGUAGE|\bENGLISH\b|英語|英文/.test(haystack)) tags.push("english");
+    if (/ENGLISH LANGUAGE|ENGLISH TEACH|ENGLISH CLASSROOM|ENGLISH LEARNING|ENGLISH SPEAKING|PRIMARY ENGLISH|SECONDARY ENGLISH|ENGLISH TEACHERS|TEACHERS USING ENGLISH|英語|英文/.test(haystack)) tags.push("english");
     if (/CHINESE LANGUAGE|CHINESE LITERATURE|\bCHINESE\b|中國語文|中文/.test(haystack)) tags.push("chinese");
     if (/MATHEMATICS|數學/.test(haystack)) tags.push("mathematics");
     if (/BIOLOGY|CHEMISTRY|PHYSICS|SCIENCE|GENERAL STUDIES|PRIMARY SCIENCE|自然科學|科學|常識/.test(haystack)) tags.push("science");

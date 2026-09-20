@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/load.htm?pdType=0&fromMenu=Y",
-    "startedAt": "2026-09-20T13:35:19.764Z",
-    "finishedAt": "2026-09-20T13:36:18.676Z",
+    "startedAt": "2026-09-20T13:41:46.009Z",
+    "finishedAt": "2026-09-20T13:42:52.616Z",
     "discoveredPages": 35,
     "requestedPages": 35,
     "downloadedPages": 35,
@@ -408,7 +408,6 @@
       "level": "SECONDARY",
       "subject": "BIOLOGY, CHEMISTRY, COMBINED SCIENCE (BIOLOGY, CHEMISTRY), COMBINED SCIENCE (CHEMISTRY, PHYSICS), COMBINED SCIENCE (PHYSICS, BIOLOGY), INTEGRATED SCIENCE, PHYSICS, PRIMARY SCIENCE/GENERAL SCIENCE, SCIENCE (SECONDARY 1-3) AND MEDIUM OF INSTRUCTION",
       "subjectTags": [
-        "english",
         "science"
       ],
       "post": "COORDINATORS, DEPUTY HEADS, PANEL HEADS, SCHOOL HEAD AND TEACHERS",
@@ -437,7 +436,6 @@
       "level": "SECONDARY",
       "subject": "MATHEMATICS AND MEDIUM OF INSTRUCTION",
       "subjectTags": [
-        "english",
         "mathematics"
       ],
       "post": "COORDINATORS, DEPUTY HEADS, PANEL HEADS, SCHOOL HEAD AND TEACHERS",
@@ -2666,8 +2664,7 @@
       "level": "",
       "subject": "",
       "subjectTags": [
-        "general",
-        "english"
+        "general"
       ],
       "post": "",
       "participantGroup": "See TCS course details",
@@ -4114,8 +4111,7 @@
       "level": "",
       "subject": "",
       "subjectTags": [
-        "general",
-        "english"
+        "general"
       ],
       "post": "",
       "participantGroup": "See TCS course details",
@@ -4951,8 +4947,7 @@
       "level": "",
       "subject": "",
       "subjectTags": [
-        "general",
-        "english"
+        "general"
       ],
       "post": "",
       "participantGroup": "See TCS course details",
@@ -9218,7 +9213,6 @@
       "subject": "ALL",
       "subjectTags": [
         "general",
-        "english",
         "chinese",
         "ict"
       ],
