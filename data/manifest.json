@@ -1,0 +1,363 @@
+{
+  "source": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/load.htm?pdType=0&fromMenu=Y",
+  "startedAt": "2026-09-20T13:18:56.178Z",
+  "finishedAt": "2026-09-20T13:19:58.177Z",
+  "discoveredPages": 35,
+  "requestedPages": 35,
+  "downloadedPages": 35,
+  "failedPages": [],
+  "eventCount": 347,
+  "pageDelayMs": 150,
+  "pages": [
+    {
+      "page": 1,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/load.htm?pdType=0&fromMenu=Y",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/load.htm?pdType=0&fromMenu=Y",
+      "status": 200,
+      "bytes": 285935,
+      "sha256": "c76d100d551d544ff3a72a55a4150939d91b615edad03eca475dc751e6e35626",
+      "events": 10,
+      "file": "data/raw/tcs-page-001.html"
+    },
+    {
+      "page": 2,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=2",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=2",
+      "status": 200,
+      "bytes": 274773,
+      "sha256": "4cb326ed9188916250b8fbc5edb77e55942a4f12d6a513c35b964e9d5a3d56c6",
+      "events": 10,
+      "file": "data/raw/tcs-page-002.html"
+    },
+    {
+      "page": 3,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=3",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=3",
+      "status": 200,
+      "bytes": 362270,
+      "sha256": "e2f319cd2a7ee2a54c03dfbf09f08ca85ec50076291ce3f5182a741c8ac3eb4c",
+      "events": 10,
+      "file": "data/raw/tcs-page-003.html"
+    },
+    {
+      "page": 4,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=4",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=4",
+      "status": 200,
+      "bytes": 299353,
+      "sha256": "8164bde34db0a0576d8265f0e5e61039e527267504722bf07374425637d296d0",
+      "events": 10,
+      "file": "data/raw/tcs-page-004.html"
+    },
+    {
+      "page": 5,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=5",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=5",
+      "status": 200,
+      "bytes": 303382,
+      "sha256": "577448f0995a60299f360ad9419c3fe64d46a65b154bfcecf1ec1c6812a9a3f2",
+      "events": 10,
+      "file": "data/raw/tcs-page-005.html"
+    },
+    {
+      "page": 6,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=6",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=6",
+      "status": 200,
+      "bytes": 305277,
+      "sha256": "4373ef16f5bce563ffb04edad1fe3eba71b37c47690f8153be5ef89520edb8c1",
+      "events": 10,
+      "file": "data/raw/tcs-page-006.html"
+    },
+    {
+      "page": 7,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=7",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=7",
+      "status": 200,
+      "bytes": 321419,
+      "sha256": "6e197ae5446638a70d9ca384b5057d0d19248abc30ad6407c2d7e7c12f2b8fda",
+      "events": 10,
+      "file": "data/raw/tcs-page-007.html"
+    },
+    {
+      "page": 8,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=8",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=8",
+      "status": 200,
+      "bytes": 312483,
+      "sha256": "fcda1768dc9ab5116402074febd6a0c2a771b8856ab1031eb25c6fc2a2e7f939",
+      "events": 10,
+      "file": "data/raw/tcs-page-008.html"
+    },
+    {
+      "page": 9,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=9",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=9",
+      "status": 200,
+      "bytes": 298577,
+      "sha256": "d1d4710bd43422e77f582617e6524ff0f345104dc6a09b3b22947c6e765db4d7",
+      "events": 10,
+      "file": "data/raw/tcs-page-009.html"
+    },
+    {
+      "page": 10,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=10",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=10",
+      "status": 200,
+      "bytes": 279259,
+      "sha256": "5efcbfa5a628036c09ad9f7386c8232cd9e95285b43eeb9db6998ee4bcb45f47",
+      "events": 10,
+      "file": "data/raw/tcs-page-010.html"
+    },
+    {
+      "page": 11,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=11",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=11",
+      "status": 200,
+      "bytes": 337000,
+      "sha256": "297ea524de89b1958f0b218c0736cd7bbe0371c1fd26d06b66788beee498fa7f",
+      "events": 10,
+      "file": "data/raw/tcs-page-011.html"
+    },
+    {
+      "page": 12,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=12",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=12",
+      "status": 200,
+      "bytes": 317693,
+      "sha256": "1a9c0bee3ae5c34ab49071b178d35c0d73333ff88918cd2c7e17019e6d0f8f6f",
+      "events": 10,
+      "file": "data/raw/tcs-page-012.html"
+    },
+    {
+      "page": 13,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=13",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=13",
+      "status": 200,
+      "bytes": 309056,
+      "sha256": "cd1c35913755dd6409dc50c0e56db28e2d34ee7575aa57ca1aced317b0781078",
+      "events": 10,
+      "file": "data/raw/tcs-page-013.html"
+    },
+    {
+      "page": 14,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=14",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=14",
+      "status": 200,
+      "bytes": 322023,
+      "sha256": "11bbcb1faec61ae0f5ccef6980b4ba0deb4f14d7de0a27a4e10942d514b0c95d",
+      "events": 10,
+      "file": "data/raw/tcs-page-014.html"
+    },
+    {
+      "page": 15,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=15",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=15",
+      "status": 200,
+      "bytes": 306842,
+      "sha256": "e1f3a41da716bbfd8cd8d5f34f2d73c55bb09a28ecfb752ee5ed56a9b3136113",
+      "events": 10,
+      "file": "data/raw/tcs-page-015.html"
+    },
+    {
+      "page": 16,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=16",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=16",
+      "status": 200,
+      "bytes": 290948,
+      "sha256": "6d7aa98a2a1de11836fa853ff559cebe41e7a2cfe758f1699805f4c2d215d506",
+      "events": 10,
+      "file": "data/raw/tcs-page-016.html"
+    },
+    {
+      "page": 17,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=17",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=17",
+      "status": 200,
+      "bytes": 283848,
+      "sha256": "697846570b953d2f018249ea66ee2f684c8a041f3aa6cc545ff54359740cc6ba",
+      "events": 10,
+      "file": "data/raw/tcs-page-017.html"
+    },
+    {
+      "page": 18,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=18",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=18",
+      "status": 200,
+      "bytes": 301218,
+      "sha256": "f32794fabaf454e9f705859b562e461a24387e27a13d79d8e68836b56b992a39",
+      "events": 10,
+      "file": "data/raw/tcs-page-018.html"
+    },
+    {
+      "page": 19,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=19",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=19",
+      "status": 200,
+      "bytes": 317256,
+      "sha256": "7df9959dc979e4efce3a838cc0160cdaf4ad16b1818ef1251ba763cd890fa0bd",
+      "events": 10,
+      "file": "data/raw/tcs-page-019.html"
+    },
+    {
+      "page": 20,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=20",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=20",
+      "status": 200,
+      "bytes": 298786,
+      "sha256": "72556a49bfa47714908a5b9dbfb4145f0bb6f452b315a63fc96b01dd3c13fbf4",
+      "events": 10,
+      "file": "data/raw/tcs-page-020.html"
+    },
+    {
+      "page": 21,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=21",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=21",
+      "status": 200,
+      "bytes": 298323,
+      "sha256": "4f0352ae7c768832b37e9634641bc6362bcf9315db974b6e8c986b56ea2fb5e3",
+      "events": 10,
+      "file": "data/raw/tcs-page-021.html"
+    },
+    {
+      "page": 22,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=22",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=22",
+      "status": 200,
+      "bytes": 309323,
+      "sha256": "270bdaa26df7536e51d8f94b7638b0c6fd1ddd52a3fa1ef7ae6f5f0c613af543",
+      "events": 10,
+      "file": "data/raw/tcs-page-022.html"
+    },
+    {
+      "page": 23,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=23",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=23",
+      "status": 200,
+      "bytes": 296335,
+      "sha256": "d62bb6c89b48fdf3db5ecb9f8f25b090ab10d8edf64f204eb7b5f14f163d58de",
+      "events": 10,
+      "file": "data/raw/tcs-page-023.html"
+    },
+    {
+      "page": 24,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=24",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=24",
+      "status": 200,
+      "bytes": 311143,
+      "sha256": "7cf4c933917511b44d942036bc4d39bd5eddfeef335e25a6f225e72847c4692b",
+      "events": 10,
+      "file": "data/raw/tcs-page-024.html"
+    },
+    {
+      "page": 25,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=25",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=25",
+      "status": 200,
+      "bytes": 288034,
+      "sha256": "3b18778d6e67368c6ef731765d4f932e692945382daf84db93515ac56df6e197",
+      "events": 10,
+      "file": "data/raw/tcs-page-025.html"
+    },
+    {
+      "page": 26,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=26",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=26",
+      "status": 200,
+      "bytes": 292443,
+      "sha256": "359e5e2d53fd0d91224440978fec56b2a483a3320baca06bd757ff16996fadf9",
+      "events": 10,
+      "file": "data/raw/tcs-page-026.html"
+    },
+    {
+      "page": 27,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=27",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=27",
+      "status": 200,
+      "bytes": 274491,
+      "sha256": "e759ad6c7ef7701b6c50c3c090edd188f4562ba6a89d56aefc36bbb0fa246d0d",
+      "events": 10,
+      "file": "data/raw/tcs-page-027.html"
+    },
+    {
+      "page": 28,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=28",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=28",
+      "status": 200,
+      "bytes": 266622,
+      "sha256": "67f395c03ecc9b0491777a9928363c3ed28c75ed2140cd6843f95fccb9c5c3db",
+      "events": 10,
+      "file": "data/raw/tcs-page-028.html"
+    },
+    {
+      "page": 29,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=29",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=29",
+      "status": 200,
+      "bytes": 255359,
+      "sha256": "3ce762d819b78f824b87ee87820943a5967593e36c09da5410721b966997a96d",
+      "events": 10,
+      "file": "data/raw/tcs-page-029.html"
+    },
+    {
+      "page": 30,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=30",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=30",
+      "status": 200,
+      "bytes": 253404,
+      "sha256": "831664373298d718d9d89158267d331323efe0722f1da7f442801f89147bdcbb",
+      "events": 10,
+      "file": "data/raw/tcs-page-030.html"
+    },
+    {
+      "page": 31,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=31",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=31",
+      "status": 200,
+      "bytes": 255932,
+      "sha256": "685c1007083087ad3280a034b5dd585538e46f02948bdf70f09498cfc3fbbaa8",
+      "events": 10,
+      "file": "data/raw/tcs-page-031.html"
+    },
+    {
+      "page": 32,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=32",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=32",
+      "status": 200,
+      "bytes": 307303,
+      "sha256": "a05374d7034dc1a00fc3ad2a693623036b30d7331b6b7a13087f35b529a9cd8c",
+      "events": 10,
+      "file": "data/raw/tcs-page-032.html"
+    },
+    {
+      "page": 33,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=33",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=33",
+      "status": 200,
+      "bytes": 290943,
+      "sha256": "64314c207db78435f2ef4151f3fa8f2ded1d6001b3e443283ecc78a9f68e3d07",
+      "events": 10,
+      "file": "data/raw/tcs-page-033.html"
+    },
+    {
+      "page": 34,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=34",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=34",
+      "status": 200,
+      "bytes": 292249,
+      "sha256": "da05b378c2bcd88af187cbc0ee3c855fdd0965632b663c5e8e40a9e6ad22aa7f",
+      "events": 10,
+      "file": "data/raw/tcs-page-034.html"
+    },
+    {
+      "page": 35,
+      "url": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=35",
+      "finalUrl": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/search.htm?pageNo=35",
+      "status": 200,
+      "bytes": 252446,
+      "sha256": "edf0c720ce063b11b7576c25728ef917b85eb10535d03673ccd1570023ca5e7c",
+      "events": 7,
+      "file": "data/raw/tcs-page-035.html"
+    }
+  ]
+}

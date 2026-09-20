@@ -4,4 +4,5 @@ Thumbs.db
 .vscode/
 node_modules/
 *.log
-
+outputs/
+work/

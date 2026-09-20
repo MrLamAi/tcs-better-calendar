@@ -1,8 +1,11 @@
 (function () {
   "use strict";
 
-  const events = Array.isArray(window.TCS_MOCK_EVENTS) ? window.TCS_MOCK_EVENTS : [];
-  const today = new Date("2026-09-19T00:00:00+08:00");
+  const liveEvents = Array.isArray(window.TCS_EVENTS) ? window.TCS_EVENTS : [];
+  const events = liveEvents.length ? liveEvents : (Array.isArray(window.TCS_MOCK_EVENTS) ? window.TCS_MOCK_EVENTS : []);
+  const dataMeta = window.TCS_DATA_META || {};
+  const isLive = liveEvents.length > 0;
+  const today = new Date((dataMeta.finishedAt || "2026-09-20T00:00:00+08:00").slice(0, 10) + "T00:00:00+08:00");
   const state = { query: "", category: "All", deadline: "all", sort: "closing" };
   const elements = {
     grid: document.getElementById("event-grid"),
@@ -17,7 +20,11 @@
     emptyClear: document.getElementById("empty-clear"),
     contract: document.getElementById("data-contract"),
     contractButton: document.getElementById("data-contract-button"),
-    contractClose: document.getElementById("close-contract")
+    contractClose: document.getElementById("close-contract"),
+    sourceStatus: document.getElementById("source-status"),
+    syncNote: document.getElementById("sync-note"),
+    statSource: document.getElementById("stat-source"),
+    resultsSource: document.getElementById("results-source")
   };
 
   function escapeHtml(value) {
@@ -55,8 +62,9 @@
 
   function matches(event) {
     const query = state.query.trim().toLowerCase();
-    const searchText = [event.title, event.summary, event.category, event.level, event.participantGroup, event.format].join(" ").toLowerCase();
-    const categoryMatch = state.category === "All" || event.category === state.category;
+    const searchText = [event.title, event.summary, event.category, (event.categories || []).join(" "), event.level, event.participantGroup, event.format].join(" ").toLowerCase();
+    const categories = Array.isArray(event.categories) && event.categories.length ? event.categories : [event.category];
+    const categoryMatch = state.category === "All" || categories.includes(state.category);
     const windowMatch = state.deadline === "all" || (daysUntil(event.closingDate) >= 0 && daysUntil(event.closingDate) <= Number(state.deadline));
     return categoryMatch && windowMatch && (!query || searchText.indexOf(query) !== -1);
   }
@@ -94,6 +102,12 @@
     elements.visible.textContent = String(visibleEvents.length).padStart(2, "0");
     elements.closing.textContent = String(closingCount).padStart(2, "0");
     elements.summary.textContent = "Showing " + visibleEvents.length + " of " + events.length + " events";
+    elements.sourceStatus.textContent = isLive ? "Live snapshot · TCS source" : "Prototype · mock data";
+    elements.resultsSource.innerHTML = '<span class="source-led"></span> Source: ' + (isLive ? "TCS snapshot · " + (dataMeta.downloadedPages || "") + " pages" : "mock dataset");
+    elements.statSource.textContent = isLive ? "TCS" : "Mock";
+    if (isLive && dataMeta.finishedAt) {
+      elements.syncNote.textContent = "Downloaded " + new Intl.DateTimeFormat("en-HK", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" }).format(new Date(dataMeta.finishedAt));
+    }
   }
 
   function resetFilters() {

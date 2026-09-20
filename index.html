@@ -18,7 +18,7 @@
           <span class="brand-copy"><strong>TCS Better Calendar</strong><small>EDB professional learning</small></span>
         </a>
         <div class="topbar-meta">
-          <span class="status-dot"><i></i> Prototype · mock data</span>
+          <span class="status-dot"><i></i> <span id="source-status">Loading source…</span></span>
           <span class="version">v0.1</span>
         </div>
       </header>
@@ -36,8 +36,8 @@
           </div>
           <div class="hero-note" aria-label="Prototype note">
             <div class="note-kicker"><span class="pulse"></span> Sync lane</div>
-            <p>Mock data is isolated behind one source boundary, ready for the TCS scraper/API.</p>
-            <div class="note-footer"><span>Last sync</span><strong>19 Sep 2026 · 09:30</strong></div>
+            <p>Downloaded TCS pages are normalized behind one source boundary, ready for a scheduled Apps Script sync.</p>
+            <div class="note-footer"><span>Last sync</span><strong id="sync-note">Loading…</strong></div>
           </div>
         </section>
 
@@ -45,7 +45,7 @@
           <div class="stat-card"><span class="stat-label">Visible events</span><strong id="stat-visible">—</strong><span class="stat-context">in this view</span></div>
           <div class="stat-card"><span class="stat-label">Categories</span><strong>04</strong><span class="stat-context">to explore</span></div>
           <div class="stat-card stat-card-accent"><span class="stat-label">Closing soon</span><strong id="stat-closing">—</strong><span class="stat-context">within 7 days</span></div>
-          <div class="stat-card stat-card-dark"><span class="stat-label">Data source</span><strong>Mock</strong><span class="stat-context">TCS-ready schema</span></div>
+          <div class="stat-card stat-card-dark"><span class="stat-label">Data source</span><strong id="stat-source">—</strong><span class="stat-context">normalized snapshot</span></div>
         </section>
 
         <section class="workspace" id="events" aria-labelledby="events-heading">
@@ -79,7 +79,7 @@
             </div>
           </div>
 
-          <div class="results-bar"><p id="results-summary" aria-live="polite">Loading events…</p><p class="results-source"><span class="source-led"></span> Source: mock dataset</p></div>
+          <div class="results-bar"><p id="results-summary" aria-live="polite">Loading events…</p><p class="results-source" id="results-source"><span class="source-led"></span> Source: loading</p></div>
           <div id="event-grid" class="event-grid" aria-live="polite"></div>
           <div id="empty-state" class="empty-state" hidden>
             <div class="empty-icon" aria-hidden="true">⌕</div>
@@ -94,7 +94,7 @@
             <p class="eyebrow">Data contract</p>
             <h2 id="contract-heading">A small interface between source and experience.</h2>
           </div>
-          <p>The UI reads normalized event objects with stable fields for <code>courseId</code>, <code>title</code>, <code>category</code>, <code>eventStart</code>, <code>eventEnd</code>, <code>closingDate</code>, <code>level</code>, <code>participantGroup</code>, <code>lastUpdated</code> and <code>badge</code>. Replace <code>mock-data.js</code> with a fetcher that returns the same shape.</p>
+          <p>The UI reads normalized event objects with stable fields for <code>courseId</code>, <code>title</code>, <code>categories</code>, <code>eventStart</code>, <code>eventEnd</code>, <code>closingDate</code>, <code>level</code>, <code>participantGroup</code>, <code>lastUpdated</code> and <code>badge</code>. The current source is a downloaded TCS snapshot; Apps Script can replace it with a scheduled Sheet/API response later.</p>
           <button class="icon-button" id="close-contract" type="button" aria-label="Close data contract">×</button>
         </section>
       </main>
@@ -102,6 +102,7 @@
       <footer class="footer"><span>TCS Better Calendar · prototype</span><span>Designed for a future Google Sites + Apps Script deployment</span></footer>
     </div>
 
+    <script src="data/tcs-events.js"></script>
     <script src="mock-data.js"></script>
     <script src="app.js"></script>
   </body>
