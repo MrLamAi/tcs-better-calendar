@@ -130,6 +130,28 @@ function categoriesFor(event) {
   return categories.length ? [...new Set(categories)] : ["Other"];
 }
 
+function subjectTagsFor(event) {
+  const subject = String(event.subject || "").trim();
+  const haystack = [subject, event.title, event.summary].join(" ").toUpperCase();
+  const tags = [];
+  const isGeneral = !subject || /^(ALL|NOT APPLICABLE|全部|不適用)$/i.test(subject);
+
+  if (isGeneral) tags.push("general");
+  if (/ENGLISH LANGUAGE|\bENGLISH\b|英語|英文/.test(haystack)) tags.push("english");
+  if (/CHINESE LANGUAGE|CHINESE LITERATURE|\bCHINESE\b|中國語文|中文/.test(haystack)) tags.push("chinese");
+  if (/MATHEMATICS|數學/.test(haystack)) tags.push("mathematics");
+  if (/BIOLOGY|CHEMISTRY|PHYSICS|SCIENCE|GENERAL STUDIES|PRIMARY SCIENCE|自然科學|科學|常識/.test(haystack)) tags.push("science");
+  if (/ICT|INFORMATION & COMMUNICATION|COMPUTER|CODING|DIGITAL|TECHNOLOGY|AI|A\.I\.|數字教育|資訊科技|人工智能/.test(haystack)) tags.push("ict");
+  if (/STEAM|STEM/.test(haystack)) tags.push("steam");
+  if (/CITIZENSHIP|SOCIAL DEVELOPMENT|MORAL|NATIONAL EDUCATION|公民|國民教育|價值教育/.test(haystack)) tags.push("values");
+  if (/HISTORY|GEOGRAPHY|HUMANITIES|歷史|地理|人文/.test(haystack)) tags.push("humanities");
+  if (/VISUAL ARTS|MUSIC|ARTS|視覺藝術|音樂|藝術/.test(haystack)) tags.push("arts");
+  if (/PHYSICAL|HEALTH|PE\b|體育|健康/.test(haystack)) tags.push("health");
+
+  if (!isGeneral && !tags.length) tags.push("other");
+  return [...new Set(tags)];
+}
+
 function parsePage(html, pageNumber, pageUrl) {
   return findRowBlocks(html).map((rowHtml) => {
     const cells = findCells(rowHtml).map((cell) => ({ ...cell, text: cleanText(cell.inner) }));
@@ -164,6 +186,7 @@ function parsePage(html, pageNumber, pageUrl) {
       closingDateEnd: closingDates[closingDates.length - 1] || closingDates[0] || "",
       level,
       subject,
+      subjectTags: [],
       post,
       participantGroup: [level, post].filter(Boolean).join(" · ") || "See TCS course details",
       format: applyHref ? "Online application" : "TCS course details",
@@ -176,6 +199,7 @@ function parsePage(html, pageNumber, pageUrl) {
     };
     event.categories = categoriesFor(event);
     event.category = event.categories[0];
+    event.subjectTags = subjectTagsFor(event);
     return event;
   }).filter((event) => event.courseId && event.title);
 }

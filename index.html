@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-HK">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,87 +19,102 @@
         </a>
         <div class="topbar-meta">
           <span class="status-dot"><i></i> <span id="source-status">Loading source…</span></span>
-          <span class="version">v0.1</span>
+          <div class="language-toggle" role="group" aria-label="Language">
+            <button class="language-button is-active" type="button" data-language="en">EN</button>
+            <button class="language-button" type="button" data-language="zh">中</button>
+          </div>
+          <span class="version">v0.2</span>
         </div>
       </header>
 
       <main id="top">
         <section class="hero" aria-labelledby="page-title">
           <div class="hero-copy">
-            <p class="eyebrow">A clearer route to what is next</p>
-            <h1 id="page-title">Find the right learning event, faster.</h1>
-            <p class="hero-description">One focused view for Hong Kong teachers exploring professional learning across technology, curriculum and school development.</p>
+            <p class="eyebrow" data-i18n="heroEyebrow">A clearer route to what is next</p>
+            <h1 id="page-title" data-i18n="heroTitle">Find the right learning event, faster.</h1>
+            <p class="hero-description" data-i18n="heroDescription">One focused view for Hong Kong teachers exploring professional learning across technology, curriculum and school development.</p>
             <div class="hero-actions">
-              <a class="primary-button" href="#events">Browse events <span aria-hidden="true">↓</span></a>
-              <button class="text-button" id="data-contract-button" type="button">View data contract <span aria-hidden="true">↗</span></button>
+              <a class="primary-button" href="#events"><span data-i18n="browseEvents">Browse events</span> <span aria-hidden="true">↓</span></a>
+              <button class="text-button" id="data-contract-button" type="button"><span data-i18n="viewDataContract">View data contract</span> <span aria-hidden="true">↗</span></button>
             </div>
           </div>
           <div class="hero-note" aria-label="Prototype note">
-            <div class="note-kicker"><span class="pulse"></span> Sync lane</div>
-            <p>Downloaded TCS pages are normalized behind one source boundary, ready for a scheduled Apps Script sync.</p>
-            <div class="note-footer"><span>Last sync</span><strong id="sync-note">Loading…</strong></div>
+            <div class="note-kicker"><span class="pulse"></span> <span data-i18n="syncLane">Sync lane</span></div>
+            <p data-i18n="syncDescription">Downloaded TCS pages are normalized behind one source boundary, ready for a scheduled Apps Script sync.</p>
+            <div class="note-footer"><span data-i18n="lastSync">Last sync</span><strong id="sync-note">Loading…</strong></div>
           </div>
         </section>
 
         <section class="stats-row" aria-label="Calendar summary">
-          <div class="stat-card"><span class="stat-label">Visible events</span><strong id="stat-visible">—</strong><span class="stat-context">in this view</span></div>
-          <div class="stat-card"><span class="stat-label">Categories</span><strong>04</strong><span class="stat-context">to explore</span></div>
-          <div class="stat-card stat-card-accent"><span class="stat-label">Closing soon</span><strong id="stat-closing">—</strong><span class="stat-context">within 7 days</span></div>
-          <div class="stat-card stat-card-dark"><span class="stat-label">Data source</span><strong id="stat-source">—</strong><span class="stat-context">normalized snapshot</span></div>
+          <div class="stat-card"><span class="stat-label" data-i18n="visibleEvents">Visible events</span><strong id="stat-visible">—</strong><span class="stat-context" data-i18n="inThisView">in this view</span></div>
+          <div class="stat-card"><span class="stat-label" data-i18n="subjectGroups">Subject groups</span><strong id="stat-subject-groups">—</strong><span class="stat-context" data-i18n="toExplore">to explore</span></div>
+          <div class="stat-card stat-card-accent"><span class="stat-label" data-i18n="closingSoon">Closing soon</span><strong id="stat-closing">—</strong><span class="stat-context" data-i18n="withinSevenDays">within 7 days</span></div>
+          <div class="stat-card stat-card-dark"><span class="stat-label" data-i18n="dataSource">Data source</span><strong id="stat-source">—</strong><span class="stat-context" data-i18n="normalizedSnapshot">normalized snapshot</span></div>
         </section>
 
         <section class="workspace" id="events" aria-labelledby="events-heading">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Browse the calendar</p>
-              <h2 id="events-heading">Opportunities worth a closer look</h2>
+              <p class="eyebrow" data-i18n="browseCalendar">Browse the calendar</p>
+              <h2 id="events-heading" data-i18n="eventsHeading">Opportunities worth a closer look</h2>
             </div>
-            <p class="section-caption">A compact MVP for discovery first. Details and application links can grow with the live source.</p>
+            <p class="section-caption" data-i18n="sectionCaption">A compact list for scanning more events at once. Details and application links can grow with the live source.</p>
           </div>
 
           <div class="filter-panel" aria-label="Event filters">
             <label class="search-field">
-              <span class="sr-only">Search events</span>
+              <span class="sr-only" data-i18n="searchEvents">Search events</span>
               <span class="search-icon" aria-hidden="true">⌕</span>
-              <input id="search-input" type="search" placeholder="Search by title, topic or audience" autocomplete="off" />
+              <input id="search-input" type="search" data-i18n-placeholder="searchPlaceholder" placeholder="Search by title, topic, subject or audience" autocomplete="off" />
               <kbd>/</kbd>
             </label>
             <div class="filter-divider" aria-hidden="true"></div>
             <div class="filter-group category-filters" role="group" aria-label="Category">
-              <button class="filter-chip is-active" type="button" data-category="All">All</button>
-              <button class="filter-chip" type="button" data-category="Secondary">Secondary</button>
-              <button class="filter-chip" type="button" data-category="IT/AI">IT/AI</button>
-              <button class="filter-chip" type="button" data-category="CSD">CSD</button>
-              <button class="filter-chip" type="button" data-category="STEAM">STEAM</button>
+              <button class="filter-chip is-active" type="button" data-category="All" data-i18n="categoryAll">All</button>
+              <button class="filter-chip" type="button" data-category="Secondary" data-i18n="categorySecondary">Secondary</button>
+              <button class="filter-chip" type="button" data-category="IT/AI" data-i18n="categoryItAi">IT/AI</button>
+              <button class="filter-chip" type="button" data-category="CSD" data-i18n="categoryCsd">CSD</button>
+              <button class="filter-chip" type="button" data-category="STEAM" data-i18n="categorySteam">STEAM</button>
             </div>
             <div class="filter-selects">
-              <label class="select-wrap"><span>Deadline</span><select id="deadline-select"><option value="all">All windows</option><option value="7">Next 7 days</option><option value="30">Next 30 days</option></select></label>
-              <label class="select-wrap"><span>Sort</span><select id="sort-select"><option value="closing">Closing date</option><option value="event">Event date</option><option value="newest">Newest added</option></select></label>
-              <button class="clear-button" id="clear-filters" type="button">Clear</button>
+              <label class="select-wrap"><span data-i18n="level">Level</span><select id="level-select"></select></label>
+              <label class="select-wrap"><span data-i18n="subject">Subject</span><select id="subject-select"></select></label>
+              <label class="select-wrap"><span data-i18n="deadline">Deadline</span><select id="deadline-select"></select></label>
+              <label class="select-wrap"><span data-i18n="sort">Sort</span><select id="sort-select"></select></label>
+              <button class="clear-button" id="clear-filters" type="button" data-i18n="clear">Clear</button>
             </div>
           </div>
 
+          <div class="profile-panel" aria-label="Teacher profile">
+            <div class="profile-copy">
+              <span class="profile-icon" aria-hidden="true">◎</span>
+              <div><strong data-i18n="myProfile">My teacher profile</strong><span data-i18n="profileDescription">Choose your teaching subject to keep relevant events in view.</span></div>
+            </div>
+            <label class="select-wrap profile-select-wrap"><span data-i18n="iTeach">I teach</span><select id="profile-select"></select></label>
+            <label class="profile-check"><input id="include-general" type="checkbox" checked /><span data-i18n="includeGeneral">Include non-subject-specific events</span></label>
+          </div>
+
           <div class="results-bar"><p id="results-summary" aria-live="polite">Loading events…</p><p class="results-source" id="results-source"><span class="source-led"></span> Source: loading</p></div>
-          <div id="event-grid" class="event-grid" aria-live="polite"></div>
+          <div id="event-grid" class="event-list" aria-live="polite"></div>
           <div id="empty-state" class="empty-state" hidden>
             <div class="empty-icon" aria-hidden="true">⌕</div>
-            <h3>No events match this view</h3>
-            <p>Try a broader deadline window or clear one of the filters.</p>
-            <button class="primary-button" id="empty-clear" type="button">Reset filters</button>
+            <h3 data-i18n="noEvents">No events match this view</h3>
+            <p data-i18n="noEventsDescription">Try a broader deadline window or clear one of the filters.</p>
+            <button class="primary-button" id="empty-clear" type="button" data-i18n="resetFilters">Reset filters</button>
           </div>
         </section>
 
         <section class="contract-panel" id="data-contract" hidden aria-labelledby="contract-heading">
           <div>
-            <p class="eyebrow">Data contract</p>
-            <h2 id="contract-heading">A small interface between source and experience.</h2>
+            <p class="eyebrow" data-i18n="dataContract">Data contract</p>
+            <h2 id="contract-heading" data-i18n="contractHeading">A small interface between source and experience.</h2>
           </div>
-          <p>The UI reads normalized event objects with stable fields for <code>courseId</code>, <code>title</code>, <code>categories</code>, <code>eventStart</code>, <code>eventEnd</code>, <code>closingDate</code>, <code>level</code>, <code>participantGroup</code>, <code>lastUpdated</code> and <code>badge</code>. The current source is a downloaded TCS snapshot; Apps Script can replace it with a scheduled Sheet/API response later.</p>
+          <p data-i18n-html="contractDescription">The UI reads normalized event objects with stable fields for <code>courseId</code>, <code>title</code>, <code>categories</code>, <code>subjectTags</code>, <code>eventStart</code>, <code>eventEnd</code>, <code>closingDate</code>, <code>level</code>, <code>participantGroup</code>, <code>lastUpdated</code> and <code>badge</code>. The current source is a downloaded TCS snapshot; Apps Script can replace it with a scheduled Sheet/API response later.</p>
           <button class="icon-button" id="close-contract" type="button" aria-label="Close data contract">×</button>
         </section>
       </main>
 
-      <footer class="footer"><span>TCS Better Calendar · prototype</span><span>Designed for a future Google Sites + Apps Script deployment</span></footer>
+      <footer class="footer"><span data-i18n="footerTitle">TCS Better Calendar · prototype</span><span data-i18n="footerDescription">Designed for a future Google Sites + Apps Script deployment</span></footer>
     </div>
 
     <script src="data/tcs-events.js"></script>

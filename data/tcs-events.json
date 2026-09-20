@@ -1,8 +1,8 @@
 {
   "meta": {
     "source": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/load.htm?pdType=0&fromMenu=Y",
-    "startedAt": "2026-09-20T13:18:56.178Z",
-    "finishedAt": "2026-09-20T13:19:58.177Z",
+    "startedAt": "2026-09-20T13:35:19.764Z",
+    "finishedAt": "2026-09-20T13:36:18.676Z",
     "discoveredPages": 35,
     "requestedPages": 35,
     "downloadedPages": 35,
@@ -378,6 +378,10 @@
       "closingDateEnd": "2026-03-24",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "chinese"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -403,6 +407,10 @@
       "closingDateEnd": "2026-11-12",
       "level": "SECONDARY",
       "subject": "BIOLOGY, CHEMISTRY, COMBINED SCIENCE (BIOLOGY, CHEMISTRY), COMBINED SCIENCE (CHEMISTRY, PHYSICS), COMBINED SCIENCE (PHYSICS, BIOLOGY), INTEGRATED SCIENCE, PHYSICS, PRIMARY SCIENCE/GENERAL SCIENCE, SCIENCE (SECONDARY 1-3) AND MEDIUM OF INSTRUCTION",
+      "subjectTags": [
+        "english",
+        "science"
+      ],
       "post": "COORDINATORS, DEPUTY HEADS, PANEL HEADS, SCHOOL HEAD AND TEACHERS",
       "participantGroup": "SECONDARY · COORDINATORS, DEPUTY HEADS, PANEL HEADS, SCHOOL HEAD AND TEACHERS",
       "format": "Online application",
@@ -428,6 +436,10 @@
       "closingDateEnd": "2026-09-23",
       "level": "SECONDARY",
       "subject": "MATHEMATICS AND MEDIUM OF INSTRUCTION",
+      "subjectTags": [
+        "english",
+        "mathematics"
+      ],
       "post": "COORDINATORS, DEPUTY HEADS, PANEL HEADS, SCHOOL HEAD AND TEACHERS",
       "participantGroup": "SECONDARY · COORDINATORS, DEPUTY HEADS, PANEL HEADS, SCHOOL HEAD AND TEACHERS",
       "format": "Online application",
@@ -453,6 +465,9 @@
       "closingDateEnd": "2026-07-30",
       "level": "SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "SECONDARY AND SPECIAL · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "TCS course details",
@@ -478,6 +493,11 @@
       "closingDateEnd": "2026-09-02",
       "level": "SECONDARY",
       "subject": "HISTORY AND CHINESE HISTORY",
+      "subjectTags": [
+        "chinese",
+        "ict",
+        "humanities"
+      ],
       "post": "COORDINATORS, DEPUTY HEADS, PANEL HEADS, SCHOOL HEAD AND TEACHERS",
       "participantGroup": "SECONDARY · COORDINATORS, DEPUTY HEADS, PANEL HEADS, SCHOOL HEAD AND TEACHERS",
       "format": "TCS course details",
@@ -503,6 +523,10 @@
       "closingDateEnd": "2026-09-03",
       "level": "PRIMARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "SCHOOL HEAD, DEPUTY HEADS AND RELEVANT MIDDLE MANAGEMENT",
       "participantGroup": "PRIMARY AND SPECIAL · SCHOOL HEAD, DEPUTY HEADS AND RELEVANT MIDDLE MANAGEMENT",
       "format": "TCS course details",
@@ -528,6 +552,10 @@
       "closingDateEnd": "2026-09-07",
       "level": "SECONDARY",
       "subject": "CHINESE HISTORY",
+      "subjectTags": [
+        "chinese",
+        "humanities"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, COORDINATORS AND PANEL HEADS",
       "participantGroup": "SECONDARY · TEACHERS, SCHOOL HEAD, COORDINATORS AND PANEL HEADS",
       "format": "TCS course details",
@@ -554,6 +582,10 @@
       "closingDateEnd": "2026-09-03",
       "level": "SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "SCHOOL HEAD, DEPUTY HEADS AND RELEVANT MIDDLE MANAGEMENT",
       "participantGroup": "SECONDARY AND SPECIAL · SCHOOL HEAD, DEPUTY HEADS AND RELEVANT MIDDLE MANAGEMENT",
       "format": "TCS course details",
@@ -579,6 +611,11 @@
       "closingDateEnd": "2026-08-25",
       "level": "ALL",
       "subject": "NOT APPLICABLE",
+      "subjectTags": [
+        "general",
+        "ict",
+        "health"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS AND OTHERS",
       "participantGroup": "ALL · TEACHERS, SCHOOL HEAD, DEPUTY HEADS AND OTHERS",
       "format": "TCS course details",
@@ -604,6 +641,10 @@
       "closingDateEnd": "2026-09-02",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "SCHOOL HEAD, DEPUTY HEADS, COORDINATORS, PANEL HEADS AND TEACHERS",
       "participantGroup": "ALL · SCHOOL HEAD, DEPUTY HEADS, COORDINATORS, PANEL HEADS AND TEACHERS",
       "format": "TCS course details",
@@ -629,6 +670,10 @@
       "closingDateEnd": "2026-09-02",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "science"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -654,6 +699,9 @@
       "closingDateEnd": "2026-09-04",
       "level": "SECONDARY AND SPECIAL",
       "subject": "BIOLOGY",
+      "subjectTags": [
+        "science"
+      ],
       "post": "TEACHERS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "SECONDARY AND SPECIAL · TEACHERS, COORDINATORS AND PANEL HEADS",
       "format": "TCS course details",
@@ -679,6 +727,12 @@
       "closingDateEnd": "2026-08-31",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "chinese",
+        "ict",
+        "humanities"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -704,6 +758,11 @@
       "closingDateEnd": "2026-09-11",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "chinese",
+        "values"
+      ],
       "post": "TEACHERS AND SCHOOL HEAD",
       "participantGroup": "ALL · TEACHERS AND SCHOOL HEAD",
       "format": "TCS course details",
@@ -730,6 +789,10 @@
       "closingDateEnd": "2026-09-07",
       "level": "PRIMARY AND SECONDARY",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "steam"
+      ],
       "post": "TEACHERS AND PANEL HEADS",
       "participantGroup": "PRIMARY AND SECONDARY · TEACHERS AND PANEL HEADS",
       "format": "TCS course details",
@@ -755,6 +818,10 @@
       "closingDateEnd": "2026-09-09",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "science"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -780,6 +847,12 @@
       "closingDateEnd": "2026-09-14",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict",
+        "values",
+        "humanities"
+      ],
       "post": "TEACHERS AND SCHOOL HEAD",
       "participantGroup": "ALL · TEACHERS AND SCHOOL HEAD",
       "format": "TCS course details",
@@ -805,6 +878,9 @@
       "closingDateEnd": "2026-09-12",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -830,6 +906,9 @@
       "closingDateEnd": "2027-06-30",
       "level": "Primary、Secondary、Special",
       "subject": "All",
+      "subjectTags": [
+        "general"
+      ],
       "post": "School Head、Deputy Heads、Panel Heads、Coordinators、Teacher Librarians、Teachers",
       "participantGroup": "Primary、Secondary、Special · School Head、Deputy Heads、Panel Heads、Coordinators、Teacher Librarians、Teachers",
       "format": "Online application",
@@ -856,6 +935,10 @@
       "closingDateEnd": "2026-09-07",
       "level": "PRIMARY",
       "subject": "SBDP ICT/CODING EDUCATION (PRI) AND STEM EDUCATION",
+      "subjectTags": [
+        "ict",
+        "steam"
+      ],
       "post": "TEACHERS, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "PRIMARY · TEACHERS, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "TCS course details",
@@ -881,6 +964,9 @@
       "closingDateEnd": "2026-09-11",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -907,6 +993,10 @@
       "closingDateEnd": "2026-09-10",
       "level": "PRIMARY AND SECONDARY",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS AND COORDINATORS",
       "participantGroup": "PRIMARY AND SECONDARY · TEACHERS, SCHOOL HEAD, DEPUTY HEADS AND COORDINATORS",
       "format": "TCS course details",
@@ -932,6 +1022,9 @@
       "closingDateEnd": "2026-09-07",
       "level": "SECONDARY",
       "subject": "NOT APPLICABLE",
+      "subjectTags": [
+        "general"
+      ],
       "post": "OTHERS",
       "participantGroup": "SECONDARY · OTHERS",
       "format": "TCS course details",
@@ -957,6 +1050,9 @@
       "closingDateEnd": "2026-09-14",
       "level": "PRIMARY",
       "subject": "VISUAL ARTS",
+      "subjectTags": [
+        "arts"
+      ],
       "post": "TEACHERS AND PANEL HEADS",
       "participantGroup": "PRIMARY · TEACHERS AND PANEL HEADS",
       "format": "TCS course details",
@@ -982,6 +1078,9 @@
       "closingDateEnd": "2026-09-14",
       "level": "SECONDARY",
       "subject": "CHINESE LANGUAGE",
+      "subjectTags": [
+        "chinese"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "SECONDARY · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "TCS course details",
@@ -1008,6 +1107,12 @@
       "closingDateEnd": "2026-09-16",
       "level": "PRIMARY AND SECONDARY",
       "subject": "PRIMARY SCIENCE, SCIENCE (SECONDARY 1-3), PRIMARY HUMANITIES, GEOGRAPHY, CITIZENSHIP AND SOCIAL DEVELOPMENT, ENVIRONMENTAL EDUCATION AND MORAL & CIVIC EDUCATION",
+      "subjectTags": [
+        "science",
+        "ict",
+        "values",
+        "humanities"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS AND PANEL HEADS",
       "participantGroup": "PRIMARY AND SECONDARY · TEACHERS, SCHOOL HEAD, DEPUTY HEADS AND PANEL HEADS",
       "format": "TCS course details",
@@ -1033,6 +1138,10 @@
       "closingDateEnd": "2026-09-19",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "science"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -1058,6 +1167,11 @@
       "closingDateEnd": "2026-09-17",
       "level": "PRIMARY",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "science",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "PRIMARY",
       "format": "TCS course details",
@@ -1083,6 +1197,10 @@
       "closingDateEnd": "2026-09-16",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "english"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -1108,6 +1226,9 @@
       "closingDateEnd": "2026-10-20",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS, PANEL HEADS AND TEACHER LIBRARIANS",
       "participantGroup": "ALL · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS, PANEL HEADS AND TEACHER LIBRARIANS",
       "format": "Online application",
@@ -1133,6 +1254,10 @@
       "closingDateEnd": "2026-09-17",
       "level": "ALL",
       "subject": "NOT APPLICABLE",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS AND OTHERS",
       "participantGroup": "ALL · TEACHERS, SCHOOL HEAD, DEPUTY HEADS AND OTHERS",
       "format": "TCS course details",
@@ -1158,6 +1283,10 @@
       "closingDateEnd": "2026-10-02",
       "level": "PRIMARY",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS > >Remarks: >1. This course is specifically designed for Special Educational Needs Coordinators (SENCOs) in primary schools. >2. This course is open to teachers of private schools in Hong Kong who do not have e-Services accounts and teachers teaching Hong Kong curriculum in schools in the GBA Mainland cities*. Teachers of these schools wishing to apply for the course should contact Ms Josephine Ng at 3698 3770 / acoses3@edb.gov.hk. > >*The schools should meet the following criteria: >A. The schools have joined the “Scheme of Classes for Hong Kong Students” in Shenzhen; or >B. The schools have submitted their curriculum documents to the Education Bureau of Hong Kong, and been recognised to be offering subject curricula which are generally in line with the curriculum requirements of the respective subjects in Hong Kong.",
       "participantGroup": "PRIMARY · TEACHERS > >Remarks: >1. This course is specifically designed for Special Educational Needs Coordinators (SENCOs) in primary schools. >2. This course is open to teachers of private schools in Hong Kong who do not have e-Services accounts and teachers teaching Hong Kong curriculum in schools in the GBA Mainland cities*. Teachers of these schools wishing to apply for the course should contact Ms Josephine Ng at 3698 3770 / acoses3@edb.gov.hk. > >*The schools should meet the following criteria: >A. The schools have joined the “Scheme of Classes for Hong Kong Students” in Shenzhen; or >B. The schools have submitted their curriculum documents to the Education Bureau of Hong Kong, and been recognised to be offering subject curricula which are generally in line with the curriculum requirements of the respective subjects in Hong Kong.",
       "format": "Online application",
@@ -1183,6 +1312,9 @@
       "closingDateEnd": "2026-09-21",
       "level": "ALL",
       "subject": "ALL AND KINDERGARTENS",
+      "subjectTags": [
+        "other"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "ALL · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "Online application",
@@ -1209,6 +1341,11 @@
       "closingDateEnd": "2026-09-17",
       "level": "PRIMARY AND SECONDARY",
       "subject": "PRIMARY HUMANITIES, CHINESE HISTORY, CITIZENSHIP, ECONOMICS AND SOCIETY, HISTORY, CITIZENSHIP AND SOCIAL DEVELOPMENT AND MORAL AND NATIONAL EDUCATION",
+      "subjectTags": [
+        "chinese",
+        "values",
+        "humanities"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND OTHERS",
       "participantGroup": "PRIMARY AND SECONDARY · TEACHERS, COORDINATORS, PANEL HEADS AND OTHERS",
       "format": "TCS course details",
@@ -1234,6 +1371,10 @@
       "closingDateEnd": "2026-09-17",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "english"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -1259,6 +1400,10 @@
       "closingDateEnd": "2026-09-17",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "health"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -1284,6 +1429,10 @@
       "closingDateEnd": "2026-09-14",
       "level": "SECONDARY",
       "subject": "MATHEMATICS EDUCATION KEY LEARNING AREA, SCIENCE EDUCATION KEY LEARNING AREA",
+      "subjectTags": [
+        "mathematics",
+        "science"
+      ],
       "post": "PRINCIPALS, MIDDLE MANAGERS",
       "participantGroup": "SECONDARY · PRINCIPALS, MIDDLE MANAGERS",
       "format": "TCS course details",
@@ -1309,6 +1458,10 @@
       "closingDateEnd": "2026-09-16",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -1334,6 +1487,10 @@
       "closingDateEnd": "2026-09-21",
       "level": "PRIMARY",
       "subject": "GENERAL STUDIES, PRIMARY SCIENCE AND GENERAL STUDIES (OLE)",
+      "subjectTags": [
+        "science",
+        "ict"
+      ],
       "post": "PANEL HEADS, COORDINATORS AND TEACHERS",
       "participantGroup": "PRIMARY · PANEL HEADS, COORDINATORS AND TEACHERS",
       "format": "TCS course details",
@@ -1359,6 +1516,9 @@
       "closingDateEnd": "2026-09-28",
       "level": "PRIMARY",
       "subject": "PRIMARY HUMANITIES",
+      "subjectTags": [
+        "humanities"
+      ],
       "post": "TEACHERS AND PANEL HEADS",
       "participantGroup": "PRIMARY · TEACHERS AND PANEL HEADS",
       "format": "TCS course details",
@@ -1385,6 +1545,10 @@
       "closingDateEnd": "2026-09-22",
       "level": "SECONDARY",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "steam"
+      ],
       "post": "PANEL HEADS AND TEACHERS",
       "participantGroup": "SECONDARY · PANEL HEADS AND TEACHERS",
       "format": "TCS course details",
@@ -1410,6 +1574,9 @@
       "closingDateEnd": "2026-09-18",
       "level": "SECONDARY",
       "subject": "BIOLOGY, CHEMISTRY, JUNIOR SECONDARY SCIENCE (BIOLOGY), JUNIOR SECONDARY SCIENCE (CHEMISTRY), JUNIOR SECONDARY SCIENCE (PHYSICS), PHYSICS AND SCIENCE (SECONDARY 1-3)",
+      "subjectTags": [
+        "science"
+      ],
       "post": "TEACHERS, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "SECONDARY · TEACHERS, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "TCS course details",
@@ -1435,6 +1602,9 @@
       "closingDateEnd": "2026-09-14",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -1460,6 +1630,10 @@
       "closingDateEnd": "2026-09-25",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "values"
+      ],
       "post": "TEACHERS AND SCHOOL HEAD",
       "participantGroup": "ALL · TEACHERS AND SCHOOL HEAD",
       "format": "Online application",
@@ -1485,6 +1659,11 @@
       "closingDateEnd": "2026-09-11",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "science",
+        "ict"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "TCS course details",
@@ -1510,6 +1689,9 @@
       "closingDateEnd": "2026-09-21",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -1535,6 +1717,9 @@
       "closingDateEnd": "2026-09-26",
       "level": "SECONDARY AND SPECIAL",
       "subject": "PHYSICAL DEVELOPMENT/EXPERIENCE, PHYSICAL EDUCATION (HKDSE) AND PHYSICAL EDUCATION LESSONS",
+      "subjectTags": [
+        "health"
+      ],
       "post": "PANEL HEADS AND TEACHERS",
       "participantGroup": "SECONDARY AND SPECIAL · PANEL HEADS AND TEACHERS",
       "format": "Online application",
@@ -1560,6 +1745,9 @@
       "closingDateEnd": "2026-09-18",
       "level": "PRIMARY",
       "subject": "PRIMARY HUMANITIES",
+      "subjectTags": [
+        "humanities"
+      ],
       "post": "TEACHERS, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "PRIMARY · TEACHERS, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "TCS course details",
@@ -1585,6 +1773,9 @@
       "closingDateEnd": "2026-09-22",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -1610,6 +1801,9 @@
       "closingDateEnd": "2026-09-22",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -1635,6 +1829,9 @@
       "closingDateEnd": "2026-09-18",
       "level": "KINDERGARTEN",
       "subject": "KINDERGARTENS",
+      "subjectTags": [
+        "other"
+      ],
       "post": "SCHOOL HEAD AND TEACHERS",
       "participantGroup": "KINDERGARTEN · SCHOOL HEAD AND TEACHERS",
       "format": "TCS course details",
@@ -1660,6 +1857,10 @@
       "closingDateEnd": "2026-09-25",
       "level": "PRIMARY AND SECONDARY",
       "subject": "PRIMARY HUMANITIES, CHINESE HISTORY AND HISTORY",
+      "subjectTags": [
+        "chinese",
+        "humanities"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, COORDINATORS AND PANEL HEADS",
       "participantGroup": "PRIMARY AND SECONDARY · TEACHERS, SCHOOL HEAD, COORDINATORS AND PANEL HEADS",
       "format": "TCS course details",
@@ -1686,6 +1887,9 @@
       "closingDateEnd": "2026-09-27",
       "level": "SECONDARY",
       "subject": "CITIZENSHIP AND SOCIAL DEVELOPMENT, MORAL & CIVIC EDUCATION AND MORAL AND NATIONAL EDUCATION",
+      "subjectTags": [
+        "values"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "SECONDARY · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "Online application",
@@ -1711,6 +1915,9 @@
       "closingDateEnd": "2026-09-22",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -1736,6 +1943,9 @@
       "closingDateEnd": "2026-09-15",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "TCS course details",
@@ -1761,6 +1971,9 @@
       "closingDateEnd": "2026-09-22",
       "level": "PRIMARY AND SECONDARY",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "PRIMARY AND SECONDARY · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "Online application",
@@ -1787,6 +2000,10 @@
       "closingDateEnd": "2026-09-18",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -1812,6 +2029,9 @@
       "closingDateEnd": "2026-09-17",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -1837,6 +2057,9 @@
       "closingDateEnd": "2026-09-18",
       "level": "PRIMARY",
       "subject": "NOT APPLICABLE",
+      "subjectTags": [
+        "general"
+      ],
       "post": "TEACHERS, SCHOOL HEAD AND OTHERS",
       "participantGroup": "PRIMARY · TEACHERS, SCHOOL HEAD AND OTHERS",
       "format": "TCS course details",
@@ -1862,6 +2085,9 @@
       "closingDateEnd": "2026-09-23",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -1888,6 +2114,10 @@
       "closingDateEnd": "2026-09-21",
       "level": "SECONDARY",
       "subject": "CITIZENSHIP AND ECONOMICS AND SOCIETY",
+      "subjectTags": [
+        "ict",
+        "values"
+      ],
       "post": "TEACHERS, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "SECONDARY · TEACHERS, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "Online application",
@@ -1913,6 +2143,9 @@
       "closingDateEnd": "2026-09-28",
       "level": "PRIMARY, SECONDARY AND SPECIAL",
       "subject": "MORAL AND NATIONAL EDUCATION",
+      "subjectTags": [
+        "values"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "PRIMARY, SECONDARY AND SPECIAL · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "Online application",
@@ -1938,6 +2171,10 @@
       "closingDateEnd": "2026-09-23",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -1963,6 +2200,10 @@
       "closingDateEnd": "2026-09-16",
       "level": "PRIMARY, SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS AND OTHERS",
       "participantGroup": "PRIMARY, SECONDARY AND SPECIAL · TEACHERS AND OTHERS",
       "format": "TCS course details",
@@ -1988,6 +2229,11 @@
       "closingDateEnd": "2026-09-29",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "chinese",
+        "values"
+      ],
       "post": "TEACHERS AND SCHOOL HEAD",
       "participantGroup": "ALL · TEACHERS AND SCHOOL HEAD",
       "format": "Online application",
@@ -2013,6 +2259,9 @@
       "closingDateEnd": "2026-09-28",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -2038,6 +2287,11 @@
       "closingDateEnd": "2026-09-24",
       "level": "PRIMARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "chinese",
+        "ict"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS, PANEL HEADS AND TEACHER LIBRARIANS",
       "participantGroup": "PRIMARY AND SPECIAL · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS, PANEL HEADS AND TEACHER LIBRARIANS",
       "format": "TCS course details",
@@ -2063,6 +2317,9 @@
       "closingDateEnd": "2026-12-28",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -2088,6 +2345,10 @@
       "closingDateEnd": "2026-10-05",
       "level": "PRIMARY",
       "subject": "PRIMARY SCIENCE, GENERAL STUDIES AND GENERAL STUDIES (OLE)",
+      "subjectTags": [
+        "science",
+        "ict"
+      ],
       "post": "PANEL HEADS, COORDINATORS AND TEACHERS",
       "participantGroup": "PRIMARY · PANEL HEADS, COORDINATORS AND TEACHERS",
       "format": "Online application",
@@ -2113,6 +2374,10 @@
       "closingDateEnd": "2026-09-21",
       "level": "PRIMARY, SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS",
       "participantGroup": "PRIMARY, SECONDARY AND SPECIAL · TEACHERS",
       "format": "Online application",
@@ -2138,6 +2403,10 @@
       "closingDateEnd": "2026-09-23",
       "level": "PRIMARY, SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS",
       "participantGroup": "PRIMARY, SECONDARY AND SPECIAL · TEACHERS",
       "format": "Online application",
@@ -2163,6 +2432,10 @@
       "closingDateEnd": "2026-09-18",
       "level": "PRIMARY AND SECONDARY",
       "subject": "ENGLISH LANGUAGE",
+      "subjectTags": [
+        "english",
+        "ict"
+      ],
       "post": "In-service primary or secondary school English Language teachers in Hong Kong",
       "participantGroup": "PRIMARY AND SECONDARY · In-service primary or secondary school English Language teachers in Hong Kong",
       "format": "TCS course details",
@@ -2188,6 +2461,10 @@
       "closingDateEnd": "2026-09-28",
       "level": "PRIMARY, SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS, PANEL HEADS AND TEACHER LIBRARIANS",
       "participantGroup": "PRIMARY, SECONDARY AND SPECIAL · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS, PANEL HEADS AND TEACHER LIBRARIANS",
       "format": "Online application",
@@ -2213,6 +2490,12 @@
       "closingDateEnd": "2026-09-30",
       "level": "PRIMARY, SECONDARY AND SPECIAL",
       "subject": "CHINESE LANGUAGE, CHINESE LITERATURE, CHINESE HISTORY, MUSIC, VISUAL ARTS AND LIFE-WIDE LEARNING",
+      "subjectTags": [
+        "chinese",
+        "ict",
+        "humanities",
+        "arts"
+      ],
       "post": "SCHOOL HEAD, DEPUTY HEADS, PANEL HEADS, COORDINATORS, CAREERS TEACHERS, TEACHERS AND OTHERS",
       "participantGroup": "PRIMARY, SECONDARY AND SPECIAL · SCHOOL HEAD, DEPUTY HEADS, PANEL HEADS, COORDINATORS, CAREERS TEACHERS, TEACHERS AND OTHERS",
       "format": "Online application",
@@ -2238,6 +2521,11 @@
       "closingDateEnd": "2026-09-24",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "mathematics",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -2263,6 +2551,10 @@
       "closingDateEnd": "2026-09-24",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -2288,6 +2580,9 @@
       "closingDateEnd": "2026-09-22",
       "level": "SECONDARY",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "TEACHERS, DEPUTY HEADS, COORDINATORS, PANEL HEADS AND OTHERS",
       "participantGroup": "SECONDARY · TEACHERS, DEPUTY HEADS, COORDINATORS, PANEL HEADS AND OTHERS",
       "format": "Online application",
@@ -2313,6 +2608,9 @@
       "closingDateEnd": "2026-09-21",
       "level": "小學及 特殊教育",
       "subject": "全部",
+      "subjectTags": [
+        "general"
+      ],
       "post": "現職小學副校長或將晉升為副校長的小學教師",
       "participantGroup": "小學及 特殊教育 · 現職小學副校長或將晉升為副校長的小學教師",
       "format": "TCS course details",
@@ -2338,6 +2636,10 @@
       "closingDateEnd": "2026-09-29",
       "level": "PRIMARY, SECONDARY AND SPECIAL",
       "subject": "PHYSICAL DEVELOPMENT/EXPERIENCE, PHYSICAL EDUCATION (HKDSE) AND PHYSICAL EDUCATION LESSONS",
+      "subjectTags": [
+        "ict",
+        "health"
+      ],
       "post": "PANEL CHAIRPERSONS",
       "participantGroup": "PRIMARY, SECONDARY AND SPECIAL · PANEL CHAIRPERSONS",
       "format": "Online application",
@@ -2363,6 +2665,10 @@
       "closingDateEnd": "2026-09-29",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "english"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -2388,6 +2694,10 @@
       "closingDateEnd": "2026-10-02",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "arts"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -2413,6 +2723,9 @@
       "closingDateEnd": "2026-09-22",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -2438,6 +2751,10 @@
       "closingDateEnd": "2026-09-30",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "science"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -2464,6 +2781,9 @@
       "closingDateEnd": "2026-09-28",
       "level": "PRIMARY, SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS, PANEL HEADS, CAREERS TEACHERS AND TEACHER LIBRARIANS",
       "participantGroup": "PRIMARY, SECONDARY AND SPECIAL · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS, PANEL HEADS, CAREERS TEACHERS AND TEACHER LIBRARIANS",
       "format": "TCS course details",
@@ -2489,6 +2809,10 @@
       "closingDateEnd": "2026-09-28",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -2514,6 +2838,9 @@
       "closingDateEnd": "2027-01-12",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -2539,6 +2866,10 @@
       "closingDateEnd": "2026-09-21",
       "level": "PRIMARY, SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS",
       "participantGroup": "PRIMARY, SECONDARY AND SPECIAL · TEACHERS",
       "format": "Online application",
@@ -2564,6 +2895,9 @@
       "closingDateEnd": "2026-12-31",
       "level": "小學, 中學及 特殊教育",
       "subject": "全部",
+      "subjectTags": [
+        "general"
+      ],
       "post": "現職小學或中學科組主任",
       "participantGroup": "小學, 中學及 特殊教育 · 現職小學或中學科組主任",
       "format": "TCS course details",
@@ -2589,6 +2923,11 @@
       "closingDateEnd": "2026-09-22",
       "level": "PRIMARY",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict",
+        "health"
+      ],
       "post": "TEACHERS",
       "participantGroup": "PRIMARY · TEACHERS",
       "format": "Online application",
@@ -2614,6 +2953,10 @@
       "closingDateEnd": "2026-10-07",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "values"
+      ],
       "post": "TEACHERS AND SCHOOL HEAD",
       "participantGroup": "ALL · TEACHERS AND SCHOOL HEAD",
       "format": "Online application",
@@ -2639,6 +2982,10 @@
       "closingDateEnd": "2026-10-01",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -2664,6 +3011,11 @@
       "closingDateEnd": "2026-09-30",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "mathematics",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -2689,6 +3041,11 @@
       "closingDateEnd": "2026-09-28",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "mathematics",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -2714,6 +3071,10 @@
       "closingDateEnd": "2026-09-28",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -2739,6 +3100,9 @@
       "closingDateEnd": "2026-10-05",
       "level": "PRIMARY",
       "subject": "GENERAL STUDIES, PRIMARY SCIENCE AND GENERAL STUDIES (OLE)",
+      "subjectTags": [
+        "science"
+      ],
       "post": "PANEL HEADS, COORDINATORS AND TEACHERS",
       "participantGroup": "PRIMARY · PANEL HEADS, COORDINATORS AND TEACHERS",
       "format": "TCS course details",
@@ -2764,6 +3128,10 @@
       "closingDateEnd": "2026-10-05",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "science"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -2789,6 +3157,10 @@
       "closingDateEnd": "2026-10-28",
       "level": "SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS OF SPECIAL SCHOOLS",
       "participantGroup": "SPECIAL · TEACHERS OF SPECIAL SCHOOLS",
       "format": "Online application",
@@ -2814,6 +3186,11 @@
       "closingDateEnd": "2026-09-22",
       "level": "PRIMARY",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict",
+        "health"
+      ],
       "post": "TEACHERS",
       "participantGroup": "PRIMARY · TEACHERS",
       "format": "Online application",
@@ -2840,6 +3217,9 @@
       "closingDateEnd": "2026-10-05",
       "level": "SECONDARY",
       "subject": "CITIZENSHIP AND SOCIAL DEVELOPMENT",
+      "subjectTags": [
+        "values"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "SECONDARY · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "Online application",
@@ -2865,6 +3245,9 @@
       "closingDateEnd": "2026-09-24",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -2890,6 +3273,10 @@
       "closingDateEnd": "2026-10-02",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "science"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -2915,6 +3302,10 @@
       "closingDateEnd": "2026-09-29",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -2940,6 +3331,10 @@
       "closingDateEnd": "2026-09-29",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -2965,6 +3360,10 @@
       "closingDateEnd": "2026-10-02",
       "level": "PRIMARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "PRIMARY AND SPECIAL · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "TCS course details",
@@ -2990,6 +3389,10 @@
       "closingDateEnd": "2026-10-22",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "steam"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -3015,6 +3418,9 @@
       "closingDateEnd": "2026-09-22",
       "level": "小學, 中學及 特殊教育",
       "subject": "全部",
+      "subjectTags": [
+        "general"
+      ],
       "post": "校長, 副校長及 國家安全教育專責統籌人員",
       "participantGroup": "小學, 中學及 特殊教育 · 校長, 副校長及 國家安全教育專責統籌人員",
       "format": "Online application",
@@ -3040,6 +3446,10 @@
       "closingDateEnd": "2026-09-20",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "values"
+      ],
       "post": "TEACHERS AND SCHOOL HEAD",
       "participantGroup": "ALL · TEACHERS AND SCHOOL HEAD",
       "format": "TCS course details",
@@ -3065,6 +3475,12 @@
       "closingDateEnd": "2026-09-17",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "chinese",
+        "ict",
+        "values"
+      ],
       "post": "TEACHERS AND SCHOOL HEAD",
       "participantGroup": "ALL · TEACHERS AND SCHOOL HEAD",
       "format": "TCS course details",
@@ -3092,6 +3508,12 @@
       "closingDateEnd": "2026-10-05",
       "level": "SECONDARY",
       "subject": "PRIMARY SCIENCE, SCIENCE (SECONDARY 1-3), STEM EDUCATION, PRIMARY HUMANITIES, CITIZENSHIP, ECONOMICS AND SOCIETY, ECONOMICS, GEOGRAPHY, HISTORY, INTEGRATED HUMANITIES, CITIZENSHIP AND SOCIAL DEVELOPMENT, GENERAL STUDIES (OLE), INTEGRATED STUDIES, LIBRARY LESSON, LIFE EDUCATION, MORAL & CIVIC EDUCATION, MORAL AND NATIONAL EDUCATION, MORAL EDUCATION, SCHOOL-BASED DEVELOPED SUBJECTS/ COURSES, INNOVATION AND ENTREPRENEURSHIP(APL), INTRODUCTION TO FINTECH (APL) AND PR AND MULTIMEDIA COMMUNICATION (APL)",
+      "subjectTags": [
+        "science",
+        "steam",
+        "values",
+        "humanities"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "SECONDARY · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "Online application",
@@ -3117,6 +3539,9 @@
       "closingDateEnd": "2026-10-05",
       "level": "PRIMARY, SECONDARY AND SPECIAL",
       "subject": "PHYSICAL DEVELOPMENT/EXPERIENCE, PHYSICAL EDUCATION (HKDSE) AND PHYSICAL EDUCATION LESSONS",
+      "subjectTags": [
+        "health"
+      ],
       "post": "TEACHERS",
       "participantGroup": "PRIMARY, SECONDARY AND SPECIAL · TEACHERS",
       "format": "Online application",
@@ -3142,6 +3567,10 @@
       "closingDateEnd": "2026-10-05",
       "level": "PRIMARY",
       "subject": "PRIMARY HUMANITIES AND MORAL AND NATIONAL EDUCATION",
+      "subjectTags": [
+        "values",
+        "humanities"
+      ],
       "post": "TEACHERS, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "PRIMARY · TEACHERS, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "Online application",
@@ -3167,6 +3596,10 @@
       "closingDateEnd": "2026-11-11",
       "level": "PRIMARY AND SPECIAL",
       "subject": "HEALTH EDUCATION",
+      "subjectTags": [
+        "ict",
+        "health"
+      ],
       "post": "SCHOOL HEAD, DEPUTY HEADS, PANEL HEADS AND TEACHERS",
       "participantGroup": "PRIMARY AND SPECIAL · SCHOOL HEAD, DEPUTY HEADS, PANEL HEADS AND TEACHERS",
       "format": "Online application",
@@ -3192,6 +3625,11 @@
       "closingDateEnd": "2026-09-30",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "english",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -3217,6 +3655,10 @@
       "closingDateEnd": "2026-09-30",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -3242,6 +3684,10 @@
       "closingDateEnd": "2026-10-02",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -3268,6 +3714,10 @@
       "closingDateEnd": "2026-10-02",
       "level": "SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "SECONDARY AND SPECIAL · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "TCS course details",
@@ -3293,6 +3743,10 @@
       "closingDateEnd": "2026-10-13",
       "level": "PRIMARY",
       "subject": "PRIMARY SCIENCE, GENERAL STUDIES AND GENERAL STUDIES (OLE)",
+      "subjectTags": [
+        "science",
+        "ict"
+      ],
       "post": "PANEL HEADS, COORDINATORS AND TEACHERS",
       "participantGroup": "PRIMARY · PANEL HEADS, COORDINATORS AND TEACHERS",
       "format": "Online application",
@@ -3318,6 +3772,9 @@
       "closingDateEnd": "2026-09-24",
       "level": "PRIMARY",
       "subject": "MATHEMATICS",
+      "subjectTags": [
+        "mathematics"
+      ],
       "post": "TEACHERS",
       "participantGroup": "PRIMARY · TEACHERS",
       "format": "Online application",
@@ -3343,6 +3800,11 @@
       "closingDateEnd": "2026-09-30",
       "level": "SECONDARY",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict",
+        "health"
+      ],
       "post": "TEACHERS",
       "participantGroup": "SECONDARY · TEACHERS",
       "format": "Online application",
@@ -3368,6 +3830,9 @@
       "closingDateEnd": "2026-10-05",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -3393,6 +3858,10 @@
       "closingDateEnd": "2026-09-25",
       "level": "PRIMARY",
       "subject": "PRIMARY HUMANITIES",
+      "subjectTags": [
+        "chinese",
+        "humanities"
+      ],
       "post": "TEACHERS, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "PRIMARY · TEACHERS, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "TCS course details",
@@ -3418,6 +3887,9 @@
       "closingDateEnd": "2026-09-11",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -3443,6 +3915,9 @@
       "closingDateEnd": "2026-09-11",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -3468,6 +3943,9 @@
       "closingDateEnd": "2026-10-16",
       "level": "SECONDARY",
       "subject": "ECONOMICS",
+      "subjectTags": [
+        "other"
+      ],
       "post": "PANEL HEADS, TEACHERS，TEACHING ASSISTANTS AND ASSISTANT TEACHERS",
       "participantGroup": "SECONDARY · PANEL HEADS, TEACHERS，TEACHING ASSISTANTS AND ASSISTANT TEACHERS",
       "format": "Online application",
@@ -3493,6 +3971,9 @@
       "closingDateEnd": "2026-10-10",
       "level": "SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS, PANEL HEADS AND TEACHER LIBRARIANS",
       "participantGroup": "SECONDARY AND SPECIAL · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS, PANEL HEADS AND TEACHER LIBRARIANS",
       "format": "Online application",
@@ -3518,6 +3999,10 @@
       "closingDateEnd": "2026-10-02",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -3543,6 +4028,9 @@
       "closingDateEnd": "2026-11-03",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -3568,6 +4056,10 @@
       "closingDateEnd": "2026-10-28",
       "level": "SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "SCHOOL HEAD, DEPUTY HEADS, PANEL HEADS AND TEACHERS OF SPECIAL SCHOOLS",
       "participantGroup": "SPECIAL · SCHOOL HEAD, DEPUTY HEADS, PANEL HEADS AND TEACHERS OF SPECIAL SCHOOLS",
       "format": "Online application",
@@ -3593,6 +4085,9 @@
       "closingDateEnd": "2026-10-08",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -3618,6 +4113,10 @@
       "closingDateEnd": "2026-10-08",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "english"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -3644,6 +4143,9 @@
       "closingDateEnd": "2026-10-05",
       "level": "SECONDARY",
       "subject": "BUSINESS, ACCOUNTING & FINANCIAL STUDIES, CITIZENSHIP, ECONOMICS AND SOCIETY AND ECONOMICS",
+      "subjectTags": [
+        "values"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, COORDINATORS, PANEL HEADS AND OTHERS",
       "participantGroup": "SECONDARY · TEACHERS, SCHOOL HEAD, COORDINATORS, PANEL HEADS AND OTHERS",
       "format": "TCS course details",
@@ -3669,6 +4171,10 @@
       "closingDateEnd": "2026-10-08",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "science"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -3694,6 +4200,10 @@
       "closingDateEnd": "2026-10-05",
       "level": "SECONDARY",
       "subject": "HISTORY",
+      "subjectTags": [
+        "ict",
+        "humanities"
+      ],
       "post": "COORDINATORS, DEPUTY HEADS, PANEL HEADS, SCHOOL HEAD AND TEACHERS > >Remarks: Priority will be given to the following teachers: (1) History panel chairpersons and (2) will not participate in the \"Assessment for Learning workshop on 2026 HKDSE History Examination\"",
       "participantGroup": "SECONDARY · COORDINATORS, DEPUTY HEADS, PANEL HEADS, SCHOOL HEAD AND TEACHERS > >Remarks: Priority will be given to the following teachers: (1) History panel chairpersons and (2) will not participate in the \"Assessment for Learning workshop on 2026 HKDSE History Examination\"",
       "format": "Online application",
@@ -3719,6 +4229,11 @@
       "closingDateEnd": "2026-10-09",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "values",
+        "humanities"
+      ],
       "post": "TEACHERS AND SCHOOL HEAD",
       "participantGroup": "ALL · TEACHERS AND SCHOOL HEAD",
       "format": "Online application",
@@ -3744,6 +4259,11 @@
       "closingDateEnd": "2026-10-07",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict",
+        "arts"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -3769,6 +4289,10 @@
       "closingDateEnd": "2026-10-07",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -3794,6 +4318,9 @@
       "closingDateEnd": "2026-10-09",
       "level": "PRIMARY",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "PRIMARY",
       "format": "Online application",
@@ -3819,6 +4346,9 @@
       "closingDateEnd": "2026-10-09",
       "level": "PRIMARY",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "PRIMARY",
       "format": "Online application",
@@ -3844,6 +4374,9 @@
       "closingDateEnd": "2026-10-09",
       "level": "PRIMARY",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "PRIMARY",
       "format": "Online application",
@@ -3869,6 +4402,11 @@
       "closingDateEnd": "2026-10-09",
       "level": "PRIMARY",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "science",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "PRIMARY",
       "format": "Online application",
@@ -3894,6 +4432,9 @@
       "closingDateEnd": "2026-10-05",
       "level": "SECONDARY",
       "subject": "MATHEMATICS",
+      "subjectTags": [
+        "mathematics"
+      ],
       "post": "TEACHERS",
       "participantGroup": "SECONDARY · TEACHERS",
       "format": "Online application",
@@ -3919,6 +4460,9 @@
       "closingDateEnd": "2027-01-07",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -3944,6 +4488,10 @@
       "closingDateEnd": "2026-09-09",
       "level": "PRIMARY, SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS",
       "participantGroup": "PRIMARY, SECONDARY AND SPECIAL · TEACHERS",
       "format": "TCS course details",
@@ -3969,6 +4517,9 @@
       "closingDateEnd": "2027-06-15",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -3994,6 +4545,9 @@
       "closingDateEnd": "2026-09-29",
       "level": "KINDERGARTEN",
       "subject": "KINDERGARTENS",
+      "subjectTags": [
+        "other"
+      ],
       "post": "SCHOOL HEAD, DEPUTY HEADS AND TEACHERS",
       "participantGroup": "KINDERGARTEN · SCHOOL HEAD, DEPUTY HEADS AND TEACHERS",
       "format": "Online application",
@@ -4019,6 +4573,11 @@
       "closingDateEnd": "2026-09-30",
       "level": "SECONDARY",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict",
+        "health"
+      ],
       "post": "TEACHERS",
       "participantGroup": "SECONDARY · TEACHERS",
       "format": "Online application",
@@ -4044,6 +4603,9 @@
       "closingDateEnd": "2026-09-30",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -4069,6 +4631,11 @@
       "closingDateEnd": "2026-10-08",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict",
+        "arts"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -4094,6 +4661,10 @@
       "closingDateEnd": "2026-10-06",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -4119,6 +4690,11 @@
       "closingDateEnd": "2026-10-08",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "mathematics",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -4144,6 +4720,9 @@
       "closingDateEnd": "2026-09-22",
       "level": "小學, 中學及 特殊教育",
       "subject": "全部",
+      "subjectTags": [
+        "general"
+      ],
       "post": "校長, 副校長及 國家安全教育專責統籌人員",
       "participantGroup": "小學, 中學及 特殊教育 · 校長, 副校長及 國家安全教育專責統籌人員",
       "format": "Online application",
@@ -4169,6 +4748,11 @@
       "closingDateEnd": "2026-09-29",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "values",
+        "humanities"
+      ],
       "post": "TEACHERS AND SCHOOL HEAD",
       "participantGroup": "ALL · TEACHERS AND SCHOOL HEAD",
       "format": "Online application",
@@ -4194,6 +4778,9 @@
       "closingDateEnd": "2026-10-09",
       "level": "SECONDARY",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "School Heads, Deputy Heads, Panel Heads, Applied Learning Co-ordinators, Secondary School Curriculum Co-ordinators, Careers Teachers, Teachers-in-Charge of Life Planning Education, Teachers, Teaching Assistants and Assistant Teachers",
       "participantGroup": "SECONDARY · School Heads, Deputy Heads, Panel Heads, Applied Learning Co-ordinators, Secondary School Curriculum Co-ordinators, Careers Teachers, Teachers-in-Charge of Life Planning Education, Teachers, Teaching Assistants and Assistant Teachers",
       "format": "Online application",
@@ -4219,6 +4806,9 @@
       "closingDateEnd": "2026-10-07",
       "level": "PRIMARY",
       "subject": "PRIMARY HUMANITIES",
+      "subjectTags": [
+        "humanities"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND TEACHER LIBRARIANS",
       "participantGroup": "PRIMARY · TEACHERS, COORDINATORS, PANEL HEADS AND TEACHER LIBRARIANS",
       "format": "TCS course details",
@@ -4244,6 +4834,10 @@
       "closingDateEnd": "2026-10-09",
       "level": "PRIMARY",
       "subject": "GENERAL STUDIES AND PRIMARY SCIENCE",
+      "subjectTags": [
+        "science",
+        "steam"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "PRIMARY · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "Online application",
@@ -4269,6 +4863,10 @@
       "closingDateEnd": "2026-10-21",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -4294,6 +4892,10 @@
       "closingDateEnd": "2026-10-07",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -4319,6 +4921,10 @@
       "closingDateEnd": "2026-10-06",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "health"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -4344,6 +4950,10 @@
       "closingDateEnd": "2026-10-14",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "english"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -4369,6 +4979,10 @@
       "closingDateEnd": "2026-10-06",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -4396,6 +5010,12 @@
       "closingDateEnd": "2026-10-09",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict",
+        "values",
+        "humanities"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -4421,6 +5041,10 @@
       "closingDateEnd": "2026-10-12",
       "level": "SECONDARY",
       "subject": "MATHEMATICS",
+      "subjectTags": [
+        "chinese",
+        "mathematics"
+      ],
       "post": "TEACHERS",
       "participantGroup": "SECONDARY · TEACHERS",
       "format": "Online application",
@@ -4446,6 +5070,9 @@
       "closingDateEnd": "2026-10-05",
       "level": "SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "TEACHERS",
       "participantGroup": "SPECIAL · TEACHERS",
       "format": "Online application",
@@ -4473,6 +5100,11 @@
       "closingDateEnd": "2026-10-08",
       "level": "PRIMARY, SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict",
+        "steam"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, MIDDLE LEADERS AND TEACHING STAFF RESPONSIBLE FOR ARTIFICIAL INTELLIGENCE(AI)/STEAM EDUCATION >*Selection will be prioritised by: (i) applicant rank; (ii) relevance of the applicant’s work to AI/STEAM education; and (iii) order of school applications to the EDB, which reserves the final decision on selection principles and arrangements.",
       "participantGroup": "PRIMARY, SECONDARY AND SPECIAL · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, MIDDLE LEADERS AND TEACHING STAFF RESPONSIBLE FOR ARTIFICIAL INTELLIGENCE(AI)/STEAM EDUCATION >*Selection will be prioritised by: (i) applicant rank; (ii) relevance of the applicant’s work to AI/STEAM education; and (iii) order of school applications to the EDB, which reserves the final decision on selection principles and arrangements.",
       "format": "TCS course details",
@@ -4498,6 +5130,9 @@
       "closingDateEnd": "2026-10-14",
       "level": "KINDERGARTEN",
       "subject": "KINDERGARTENS",
+      "subjectTags": [
+        "ict"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "KINDERGARTEN · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "Online application",
@@ -4523,6 +5158,9 @@
       "closingDateEnd": "2026-10-15",
       "level": "PRIMARY, SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "SCHOOL HEAD, DEPUTY HEADS, PANEL HEADS, COORDINATORS AND TEACHERS",
       "participantGroup": "PRIMARY, SECONDARY AND SPECIAL · SCHOOL HEAD, DEPUTY HEADS, PANEL HEADS, COORDINATORS AND TEACHERS",
       "format": "Online application",
@@ -4549,6 +5187,11 @@
       "closingDateEnd": "2026-10-14",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict",
+        "steam"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -4575,6 +5218,11 @@
       "closingDateEnd": "2026-10-14",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict",
+        "steam"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -4600,6 +5248,9 @@
       "closingDateEnd": "2027-01-14",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -4625,6 +5276,10 @@
       "closingDateEnd": "2026-09-25",
       "level": "PRIMARY, SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS",
       "participantGroup": "PRIMARY, SECONDARY AND SPECIAL · TEACHERS",
       "format": "Online application",
@@ -4650,6 +5305,10 @@
       "closingDateEnd": "2026-10-12",
       "level": "PRIMARY AND SECONDARY",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "CAREERS TEACHERS, COORDINATORS, DEPUTY HEADS, PANEL HEADS, SCHOOL HEAD, TEACHERS AND TEACHER LIBRARIANS",
       "participantGroup": "PRIMARY AND SECONDARY · CAREERS TEACHERS, COORDINATORS, DEPUTY HEADS, PANEL HEADS, SCHOOL HEAD, TEACHERS AND TEACHER LIBRARIANS",
       "format": "Online application",
@@ -4675,6 +5334,9 @@
       "closingDateEnd": "2026-10-12",
       "level": "PRIMARY AND SECONDARY",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "CAREERS TEACHERS, COORDINATORS, DEPUTY HEADS, PANEL HEADS, SCHOOL HEAD, TEACHERS AND TEACHER LIBRARIANS",
       "participantGroup": "PRIMARY AND SECONDARY · CAREERS TEACHERS, COORDINATORS, DEPUTY HEADS, PANEL HEADS, SCHOOL HEAD, TEACHERS AND TEACHER LIBRARIANS",
       "format": "Online application",
@@ -4700,6 +5362,9 @@
       "closingDateEnd": "2026-10-12",
       "level": "PRIMARY AND SECONDARY",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "CAREERS TEACHERS, COORDINATORS, DEPUTY HEADS, PANEL HEADS, SCHOOL HEAD, TEACHERS AND TEACHER LIBRARIANS",
       "participantGroup": "PRIMARY AND SECONDARY · CAREERS TEACHERS, COORDINATORS, DEPUTY HEADS, PANEL HEADS, SCHOOL HEAD, TEACHERS AND TEACHER LIBRARIANS",
       "format": "Online application",
@@ -4725,6 +5390,9 @@
       "closingDateEnd": "2026-10-12",
       "level": "PRIMARY AND SECONDARY",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "CAREERS TEACHERS, COORDINATORS, DEPUTY HEADS, PANEL HEADS, SCHOOL HEAD, TEACHERS AND TEACHER LIBRARIANS",
       "participantGroup": "PRIMARY AND SECONDARY · CAREERS TEACHERS, COORDINATORS, DEPUTY HEADS, PANEL HEADS, SCHOOL HEAD, TEACHERS AND TEACHER LIBRARIANS",
       "format": "Online application",
@@ -4750,6 +5418,10 @@
       "closingDateEnd": "2026-10-13",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -4775,6 +5447,11 @@
       "closingDateEnd": "2026-10-13",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "mathematics",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -4800,6 +5477,10 @@
       "closingDateEnd": "2026-11-20",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -4825,6 +5506,10 @@
       "closingDateEnd": "2026-10-16",
       "level": "PRIMARY",
       "subject": "PRIMARY SCIENCE, GENERAL STUDIES AND GENERAL STUDIES (OLE)",
+      "subjectTags": [
+        "science",
+        "ict"
+      ],
       "post": "PANEL HEADS, COORDINATORS AND TEACHERS",
       "participantGroup": "PRIMARY · PANEL HEADS, COORDINATORS AND TEACHERS",
       "format": "Online application",
@@ -4850,6 +5535,9 @@
       "closingDateEnd": "2026-09-28",
       "level": "KINDERGARTEN",
       "subject": "KINDERGARTENS",
+      "subjectTags": [
+        "other"
+      ],
       "post": "SCHOOL HEAD, DEPUTY HEADS, SENIOR TEACHERS AND TEACHERS",
       "participantGroup": "KINDERGARTEN · SCHOOL HEAD, DEPUTY HEADS, SENIOR TEACHERS AND TEACHERS",
       "format": "Online application",
@@ -4875,6 +5563,10 @@
       "closingDateEnd": "2026-10-07",
       "level": "PRIMARY, SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "Newly-joined teachers as defined in EDB Circular No.29/2024",
       "participantGroup": "PRIMARY, SECONDARY AND SPECIAL · Newly-joined teachers as defined in EDB Circular No.29/2024",
       "format": "Online application",
@@ -4900,6 +5592,9 @@
       "closingDateEnd": "2026-10-16",
       "level": "PRIMARY AND SECONDARY",
       "subject": "NOT APPLICABLE",
+      "subjectTags": [
+        "general"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS AND OTHERS",
       "participantGroup": "PRIMARY AND SECONDARY · TEACHERS, SCHOOL HEAD, DEPUTY HEADS AND OTHERS",
       "format": "Online application",
@@ -4925,6 +5620,9 @@
       "closingDateEnd": "2026-10-20",
       "level": "PRIMARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "PRIMARY AND SPECIAL · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "Online application",
@@ -4950,6 +5648,9 @@
       "closingDateEnd": "2026-07-17",
       "level": "PRIMARY",
       "subject": "ENGLISH LANGUAGE",
+      "subjectTags": [
+        "english"
+      ],
       "post": "TEACHERS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "PRIMARY · TEACHERS, COORDINATORS AND PANEL HEADS",
       "format": "TCS course details",
@@ -4975,6 +5676,10 @@
       "closingDateEnd": "2026-10-16",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -5000,6 +5705,10 @@
       "closingDateEnd": "2026-10-14",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -5025,6 +5734,10 @@
       "closingDateEnd": "2026-10-28",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -5050,6 +5763,11 @@
       "closingDateEnd": "2026-10-08",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "mathematics",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -5075,6 +5793,9 @@
       "closingDateEnd": "2026-11-02",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -5100,6 +5821,9 @@
       "closingDateEnd": "2026-10-09",
       "level": "SECONDARY",
       "subject": "NOT APPLICABLE",
+      "subjectTags": [
+        "general"
+      ],
       "post": "TEACHERS, COORDINATORS AND OTHERS",
       "participantGroup": "SECONDARY · TEACHERS, COORDINATORS AND OTHERS",
       "format": "Online application",
@@ -5126,6 +5850,13 @@
       "closingDateEnd": "2026-10-12",
       "level": "PRIMARY, SECONDARY AND SPECIAL",
       "subject": "GENERAL STUDIES, PRIMARY SCIENCE, SCIENCE (SECONDARY 1-3), PRIMARY HUMANITIES, CITIZENSHIP, ECONOMICS AND SOCIETY, GEOGRAPHY, INTEGRATED HUMANITIES, LIFE AND SOCIETY, CITIZENSHIP AND SOCIAL DEVELOPMENT, ENVIRONMENTAL EDUCATION, GENERAL STUDIES (OLE), HEALTH EDUCATION, LIFE EDUCATION, LIFE-WIDE LEARNING, MORAL & CIVIC EDUCATION, MORAL AND NATIONAL EDUCATION AND MORAL EDUCATION",
+      "subjectTags": [
+        "science",
+        "ict",
+        "values",
+        "humanities",
+        "health"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "PRIMARY, SECONDARY AND SPECIAL · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "TCS course details",
@@ -5151,6 +5882,10 @@
       "closingDateEnd": "2026-10-22",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "science"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -5176,6 +5911,9 @@
       "closingDateEnd": "2026-10-15",
       "level": "SECONDARY",
       "subject": "MATHEMATICS",
+      "subjectTags": [
+        "mathematics"
+      ],
       "post": "TEACHERS, TEACHING ASSISTANTS AND ASSISTANT TEACHERS",
       "participantGroup": "SECONDARY · TEACHERS, TEACHING ASSISTANTS AND ASSISTANT TEACHERS",
       "format": "Online application",
@@ -5201,6 +5939,9 @@
       "closingDateEnd": "2026-10-05",
       "level": "SECONDARY",
       "subject": "HISTORY",
+      "subjectTags": [
+        "humanities"
+      ],
       "post": "COORDINATORS, DEPUTY HEADS, PANEL HEADS, SCHOOL HEAD AND TEACHERS",
       "participantGroup": "SECONDARY · COORDINATORS, DEPUTY HEADS, PANEL HEADS, SCHOOL HEAD AND TEACHERS",
       "format": "Online application",
@@ -5226,6 +5967,9 @@
       "closingDateEnd": "2026-10-16",
       "level": "Kindergarten",
       "subject": "Kindergartens",
+      "subjectTags": [
+        "other"
+      ],
       "post": "School Head, Deputy Head and Teachers",
       "participantGroup": "Kindergarten · School Head, Deputy Head and Teachers",
       "format": "Online application",
@@ -5251,6 +5995,10 @@
       "closingDateEnd": "2026-10-16",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -5276,6 +6024,11 @@
       "closingDateEnd": "2026-10-16",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "english",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -5301,6 +6054,9 @@
       "closingDateEnd": "2026-11-17",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -5326,6 +6082,9 @@
       "closingDateEnd": "2026-10-13",
       "level": "KINDERGARTEN",
       "subject": "KINDERGARTENS",
+      "subjectTags": [
+        "other"
+      ],
       "post": "SCHOOL HEAD, DEPUTY HEADS AND TEACHERS",
       "participantGroup": "KINDERGARTEN · SCHOOL HEAD, DEPUTY HEADS AND TEACHERS",
       "format": "Online application",
@@ -5351,6 +6110,10 @@
       "closingDateEnd": "2026-10-20",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "humanities"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -5376,6 +6139,10 @@
       "closingDateEnd": "2026-10-20",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -5401,6 +6168,10 @@
       "closingDateEnd": "2026-10-16",
       "level": "PRIMARY, SECONDARY AND SPECIAL",
       "subject": "NOT APPLICABLE",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "Teaching and non-teaching staff",
       "participantGroup": "PRIMARY, SECONDARY AND SPECIAL · Teaching and non-teaching staff",
       "format": "Online application",
@@ -5426,6 +6197,9 @@
       "closingDateEnd": "2026-10-27",
       "level": "SECONDARY",
       "subject": "BUDDHIST STUDIES, ETHICS AND RELIGIOUS STUDIES (HKDSE), RELIGIOUS EDUCATION (SECONDARY 1-3) AND ETHICS/RELIGIOUS EDUCATION",
+      "subjectTags": [
+        "other"
+      ],
       "post": "DEPUTY HEADS, PANEL HEADS, SCHOOL HEAD AND TEACHERS",
       "participantGroup": "SECONDARY · DEPUTY HEADS, PANEL HEADS, SCHOOL HEAD AND TEACHERS",
       "format": "Online application",
@@ -5452,6 +6226,11 @@
       "closingDateEnd": "2026-10-20",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "science",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -5477,6 +6256,10 @@
       "closingDateEnd": "2026-10-20",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -5502,6 +6285,9 @@
       "closingDateEnd": "2026-10-28",
       "level": "PRIMARY, SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "PRIMARY, SECONDARY AND SPECIAL · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "Online application",
@@ -5527,6 +6313,9 @@
       "closingDateEnd": "2026-10-27",
       "level": "ALL",
       "subject": "ALL AND KINDERGARTENS",
+      "subjectTags": [
+        "other"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "ALL · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "TCS course details",
@@ -5552,6 +6341,11 @@
       "closingDateEnd": "2026-10-16",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "science",
+        "ict"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -5577,6 +6371,10 @@
       "closingDateEnd": "2026-10-21",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -5602,6 +6400,10 @@
       "closingDateEnd": "2026-10-23",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -5627,6 +6429,9 @@
       "closingDateEnd": "2026-11-26",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -5653,6 +6458,9 @@
       "closingDateEnd": "2026-11-27",
       "level": "SECONDARY",
       "subject": "ECONOMICS",
+      "subjectTags": [
+        "ict"
+      ],
       "post": "TEACHERS, PANEL HEADS AND OTHERS",
       "participantGroup": "SECONDARY · TEACHERS, PANEL HEADS AND OTHERS",
       "format": "Online application",
@@ -5678,6 +6486,10 @@
       "closingDateEnd": "2026-10-20",
       "level": "PRIMARY, SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS AND OTHERS",
       "participantGroup": "PRIMARY, SECONDARY AND SPECIAL · TEACHERS AND OTHERS",
       "format": "Online application",
@@ -5703,6 +6515,11 @@
       "closingDateEnd": "2026-10-27",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict",
+        "arts"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -5728,6 +6545,11 @@
       "closingDateEnd": "2026-10-27",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict",
+        "arts"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -5753,6 +6575,9 @@
       "closingDateEnd": "2026-10-22",
       "level": "SECONDARY",
       "subject": "ENGLISH LANGUAGE",
+      "subjectTags": [
+        "english"
+      ],
       "post": "COORDINATORS, PANEL HEADS AND TEACHERS",
       "participantGroup": "SECONDARY · COORDINATORS, PANEL HEADS AND TEACHERS",
       "format": "Online application",
@@ -5778,6 +6603,9 @@
       "closingDateEnd": "2026-10-23",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -5803,6 +6631,9 @@
       "closingDateEnd": "2026-10-23",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -5828,6 +6659,10 @@
       "closingDateEnd": "2026-10-30",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -5853,6 +6688,9 @@
       "closingDateEnd": "2026-10-09",
       "level": "SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "CAREERS TEACHERS AND TEACHERS",
       "participantGroup": "SECONDARY AND SPECIAL · CAREERS TEACHERS AND TEACHERS",
       "format": "Online application",
@@ -5878,6 +6716,9 @@
       "closingDateEnd": "2027-06-18",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -5903,6 +6744,10 @@
       "closingDateEnd": "2026-10-20",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "mathematics"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -5928,6 +6773,10 @@
       "closingDateEnd": "2026-10-05",
       "level": "PRIMARY, SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS",
       "participantGroup": "PRIMARY, SECONDARY AND SPECIAL · TEACHERS",
       "format": "Online application",
@@ -5953,6 +6802,12 @@
       "closingDateEnd": "2026-11-04",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "chinese",
+        "values",
+        "arts"
+      ],
       "post": "TEACHERS AND SCHOOL HEAD",
       "participantGroup": "ALL · TEACHERS AND SCHOOL HEAD",
       "format": "Online application",
@@ -5978,6 +6833,10 @@
       "closingDateEnd": "2026-10-11",
       "level": "PRIMARY, SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS",
       "participantGroup": "PRIMARY, SECONDARY AND SPECIAL · TEACHERS",
       "format": "Online application",
@@ -6003,6 +6862,9 @@
       "closingDateEnd": "2026-10-14",
       "level": "Primary, Secondary and Special",
       "subject": "Not Applicable",
+      "subjectTags": [
+        "general"
+      ],
       "post": "School Heads, Deputy Heads, Teachers, IMC/SMC Members and Representatives of School Sponsoring Bodies",
       "participantGroup": "Primary, Secondary and Special · School Heads, Deputy Heads, Teachers, IMC/SMC Members and Representatives of School Sponsoring Bodies",
       "format": "Online application",
@@ -6028,6 +6890,9 @@
       "closingDateEnd": "2027-01-05",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -6053,6 +6918,9 @@
       "closingDateEnd": "2027-01-05",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -6078,6 +6946,11 @@
       "closingDateEnd": "2026-11-04",
       "level": "PRIMARY AND SECONDARY",
       "subject": "PRIMARY HUMANITIES, CHINESE HISTORY, HISTORY, GENERAL STUDIES (OLE) AND LIFE-WIDE LEARNING",
+      "subjectTags": [
+        "chinese",
+        "science",
+        "humanities"
+      ],
       "post": "TEACHERS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "PRIMARY AND SECONDARY · TEACHERS, COORDINATORS AND PANEL HEADS",
       "format": "Online application",
@@ -6103,6 +6976,9 @@
       "closingDateEnd": "2026-11-03",
       "level": "SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "SECONDARY AND SPECIAL · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "Online application",
@@ -6129,6 +7005,12 @@
       "closingDateEnd": "2026-10-23",
       "level": "PRIMARY AND SECONDARY",
       "subject": "CHINESE HISTORY, HISTORY, CITIZENSHIP AND SOCIAL DEVELOPMENT AND MORAL AND NATIONAL EDUCATION",
+      "subjectTags": [
+        "chinese",
+        "ict",
+        "values",
+        "humanities"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "PRIMARY AND SECONDARY · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "TCS course details",
@@ -6155,6 +7037,10 @@
       "closingDateEnd": "2026-10-30",
       "level": "PRIMARY, SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "PRIMARY, SECONDARY AND SPECIAL · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "Online application",
@@ -6182,6 +7068,10 @@
       "closingDateEnd": "2026-10-30",
       "level": "SECONDARY AND SPECIAL",
       "subject": "COMPUTER LITERACY, DESIGN AND APPLIED TECHNOLOGY, DESIGN AND TECHNOLOGY, INFORMATION & COMMUNICATION TECHNOLOGY AND STEAM EDUCATION",
+      "subjectTags": [
+        "ict",
+        "steam"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "SECONDARY AND SPECIAL · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "Online application",
@@ -6207,6 +7097,9 @@
       "closingDateEnd": "2026-10-14",
       "level": "PRIMARY",
       "subject": "CHINESE LANGUAGE",
+      "subjectTags": [
+        "chinese"
+      ],
       "post": "TEACHERS",
       "participantGroup": "PRIMARY · TEACHERS",
       "format": "Online application",
@@ -6232,6 +7125,9 @@
       "closingDateEnd": "2026-10-14",
       "level": "PRIMARY",
       "subject": "ENGLISH LANGUAGE",
+      "subjectTags": [
+        "english"
+      ],
       "post": "TEACHERS",
       "participantGroup": "PRIMARY · TEACHERS",
       "format": "Online application",
@@ -6257,6 +7153,9 @@
       "closingDateEnd": "2026-10-14",
       "level": "PRIMARY",
       "subject": "MATHEMATICS",
+      "subjectTags": [
+        "mathematics"
+      ],
       "post": "TEACHERS",
       "participantGroup": "PRIMARY · TEACHERS",
       "format": "Online application",
@@ -6282,6 +7181,10 @@
       "closingDateEnd": "2026-10-14",
       "level": "PRIMARY",
       "subject": "PRIMARY HUMANITIES AND GENERAL STUDIES",
+      "subjectTags": [
+        "science",
+        "humanities"
+      ],
       "post": "TEACHERS",
       "participantGroup": "PRIMARY · TEACHERS",
       "format": "Online application",
@@ -6307,6 +7210,9 @@
       "closingDateEnd": "2026-10-14",
       "level": "PRIMARY",
       "subject": "PRIMARY SCIENCE AND GENERAL STUDIES",
+      "subjectTags": [
+        "science"
+      ],
       "post": "TEACHERS",
       "participantGroup": "PRIMARY · TEACHERS",
       "format": "Online application",
@@ -6333,6 +7239,9 @@
       "closingDateEnd": "2026-10-26",
       "level": "SECONDARY",
       "subject": "INFORMATION & COMMUNICATION TECHNOLOGY",
+      "subjectTags": [
+        "ict"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "SECONDARY · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "Online application",
@@ -6358,6 +7267,10 @@
       "closingDateEnd": "2026-11-02",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "health"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -6383,6 +7296,10 @@
       "closingDateEnd": "2026-11-10",
       "level": "PRIMARY",
       "subject": "GENERAL STUDIES, PRIMARY SCIENCE AND GENERAL STUDIES (OLE)",
+      "subjectTags": [
+        "science",
+        "ict"
+      ],
       "post": "PANEL HEADS, COORDINATORS AND TEACHERS",
       "participantGroup": "PRIMARY · PANEL HEADS, COORDINATORS AND TEACHERS",
       "format": "TCS course details",
@@ -6408,6 +7325,9 @@
       "closingDateEnd": "2026-10-23",
       "level": "幼稚園",
       "subject": "幼稚園",
+      "subjectTags": [
+        "other"
+      ],
       "post": "現職學前教育機構教師、課程統籌、學校領導、校長",
       "participantGroup": "幼稚園 · 現職學前教育機構教師、課程統籌、學校領導、校長",
       "format": "TCS course details",
@@ -6434,6 +7354,9 @@
       "closingDateEnd": "2026-11-02",
       "level": "SECONDARY",
       "subject": "BUSINESS, ACCOUNTING & FINANCIAL STUDIES, CITIZENSHIP, ECONOMICS AND SOCIETY AND ECONOMICS",
+      "subjectTags": [
+        "values"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, COORDINATORS, PANEL HEADS AND OTHERS",
       "participantGroup": "SECONDARY · TEACHERS, SCHOOL HEAD, COORDINATORS, PANEL HEADS AND OTHERS",
       "format": "Online application",
@@ -6459,6 +7382,9 @@
       "closingDateEnd": "2027-04-06",
       "level": "小學, 中學及 特殊教育",
       "subject": "全部",
+      "subjectTags": [
+        "general"
+      ],
       "post": "現職中、小學或特殊學校中層教師或有機會晉升為中層的教師",
       "participantGroup": "小學, 中學及 特殊教育 · 現職中、小學或特殊學校中層教師或有機會晉升為中層的教師",
       "format": "TCS course details",
@@ -6484,6 +7410,11 @@
       "closingDateEnd": "2026-10-20",
       "level": "Primary, Secondary and Special",
       "subject": "Not Applicable",
+      "subjectTags": [
+        "general",
+        "chinese",
+        "ict"
+      ],
       "post": "School Heads, Deputy Heads, Teachers, IMC/SMC Members and Representatives of School Sponsoring Bodies",
       "participantGroup": "Primary, Secondary and Special · School Heads, Deputy Heads, Teachers, IMC/SMC Members and Representatives of School Sponsoring Bodies",
       "format": "Online application",
@@ -6510,6 +7441,9 @@
       "closingDateEnd": "2026-10-26",
       "level": "SECONDARY",
       "subject": "INFORMATION & COMMUNICATION TECHNOLOGY",
+      "subjectTags": [
+        "ict"
+      ],
       "post": "TEACHERS",
       "participantGroup": "SECONDARY · TEACHERS",
       "format": "Online application",
@@ -6535,6 +7469,10 @@
       "closingDateEnd": "2026-11-11",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "values"
+      ],
       "post": "TEACHERS AND SCHOOL HEAD",
       "participantGroup": "ALL · TEACHERS AND SCHOOL HEAD",
       "format": "Online application",
@@ -6560,6 +7498,10 @@
       "closingDateEnd": "2026-11-05",
       "level": "SECONDARY",
       "subject": "CHINESE HISTORY",
+      "subjectTags": [
+        "chinese",
+        "humanities"
+      ],
       "post": "TEACHERS",
       "participantGroup": "SECONDARY · TEACHERS",
       "format": "Online application",
@@ -6585,6 +7527,9 @@
       "closingDateEnd": "2026-10-15",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -6610,6 +7555,9 @@
       "closingDateEnd": "2027-02-03",
       "level": "KINDERGARTEN",
       "subject": "KINDERGARTENS",
+      "subjectTags": [
+        "other"
+      ],
       "post": "SCHOOL HEAD, DEPUTY HEADS AND TEACHERS",
       "participantGroup": "KINDERGARTEN · SCHOOL HEAD, DEPUTY HEADS AND TEACHERS",
       "format": "Online application",
@@ -6635,6 +7583,9 @@
       "closingDateEnd": "2026-10-15",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -6660,6 +7611,9 @@
       "closingDateEnd": "2026-11-10",
       "level": "PRIMARY",
       "subject": "GENERAL STUDIES, PRIMARY SCIENCE AND GENERAL STUDIES (OLE)",
+      "subjectTags": [
+        "science"
+      ],
       "post": "PANEL HEADS, COORDINATORS AND TEACHERS",
       "participantGroup": "PRIMARY · PANEL HEADS, COORDINATORS AND TEACHERS",
       "format": "TCS course details",
@@ -6685,6 +7639,10 @@
       "closingDateEnd": "2026-10-21",
       "level": "Primary, Secondary and Special",
       "subject": "Not Applicable",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "School Heads, Deputy Heads, Teachers, IMC/SMC Members, Representatives of School Sponsoring Bodies and Frontline Staff of Schools",
       "participantGroup": "Primary, Secondary and Special · School Heads, Deputy Heads, Teachers, IMC/SMC Members, Representatives of School Sponsoring Bodies and Frontline Staff of Schools",
       "format": "Online application",
@@ -6711,6 +7669,10 @@
       "closingDateEnd": "2026-10-30",
       "level": "PRIMARY AND SECONDARY",
       "subject": "ENGLISH LANGUAGE",
+      "subjectTags": [
+        "english",
+        "ict"
+      ],
       "post": "In-service primary or secondary school English Language teachers in Hong Kong",
       "participantGroup": "PRIMARY AND SECONDARY · In-service primary or secondary school English Language teachers in Hong Kong",
       "format": "TCS course details",
@@ -6736,6 +7698,9 @@
       "closingDateEnd": "2026-11-02",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -6762,6 +7727,9 @@
       "closingDateEnd": "2026-11-09",
       "level": "SECONDARY",
       "subject": "INFORMATION & COMMUNICATION TECHNOLOGY",
+      "subjectTags": [
+        "ict"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "participantGroup": "SECONDARY · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS AND PANEL HEADS",
       "format": "Online application",
@@ -6787,6 +7755,10 @@
       "closingDateEnd": "2026-10-23",
       "level": "Primary, Secondary and Special",
       "subject": "Not Applicable",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "School Heads, Deputy Heads, Teachers, IMC/SMC Members and Representatives of School Sponsoring Bodies >",
       "participantGroup": "Primary, Secondary and Special · School Heads, Deputy Heads, Teachers, IMC/SMC Members and Representatives of School Sponsoring Bodies >",
       "format": "Online application",
@@ -6812,6 +7784,9 @@
       "closingDateEnd": "2027-05-28",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -6837,6 +7812,9 @@
       "closingDateEnd": "2027-06-17",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -6862,6 +7840,9 @@
       "closingDateEnd": "2027-03-19",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -6887,6 +7868,10 @@
       "closingDateEnd": "2026-11-02",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "mathematics"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -6912,6 +7897,9 @@
       "closingDateEnd": "2026-11-12",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -6937,6 +7925,10 @@
       "closingDateEnd": "2026-10-26",
       "level": "Primary, Secondary and Special",
       "subject": "Not Applicable",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "School Heads, Deputy Heads, Teachers, IMC/SMC Members, Representatives of School Sponsoring Bodies and Frontline Staff of Schools >",
       "participantGroup": "Primary, Secondary and Special · School Heads, Deputy Heads, Teachers, IMC/SMC Members, Representatives of School Sponsoring Bodies and Frontline Staff of Schools >",
       "format": "Online application",
@@ -6962,6 +7954,11 @@
       "closingDateEnd": "2026-11-19",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict",
+        "values"
+      ],
       "post": "TEACHERS AND SCHOOL HEAD",
       "participantGroup": "ALL · TEACHERS AND SCHOOL HEAD",
       "format": "Online application",
@@ -6987,6 +7984,9 @@
       "closingDateEnd": "2026-11-12",
       "level": "SECONDARY",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "School Heads, Deputy Heads, Panel Heads, Applied Learning Co-ordinators, Secondary School Curriculum Co-ordinators, Careers Teachers, Teachers-in-Charge of Life Planning, Teachers, Teaching Assistants and Assistant Teachers",
       "participantGroup": "SECONDARY · School Heads, Deputy Heads, Panel Heads, Applied Learning Co-ordinators, Secondary School Curriculum Co-ordinators, Careers Teachers, Teachers-in-Charge of Life Planning, Teachers, Teaching Assistants and Assistant Teachers",
       "format": "Online application",
@@ -7012,6 +8012,10 @@
       "closingDateEnd": "2026-11-02",
       "level": "PRIMARY",
       "subject": "MATHEMATICS AND OTHER SUBJECTS RELATED TO STEAM EDUCATION",
+      "subjectTags": [
+        "mathematics",
+        "steam"
+      ],
       "post": "TEACHERS AND OTHERS",
       "participantGroup": "PRIMARY · TEACHERS AND OTHERS",
       "format": "Online application",
@@ -7037,6 +8041,9 @@
       "closingDateEnd": "2026-09-30",
       "level": "KINDERGARTEN",
       "subject": "KINDERGARTENS",
+      "subjectTags": [
+        "other"
+      ],
       "post": "SCHOOL HEAD, DEPUTY HEADS, SENIOR TEACHERS AND TEACHERS",
       "participantGroup": "KINDERGARTEN · SCHOOL HEAD, DEPUTY HEADS, SENIOR TEACHERS AND TEACHERS",
       "format": "Online application",
@@ -7062,6 +8069,10 @@
       "closingDateEnd": "2026-10-26",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS, PANEL HEADS, CAREERS TEACHERS, TEACHER LIBRARIANS, SCHOOL LABORATORY TECHNICIAN, SCHOOL CLERKS AND SMC MEMBERS",
       "participantGroup": "ALL · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS, PANEL HEADS, CAREERS TEACHERS, TEACHER LIBRARIANS, SCHOOL LABORATORY TECHNICIAN, SCHOOL CLERKS AND SMC MEMBERS",
       "format": "Online application",
@@ -7087,6 +8098,9 @@
       "closingDateEnd": "2026-12-09",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -7112,6 +8126,10 @@
       "closingDateEnd": "2027-02-04",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "chinese"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -7138,6 +8156,12 @@
       "closingDateEnd": "2026-11-13",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "science",
+        "ict",
+        "steam"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -7163,6 +8187,9 @@
       "closingDateEnd": "2026-10-30",
       "level": "SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "SECONDARY AND SPECIAL · TEACHERS, SCHOOL HEAD, DEPUTY HEADS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "TCS course details",
@@ -7188,6 +8215,9 @@
       "closingDateEnd": "2027-06-17",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -7213,6 +8243,9 @@
       "closingDateEnd": "2026-11-16",
       "level": "KINDERGARTEN",
       "subject": "KINDERGARTENS",
+      "subjectTags": [
+        "other"
+      ],
       "post": "TEACHERS, SCHOOL HEAD AND DEPUTY HEADS",
       "participantGroup": "KINDERGARTEN · TEACHERS, SCHOOL HEAD AND DEPUTY HEADS",
       "format": "Online application",
@@ -7238,6 +8271,9 @@
       "closingDateEnd": "2026-11-19",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -7263,6 +8299,9 @@
       "closingDateEnd": "2027-06-08",
       "level": "小學",
       "subject": "小學人文",
+      "subjectTags": [
+        "humanities"
+      ],
       "post": "現職小學教師",
       "participantGroup": "小學 · 現職小學教師",
       "format": "TCS course details",
@@ -7288,6 +8327,10 @@
       "closingDateEnd": "2026-11-18",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -7313,6 +8356,11 @@
       "closingDateEnd": "2026-09-08",
       "level": "PRIMARY, SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "chinese",
+        "ict"
+      ],
       "post": "TEACHERS",
       "participantGroup": "PRIMARY, SECONDARY AND SPECIAL · TEACHERS",
       "format": "TCS course details",
@@ -7338,6 +8386,11 @@
       "closingDateEnd": "2026-11-20",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "science",
+        "ict"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -7363,6 +8416,10 @@
       "closingDateEnd": "2026-11-20",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -7388,6 +8445,9 @@
       "closingDateEnd": "2026-11-24",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -7413,6 +8473,10 @@
       "closingDateEnd": "2026-12-02",
       "level": "PRIMARY",
       "subject": "GENERAL STUDIES, PRIMARY SCIENCE AND GENERAL STUDIES (OLE)",
+      "subjectTags": [
+        "science",
+        "ict"
+      ],
       "post": "PANEL HEADS, COORDINATORS AND TEACHERS",
       "participantGroup": "PRIMARY · PANEL HEADS, COORDINATORS AND TEACHERS",
       "format": "Online application",
@@ -7438,6 +8502,9 @@
       "closingDateEnd": "2026-12-01",
       "level": "SECONDARY",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "School Heads, Deputy Heads, Panel Heads, Applied Learning Co-ordinators, Secondary School Curriculum Co-ordinators, Careers Teachers, Teachers-in-Charge of Life Planning, Teachers, Teaching Assistants and Assistant Teachers",
       "participantGroup": "SECONDARY · School Heads, Deputy Heads, Panel Heads, Applied Learning Co-ordinators, Secondary School Curriculum Co-ordinators, Careers Teachers, Teachers-in-Charge of Life Planning, Teachers, Teaching Assistants and Assistant Teachers",
       "format": "Online application",
@@ -7463,6 +8530,9 @@
       "closingDateEnd": "2026-10-07",
       "level": "Ordinary Primary and Secondary",
       "subject": "Speech Training",
+      "subjectTags": [
+        "ict"
+      ],
       "post": "School-based speech therapists",
       "participantGroup": "Ordinary Primary and Secondary · School-based speech therapists",
       "format": "Online application",
@@ -7488,6 +8558,9 @@
       "closingDateEnd": "2026-11-26",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -7513,6 +8586,9 @@
       "closingDateEnd": "2026-09-28",
       "level": "KINDERGARTEN, PRIMARY, SECONDARY AND SPECIAL",
       "subject": "NOT APPLICABLE",
+      "subjectTags": [
+        "general"
+      ],
       "post": "SCHOOL HEAD",
       "participantGroup": "KINDERGARTEN, PRIMARY, SECONDARY AND SPECIAL · SCHOOL HEAD",
       "format": "Online application",
@@ -7538,6 +8614,10 @@
       "closingDateEnd": "2026-12-14",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "values"
+      ],
       "post": "TEACHERS AND SCHOOL HEAD",
       "participantGroup": "ALL · TEACHERS AND SCHOOL HEAD",
       "format": "Online application",
@@ -7563,6 +8643,9 @@
       "closingDateEnd": "2026-12-07",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -7588,6 +8671,10 @@
       "closingDateEnd": "2026-12-07",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -7613,6 +8700,11 @@
       "closingDateEnd": "2026-12-04",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "science",
+        "ict"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -7638,6 +8730,9 @@
       "closingDateEnd": "2026-12-18",
       "level": "中學及 特殊教育",
       "subject": "中國語文",
+      "subjectTags": [
+        "chinese"
+      ],
       "post": "現職中學或特殊學校中國語文科教師",
       "participantGroup": "中學及 特殊教育 · 現職中學或特殊學校中國語文科教師",
       "format": "TCS course details",
@@ -7663,6 +8758,10 @@
       "closingDateEnd": "2027-01-26",
       "level": "PRIMARY",
       "subject": "GENERAL STUDIES, PRIMARY SCIENCE AND GENERAL STUDIES (OLE)",
+      "subjectTags": [
+        "science",
+        "ict"
+      ],
       "post": "PANEL HEADS, COORDINATORS AND TEACHERS",
       "participantGroup": "PRIMARY · PANEL HEADS, COORDINATORS AND TEACHERS",
       "format": "Online application",
@@ -7688,6 +8787,10 @@
       "closingDateEnd": "2026-12-31",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "science"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -7713,6 +8816,9 @@
       "closingDateEnd": "2026-09-28",
       "level": "KINDERGARTEN",
       "subject": "KINDERGARTENS",
+      "subjectTags": [
+        "other"
+      ],
       "post": "SCHOOL HEAD, DEPUTY HEADS, SENIOR TEACHERS AND TEACHERS",
       "participantGroup": "KINDERGARTEN · SCHOOL HEAD, DEPUTY HEADS, SENIOR TEACHERS AND TEACHERS",
       "format": "Online application",
@@ -7738,6 +8844,10 @@
       "closingDateEnd": "2027-04-03",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general",
+        "english"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "TCS course details",
@@ -7763,6 +8873,10 @@
       "closingDateEnd": "2027-01-06",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -7788,6 +8902,9 @@
       "closingDateEnd": "2027-03-07",
       "level": "",
       "subject": "",
+      "subjectTags": [
+        "general"
+      ],
       "post": "",
       "participantGroup": "See TCS course details",
       "format": "Online application",
@@ -7813,6 +8930,10 @@
       "closingDateEnd": "2027-01-08",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -7838,6 +8959,9 @@
       "closingDateEnd": "2027-05-06",
       "level": "中學",
       "subject": "地理",
+      "subjectTags": [
+        "humanities"
+      ],
       "post": "現職中學地理教師",
       "participantGroup": "中學 · 現職中學地理教師",
       "format": "TCS course details",
@@ -7863,6 +8987,9 @@
       "closingDateEnd": "2027-01-11",
       "level": "KINDERGARTEN",
       "subject": "TEACHER TRAINING ON CATERING FOR STUDENTS WITH DEVELOPMENTAL NEEDS",
+      "subjectTags": [
+        "ict"
+      ],
       "post": "DEPUTY HEADS, SCHOOL HEAD AND TEACHERS",
       "participantGroup": "KINDERGARTEN · DEPUTY HEADS, SCHOOL HEAD AND TEACHERS",
       "format": "Online application",
@@ -7888,6 +9015,9 @@
       "closingDateEnd": "2027-02-04",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -7913,6 +9043,11 @@
       "closingDateEnd": "2027-02-05",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "science",
+        "ict"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -7938,6 +9073,10 @@
       "closingDateEnd": "2027-02-05",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "TCS course details",
@@ -7963,6 +9102,9 @@
       "closingDateEnd": "2027-02-19",
       "level": "幼稚園",
       "subject": "幼稚園",
+      "subjectTags": [
+        "chinese"
+      ],
       "post": "現職學前教育機構註冊教師、課程統籌、學校領導、校長（具非華語幼兒教學經驗尤為適合）",
       "participantGroup": "幼稚園 · 現職學前教育機構註冊教師、課程統籌、學校領導、校長（具非華語幼兒教學經驗尤為適合）",
       "format": "TCS course details",
@@ -7988,6 +9130,9 @@
       "closingDateEnd": "2027-02-11",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -8013,6 +9158,10 @@
       "closingDateEnd": "2027-02-24",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -8038,6 +9187,10 @@
       "closingDateEnd": "2027-02-25",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -8063,6 +9216,12 @@
       "closingDateEnd": "2027-03-01",
       "level": "PRIMARY, SECONDARY AND SPECIAL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "english",
+        "chinese",
+        "ict"
+      ],
       "post": "Newly-joined teachers as defined in EDB Circular No.29/2024",
       "participantGroup": "PRIMARY, SECONDARY AND SPECIAL · Newly-joined teachers as defined in EDB Circular No.29/2024",
       "format": "Online application",
@@ -8088,6 +9247,9 @@
       "closingDateEnd": "2027-02-26",
       "level": "PRIMARY AND SECONDARY",
       "subject": "ENGLISH LANGUAGE",
+      "subjectTags": [
+        "english"
+      ],
       "post": "In-service primary or secondary school English Language teachers in Hong Kong",
       "participantGroup": "PRIMARY AND SECONDARY · In-service primary or secondary school English Language teachers in Hong Kong",
       "format": "TCS course details",
@@ -8113,6 +9275,10 @@
       "closingDateEnd": "2027-03-03",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -8138,6 +9304,12 @@
       "closingDateEnd": "2027-03-05",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "science",
+        "ict",
+        "steam"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -8163,6 +9335,10 @@
       "closingDateEnd": "2027-03-05",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "TCS course details",
@@ -8188,6 +9364,9 @@
       "closingDateEnd": "2027-03-25",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -8213,6 +9392,11 @@
       "closingDateEnd": "2027-03-25",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "science",
+        "ict"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -8238,6 +9422,9 @@
       "closingDateEnd": "2027-03-25",
       "level": "幼稚園",
       "subject": "幼稚園",
+      "subjectTags": [
+        "other"
+      ],
       "post": "現職學前教育機構註冊教師",
       "participantGroup": "幼稚園 · 現職學前教育機構註冊教師",
       "format": "TCS course details",
@@ -8263,6 +9450,9 @@
       "closingDateEnd": "2027-03-30",
       "level": "小學, 中學及特殊教育",
       "subject": "全部",
+      "subjectTags": [
+        "general"
+      ],
       "post": "副校長、學科主任、行政組別主任或在校內負責學校及教師發展的現職中小學或特殊學校教師",
       "participantGroup": "小學, 中學及特殊教育 · 副校長、學科主任、行政組別主任或在校內負責學校及教師發展的現職中小學或特殊學校教師",
       "format": "TCS course details",
@@ -8288,6 +9478,10 @@
       "closingDateEnd": "2027-04-02",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -8313,6 +9507,9 @@
       "closingDateEnd": "2027-04-06",
       "level": "小學, 中學及 特殊教育",
       "subject": "中國語文",
+      "subjectTags": [
+        "chinese"
+      ],
       "post": "現職小學、中學或特殊學校中國語文科教師",
       "participantGroup": "小學, 中學及 特殊教育 · 現職小學、中學或特殊學校中國語文科教師",
       "format": "TCS course details",
@@ -8338,6 +9535,9 @@
       "closingDateEnd": "2027-04-06",
       "level": "小學, 中學及特殊教育",
       "subject": "全部",
+      "subjectTags": [
+        "general"
+      ],
       "post": "現職中、小學或特殊學校的教師、中層管理人員或副校長，如在校內負責教師專業發展或學校改進的教師，可獲優先考慮",
       "participantGroup": "小學, 中學及特殊教育 · 現職中、小學或特殊學校的教師、中層管理人員或副校長，如在校內負責教師專業發展或學校改進的教師，可獲優先考慮",
       "format": "TCS course details",
@@ -8363,6 +9563,10 @@
       "closingDateEnd": "2027-04-06",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "science"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -8388,6 +9592,9 @@
       "closingDateEnd": "2027-04-12",
       "level": "小學",
       "subject": "視覺藝術",
+      "subjectTags": [
+        "arts"
+      ],
       "post": "現職小學視覺藝術科教師",
       "participantGroup": "小學 · 現職小學視覺藝術科教師",
       "format": "TCS course details",
@@ -8413,6 +9620,9 @@
       "closingDateEnd": "2027-03-22",
       "level": "KINDERGARTEN",
       "subject": "KINDERGARTENS AND TEACHER TRAINING ON CATERING FOR STUDENTS WITH DEVELOPMENTAL NEEDS",
+      "subjectTags": [
+        "ict"
+      ],
       "post": "TEACHERS, SCHOOL HEAD AND DEPUTY HEADS",
       "participantGroup": "KINDERGARTEN · TEACHERS, SCHOOL HEAD AND DEPUTY HEADS",
       "format": "Online application",
@@ -8438,6 +9648,9 @@
       "closingDateEnd": "2027-05-21",
       "level": "小學, 中學及 特殊教育",
       "subject": "全部",
+      "subjectTags": [
+        "general"
+      ],
       "post": "現職小學、中學及特殊學校教師",
       "participantGroup": "小學, 中學及 特殊教育 · 現職小學、中學及特殊學校教師",
       "format": "TCS course details",
@@ -8463,6 +9676,9 @@
       "closingDateEnd": "2027-04-30",
       "level": "小學, 中學及特殊教育",
       "subject": "全部",
+      "subjectTags": [
+        "general"
+      ],
       "post": "現職中、小學或特殊學校的校長或副校長",
       "participantGroup": "小學, 中學及特殊教育 · 現職中、小學或特殊學校的校長或副校長",
       "format": "TCS course details",
@@ -8488,6 +9704,9 @@
       "closingDateEnd": "2027-05-03",
       "level": "小學, 中學及 特殊教育",
       "subject": "中國語文",
+      "subjectTags": [
+        "chinese"
+      ],
       "post": "現職小學、中學或特殊學校中國語文科教師",
       "participantGroup": "小學, 中學及 特殊教育 · 現職小學、中學或特殊學校中國語文科教師",
       "format": "TCS course details",
@@ -8513,6 +9732,9 @@
       "closingDateEnd": "2027-05-03",
       "level": "小學及 特殊教育",
       "subject": "中國語文",
+      "subjectTags": [
+        "chinese"
+      ],
       "post": "現職小學或特殊學校中國語文科教師",
       "participantGroup": "小學及 特殊教育 · 現職小學或特殊學校中國語文科教師",
       "format": "TCS course details",
@@ -8538,6 +9760,9 @@
       "closingDateEnd": "2027-05-03",
       "level": "中學及 特殊教育",
       "subject": "全部",
+      "subjectTags": [
+        "general"
+      ],
       "post": "現職中學副校長或將晉升為副校長的中學教師",
       "participantGroup": "中學及 特殊教育 · 現職中學副校長或將晉升為副校長的中學教師",
       "format": "TCS course details",
@@ -8563,6 +9788,9 @@
       "closingDateEnd": "2027-05-04",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -8588,6 +9816,10 @@
       "closingDateEnd": "2027-05-11",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -8615,6 +9847,11 @@
       "closingDateEnd": "2027-05-17",
       "level": "小學及 中學",
       "subject": "音樂",
+      "subjectTags": [
+        "ict",
+        "steam",
+        "arts"
+      ],
       "post": "現職小學或中學音樂科教師，曾任音樂學科的在職教師亦可申請 (科主任、課程主任及負責音樂科課研的教師，可獲優先考慮)",
       "participantGroup": "小學及 中學 · 現職小學或中學音樂科教師，曾任音樂學科的在職教師亦可申請 (科主任、課程主任及負責音樂科課研的教師，可獲優先考慮)",
       "format": "TCS course details",
@@ -8641,6 +9878,10 @@
       "closingDateEnd": "2027-05-17",
       "level": "中學",
       "subject": "數學",
+      "subjectTags": [
+        "mathematics",
+        "steam"
+      ],
       "post": "具有數學背景的現職中學教師或科主任",
       "participantGroup": "中學 · 具有數學背景的現職中學教師或科主任",
       "format": "TCS course details",
@@ -8666,6 +9907,9 @@
       "closingDateEnd": "2027-05-17",
       "level": "幼稚園, 小學, 中學及 特殊教育",
       "subject": "全部",
+      "subjectTags": [
+        "general"
+      ],
       "post": "為現職特殊學校、幼稚園，小學或中學教師、課程統籌、中層管理人員、副校長或校長",
       "participantGroup": "幼稚園, 小學, 中學及 特殊教育 · 為現職特殊學校、幼稚園，小學或中學教師、課程統籌、中層管理人員、副校長或校長",
       "format": "TCS course details",
@@ -8691,6 +9935,10 @@
       "closingDateEnd": "2027-05-18",
       "level": "小學及 特殊教育",
       "subject": "全部",
+      "subjectTags": [
+        "general",
+        "health"
+      ],
       "post": "現職小學教師",
       "participantGroup": "小學及 特殊教育 · 現職小學教師",
       "format": "TCS course details",
@@ -8716,6 +9964,10 @@
       "closingDateEnd": "2027-05-18",
       "level": "中學及 特殊教育",
       "subject": "全部",
+      "subjectTags": [
+        "general",
+        "health"
+      ],
       "post": "現職中學教師",
       "participantGroup": "中學及 特殊教育 · 現職中學教師",
       "format": "TCS course details",
@@ -8741,6 +9993,9 @@
       "closingDateEnd": "2026-05-19",
       "level": "PRIMARY AND SECONDARY",
       "subject": "ENGLISH LANGUAGE",
+      "subjectTags": [
+        "english"
+      ],
       "post": "In-service primary or secondary school English Language teachers in Hong Kong",
       "participantGroup": "PRIMARY AND SECONDARY · In-service primary or secondary school English Language teachers in Hong Kong",
       "format": "TCS course details",
@@ -8766,6 +10021,9 @@
       "closingDateEnd": "2027-05-31",
       "level": "中學及 特殊教育",
       "subject": "家政及 科技與生活",
+      "subjectTags": [
+        "other"
+      ],
       "post": "現職中學家政／科技與生活科教師",
       "participantGroup": "中學及 特殊教育 · 現職中學家政／科技與生活科教師",
       "format": "TCS course details",
@@ -8791,6 +10049,9 @@
       "closingDateEnd": "2027-05-27",
       "level": "PRIMARY",
       "subject": "ENGLISH LANGUAGE",
+      "subjectTags": [
+        "english"
+      ],
       "post": "In-service primary school English Language teachers in Hong Kong",
       "participantGroup": "PRIMARY · In-service primary school English Language teachers in Hong Kong",
       "format": "TCS course details",
@@ -8816,6 +10077,11 @@
       "closingDateEnd": "2027-05-28",
       "level": "ALL",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "science",
+        "ict"
+      ],
       "post": "TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "participantGroup": "ALL · TEACHERS, COORDINATORS, PANEL HEADS AND CAREERS TEACHERS",
       "format": "Online application",
@@ -8841,6 +10107,9 @@
       "closingDateEnd": "2027-05-31",
       "level": "中學",
       "subject": "地理",
+      "subjectTags": [
+        "humanities"
+      ],
       "post": "現職中學地理教師",
       "participantGroup": "中學 · 現職中學地理教師",
       "format": "TCS course details",
@@ -8867,6 +10136,10 @@
       "closingDateEnd": "2027-06-02",
       "level": "PRIMARY AND SECONDARY",
       "subject": "ENGLISH LANGUAGE",
+      "subjectTags": [
+        "english",
+        "ict"
+      ],
       "post": "In-service primary or secondary school English Language teachers in Hong Kong",
       "participantGroup": "PRIMARY AND SECONDARY · In-service primary or secondary school English Language teachers in Hong Kong",
       "format": "TCS course details",
@@ -8892,6 +10165,9 @@
       "closingDateEnd": "2027-06-04",
       "level": "小學, 中學及 特殊教育",
       "subject": "中國語文",
+      "subjectTags": [
+        "chinese"
+      ],
       "post": "現職小學、中學及特殊學校中國語文科教師",
       "participantGroup": "小學, 中學及 特殊教育 · 現職小學、中學及特殊學校中國語文科教師",
       "format": "TCS course details",
@@ -8918,6 +10194,10 @@
       "closingDateEnd": "2027-06-16",
       "level": "PRIMARY AND SECONDARY",
       "subject": "ENGLISH LANGUAGE",
+      "subjectTags": [
+        "english",
+        "ict"
+      ],
       "post": "In-service primary or secondary school English Language teachers in Hong Kong",
       "participantGroup": "PRIMARY AND SECONDARY · In-service primary or secondary school English Language teachers in Hong Kong",
       "format": "TCS course details",
@@ -8943,6 +10223,9 @@
       "closingDateEnd": "2027-06-08",
       "level": "中學",
       "subject": "中國歷史",
+      "subjectTags": [
+        "humanities"
+      ],
       "post": "現職中學中國歷史科教師",
       "participantGroup": "中學 · 現職中學中國歷史科教師",
       "format": "TCS course details",
@@ -8968,6 +10251,9 @@
       "closingDateEnd": "2027-06-18",
       "level": "小學, 中學及 特殊教育",
       "subject": "不適用",
+      "subjectTags": [
+        "general"
+      ],
       "post": "現職小學、中學及特殊學校負責學校教師發展的中層領導及教師",
       "participantGroup": "小學, 中學及 特殊教育 · 現職小學、中學及特殊學校負責學校教師發展的中層領導及教師",
       "format": "TCS course details",
@@ -8993,6 +10279,9 @@
       "closingDateEnd": "2027-06-18",
       "level": "PRIMARY AND SECONDARY",
       "subject": "ENGLISH LANGUAGE",
+      "subjectTags": [
+        "english"
+      ],
       "post": "In-service primary or secondary school English Language teachers in Hong Kong",
       "participantGroup": "PRIMARY AND SECONDARY · In-service primary or secondary school English Language teachers in Hong Kong",
       "format": "TCS course details",
@@ -9019,6 +10308,10 @@
       "closingDateEnd": "2027-06-21",
       "level": "PRIMARY AND SECONDARY",
       "subject": "ALL",
+      "subjectTags": [
+        "general",
+        "ict"
+      ],
       "post": "In-service teachers in primary, secondary settings",
       "participantGroup": "PRIMARY AND SECONDARY · In-service teachers in primary, secondary settings",
       "format": "TCS course details",
@@ -9044,6 +10337,11 @@
       "closingDateEnd": "2027-06-21",
       "level": "小學, 中學及特殊教育",
       "subject": "全部",
+      "subjectTags": [
+        "general",
+        "values",
+        "health"
+      ],
       "post": "現職本地中、小學及特殊學校中層管理人員及教師，並負責價值教育、健康教育、輔導或學生福祉的團隊中工作",
       "participantGroup": "小學, 中學及特殊教育 · 現職本地中、小學及特殊學校中層管理人員及教師，並負責價值教育、健康教育、輔導或學生福祉的團隊中工作",
       "format": "TCS course details",
@@ -9069,6 +10367,9 @@
       "closingDateEnd": "2027-06-23",
       "level": "SECONDARY",
       "subject": "MEDIUM OF INSTRUCTION",
+      "subjectTags": [
+        "english"
+      ],
       "post": "In-service secondary school teachers in Hong Kong",
       "participantGroup": "SECONDARY · In-service secondary school teachers in Hong Kong",
       "format": "TCS course details",

@@ -6,9 +6,13 @@ The MVP is intentionally framework-free. It now includes a captured public TCS s
 
 ## What is in the prototype
 
-- Responsive event cards with event date, audience, format and closing date.
-- Search across title, summary, category, level, audience and format.
+- A compact event list so teachers can scan many more opportunities per screen.
+- English / Traditional Chinese interface toggle with saved preference.
+- Search across title, summary, category, subject, level, audience and format.
 - Category filters for `Secondary`, `IT/AI`, `CSD` and `STEAM`.
+- Level filters for primary, secondary, kindergarten and special education.
+- Subject filters for English, Chinese, Mathematics, Science, ICT/IT/AI, STEAM, CSD/values, humanities, arts, health, other subjects and non-subject-specific events.
+- A persistent teacher profile (`I teach`) that keeps relevant subject events in view, with an option to include non-subject-specific whole-school topics.
 - Deadline windows for all events, the next 7 days and the next 30 days.
 - Sort modes for closing date, event date and newest added.
 - `NEW`, `UPDATED` and computed `CLOSING SOON` badges.
@@ -29,13 +33,16 @@ The MVP is intentionally framework-free. It now includes a captured public TCS s
   + Google Sheet cache                                  (future container)
 ```
 
-Today, `data/tcs-events.js` is the source adapter output. The UI only depends on the normalized fields below, so replacing the snapshot with an Apps Script/Sheet response does not require rewriting the filters or cards.
+Today, `data/tcs-events.js` is the source adapter output. The UI only depends on the normalized fields below, so replacing the snapshot with an Apps Script/Sheet response does not require rewriting the filters or list renderer.
 
 | Field | Example | Purpose |
 | --- | --- | --- |
 | `courseId` | `TCS-IT-26091` | Stable source identifier |
 | `title` | `Generative AI for Classroom Practice` | Display title |
 | `category` | `IT/AI` | Filter bucket |
+| `categories` | `IT/AI`, `STEAM` | Multi-category filter buckets |
+| `subject` | `ENGLISH LANGUAGE` | Original TCS subject text, retained for inspection |
+| `subjectTags` | `english`, `ict` | Normalized subject/profile filters |
 | `eventStart`, `eventEnd` | `2026-10-07` | Event date or range |
 | `closingDate` | `2026-09-22` | Deadline window and badge |
 | `level` | `Primary · Secondary` | Intended level |
@@ -71,7 +78,7 @@ node scripts/serve.mjs
 
 Then open <http://localhost:4173>.
 
-The page loads the downloaded snapshot first and falls back to the isolated mock dataset if `data/tcs-events.js` is unavailable.
+The page loads the downloaded snapshot first and falls back to the isolated mock dataset if `data/tcs-events.js` is unavailable. The teacher profile and language preference are stored in browser `localStorage`.
 
 ## Deploy to Google Apps Script
 
