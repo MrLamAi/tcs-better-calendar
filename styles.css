@@ -192,6 +192,8 @@ select { min-width: 110px; border: 0; outline: 0; color: var(--ink); background:
 .profile-panel select { width: 100%; }
 .profile-check { display: flex; align-items: center; gap: 7px; color: var(--ink-soft); font-size: 11px; white-space: nowrap; }
 .profile-check input { accent-color: var(--teal); }
+.date-wrap { min-width: 132px; }
+.date-wrap input { width: 132px; border: 0; outline: 0; color: var(--ink); background: transparent; font-size: 11px; font-weight: 600; }
 .event-list { display: grid; gap: 7px; }
 .event-row { display: grid; grid-template-columns: 112px minmax(0, 1fr) 150px; gap: 18px; align-items: center; padding: 14px 16px; border: 1px solid var(--line); border-radius: 11px; background: var(--surface-strong); transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease; }
 .event-row:hover { border-color: #aacac0; box-shadow: 0 10px 26px rgba(16, 45, 51, .07); transform: translateY(-1px); }
@@ -215,6 +217,7 @@ select { min-width: 110px; border: 0; outline: 0; color: var(--ink); background:
 @media (max-width: 1100px) {
   .filter-selects { justify-content: flex-start; flex-wrap: wrap; }
   .filter-selects .select-wrap { min-width: 120px; }
+  .filter-selects .date-wrap { min-width: 132px; }
   .profile-panel { grid-template-columns: minmax(220px, 1fr) 190px; }
   .profile-check { grid-column: 1 / -1; }
 }
@@ -232,4 +235,5 @@ select { min-width: 110px; border: 0; outline: 0; color: var(--ink); background:
   .profile-panel { display: block; padding: 14px; }
   .profile-panel .profile-select-wrap { margin-top: 13px; }
   .profile-check { margin-top: 12px; }
+  .date-wrap input { width: 100%; }
 }

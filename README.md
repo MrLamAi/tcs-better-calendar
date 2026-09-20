@@ -11,6 +11,7 @@ The MVP is intentionally framework-free. It now includes a captured public TCS s
 - Search across title, summary, category, subject, level, audience and format.
 - Category filters for `Secondary`, `IT/AI`, `CSD` and `STEAM`.
 - Level filters for primary, secondary, kindergarten and special education.
+- A specific-date filter that matches both one-day events and multi-day courses covering the selected date.
 - Subject filters for English, Chinese, Mathematics, Science, ICT/IT/AI, STEAM, CSD/values, humanities, arts, health, other subjects and non-subject-specific events.
 - A persistent teacher profile (`I teach`) that keeps relevant subject events in view, with an option to include non-subject-specific whole-school topics.
 - Deadline windows for all events, the next 7 days and the next 30 days.

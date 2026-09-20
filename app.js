@@ -40,6 +40,7 @@
       categorySteam: "STEAM",
       level: "Level",
       subject: "Subject",
+      specificDate: "Specific date",
       deadline: "Deadline",
       sort: "Sort",
       clear: "Clear",
@@ -126,6 +127,7 @@
       categorySteam: "STEAM",
       level: "教育階段",
       subject: "科目",
+      specificDate: "指定活動日期",
       deadline: "截止日期",
       sort: "排序",
       clear: "清除",
@@ -223,6 +225,7 @@
     query: "",
     category: "All",
     deadline: "all",
+    eventDate: "",
     sort: "closing",
     level: "all",
     subject: "all",
@@ -240,6 +243,7 @@
     search: document.getElementById("search-input"),
     level: document.getElementById("level-select"),
     subject: document.getElementById("subject-select"),
+    eventDate: document.getElementById("event-date-input"),
     profile: document.getElementById("profile-select"),
     includeGeneral: document.getElementById("include-general"),
     deadline: document.getElementById("deadline-select"),
@@ -389,9 +393,10 @@
     const profileMatch = state.profile === "all" || tags.includes(state.profile) || (state.includeGeneral && tags.includes("general"));
     const subjectMatch = state.subject === "all" || tags.includes(state.subject);
     const levelMatch = state.level === "all" || levelKeys(event).includes(state.level);
+    const eventDateMatch = !state.eventDate || (event.eventStart && event.eventEnd && state.eventDate >= event.eventStart && state.eventDate <= event.eventEnd);
     const days = daysUntil(event.closingDate);
     const windowMatch = state.deadline === "all" || (days >= 0 && days <= Number(state.deadline));
-    return categoryMatch && profileMatch && subjectMatch && levelMatch && windowMatch && (!query || searchText.indexOf(query) !== -1);
+    return categoryMatch && profileMatch && subjectMatch && levelMatch && eventDateMatch && windowMatch && (!query || searchText.indexOf(query) !== -1);
   }
 
   function getVisibleEvents() {
@@ -446,10 +451,12 @@
     state.query = "";
     state.category = "All";
     state.deadline = "all";
+    state.eventDate = "";
     state.sort = "closing";
     state.level = "all";
     state.subject = "all";
     elements.search.value = "";
+    elements.eventDate.value = "";
     document.querySelectorAll("[data-category]").forEach(function (button) { button.classList.toggle("is-active", button.dataset.category === "All"); });
     render();
   }
@@ -473,6 +480,7 @@
   elements.search.addEventListener("input", function (event) { state.query = event.target.value; render(); });
   elements.level.addEventListener("change", function (event) { state.level = event.target.value; render(); });
   elements.subject.addEventListener("change", function (event) { state.subject = event.target.value; render(); });
+  elements.eventDate.addEventListener("change", function (event) { state.eventDate = event.target.value; render(); });
   elements.profile.addEventListener("change", function (event) {
     state.profile = event.target.value;
     if (window.localStorage) localStorage.setItem("tcs-profile", state.profile);
