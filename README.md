@@ -66,7 +66,7 @@ The current source response reports 35 pages, so the current snapshot contains 3
 No package install is required. From the repository root:
 
 ```powershell
-py -m http.server 4173
+node scripts/serve.mjs
 ```
 
 Then open <http://localhost:4173>.
