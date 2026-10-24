@@ -59,14 +59,19 @@
       categoryItAi: "資訊科技／AI",
       categoryCsd: "公民與社會發展",
       categorySteam: "STEAM",
-      filterToggle: "篩選與設定",
+      filterToggle: "篩選",
       eventTimeLabel: "活動時間",
-      timeAll: "所有時段",
-      timeAm: "只看上午 (AM)",
-      timePm: "只看下午／課後 (PM)",
-      timeAfterSchool: "15:30 後開始",
+      fCategory: "類別",
+      fTime: "時段",
+      fStart: "開始於",
+      fApply: "顯示 {n} 個活動",
+      fTitle: "篩選活動",
+      timeAll: "全部",
+      timeAm: "上午",
+      timePm: "下午",
+      timeAfterSchool: "15:30後",
       startTimeAfter: "最早開始時間：",
-      timeAnyLimit: "不限 (全日)",
+      timeAnyLimit: "不限",
       timeFlexible: "自訂時間（網上自學）",
       timeTba: "時間請參閱詳情",
       deliveryModeLabel: "上課模式",
@@ -84,8 +89,8 @@
       myProfile: "我的教師設定",
       profileDescription: "選擇你任教的科目及上課偏好，自動篩選相關活動。",
       iTeach: "我任教",
-      includeGeneral: "包括非特定科目活動",
-      onlyNonLive: "只顯示免親身出席／網上活動",
+      includeGeneral: "包括通用活動",
+      onlyNonLive: "只看網上／免出席",
       noEvents: "沒有符合條件的活動",
       noEventsDescription: "可以放寬截止日期、改選其他上課模式或科目，或重設篩選條件。",
       resetFilters: "重設篩選",
@@ -198,14 +203,19 @@
       categoryItAi: "IT / AI",
       categoryCsd: "CSD",
       categorySteam: "STEAM",
-      filterToggle: "Filters & Profile",
+      filterToggle: "Filters",
       eventTimeLabel: "Event Time",
-      timeAll: "All times",
-      timeAm: "AM Only",
-      timePm: "PM / After-school",
-      timeAfterSchool: "Starts 15:30+",
+      fCategory: "Category",
+      fTime: "Time",
+      fStart: "Starts",
+      fApply: "Show {n} events",
+      fTitle: "Filter events",
+      timeAll: "All",
+      timeAm: "AM",
+      timePm: "PM",
+      timeAfterSchool: "After 15:30",
       startTimeAfter: "Starts at or after:",
-      timeAnyLimit: "Any time",
+      timeAnyLimit: "Any",
       timeFlexible: "Flexible (Self-paced)",
       timeTba: "See details for time",
       deliveryModeLabel: "Delivery Mode",
@@ -223,8 +233,8 @@
       myProfile: "My teacher profile",
       profileDescription: "Choose your teaching subject and attendance preference to filter relevant events.",
       iTeach: "I teach",
-      includeGeneral: "Include non-subject-specific events",
-      onlyNonLive: "Only online / non-in-person events",
+      includeGeneral: "Include general events",
+      onlyNonLive: "Online / no attendance only",
       noEvents: "No events match this view",
       noEventsDescription: "Try a broader deadline window, another delivery mode or subject, or reset filters.",
       resetFilters: "Reset filters",
@@ -386,6 +396,9 @@
     mobileFilterToggle: document.getElementById("mobile-filter-toggle"),
     filterSummaryText: document.getElementById("filter-summary-text"),
     collapsibleFilters: document.getElementById("collapsible-filters"),
+    filterBackdrop: document.getElementById("filter-backdrop"),
+    filterSheetClose: document.getElementById("filter-sheet-close"),
+    filterApply: document.getElementById("filter-apply"),
     activeFilterCount: document.getElementById("active-filter-count"),
     startTimeSlider: document.getElementById("start-time-slider"),
     startTimeDisplay: document.getElementById("start-time-display"),
@@ -1168,9 +1181,9 @@
   function buildFilterSummaryText() {
     const parts = [];
     if (state.category !== "All") parts.push(categoryLabel(state.category));
-    if (state.timeSlot === "am") parts.push(t("timeSlotAm"));
-    else if (state.timeSlot === "pm") parts.push(t("timeSlotPm"));
-    else if (state.timeSlot === "after-school") parts.push(t("timeSlotAfterSchool"));
+    if (state.timeSlot === "am") parts.push(t("timeAm"));
+    else if (state.timeSlot === "pm") parts.push(t("timePm"));
+    else if (state.timeSlot === "after-school") parts.push(t("timeAfterSchool"));
     if (state.minStartMinutes > 480) parts.push("≥" + minutesToClock(state.minStartMinutes));
     if (state.mode !== "all") parts.push(deliveryLabel(state.mode));
     if (state.level !== "all") parts.push(levelLabel(state.level));
@@ -1222,6 +1235,8 @@
     }
     if (elements.collapsibleFilters && elements.mobileFilterToggle) {
       elements.collapsibleFilters.hidden = !state.mobileFiltersOpen;
+      if (elements.filterBackdrop) elements.filterBackdrop.hidden = !state.mobileFiltersOpen;
+      document.body.classList.toggle("has-filter-sheet", state.mobileFiltersOpen);
       elements.collapsibleFilters.classList.toggle("is-open", state.mobileFiltersOpen);
       elements.mobileFilterToggle.classList.toggle("is-open", state.mobileFiltersOpen);
       elements.mobileFilterToggle.setAttribute("aria-expanded", String(state.mobileFiltersOpen));
@@ -1250,6 +1265,9 @@
     if (elements.closing) elements.closing.textContent = String(closingCount).padStart(2, "0");
 
     elements.grid.innerHTML = visibleEvents.map(listTemplate).join("");
+    if (elements.filterApply) {
+      elements.filterApply.textContent = t("fApply").replace("{n}", String(visibleEvents.length));
+    }
     elements.grid.hidden = visibleEvents.length === 0;
     elements.empty.hidden = visibleEvents.length !== 0;
 
@@ -1355,6 +1373,14 @@
       render();
     });
   }
+  function closeFilterSheet() {
+    if (!state.mobileFiltersOpen) return;
+    state.mobileFiltersOpen = false;
+    render();
+  }
+  [elements.filterBackdrop, elements.filterSheetClose, elements.filterApply].forEach(function (el) {
+    if (el) el.addEventListener("click", closeFilterSheet);
+  });
   elements.search.addEventListener("input", function (event) { state.query = event.target.value; render(); });
   elements.mode.addEventListener("change", function (event) { state.mode = event.target.value; render(); });
   elements.level.addEventListener("change", function (event) { state.level = event.target.value; render(); });
@@ -1482,6 +1508,7 @@
     }
     if (event.key === "Escape") {
       if (!elements.detailModal.hidden) closeDetailModal();
+      else if (state.mobileFiltersOpen) closeFilterSheet();
       else if (state.selectedCalDate) {
         state.selectedCalDate = "";
         render();
