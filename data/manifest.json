@@ -1,12 +1,17 @@
 {
   "source": "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal/load.htm?pdType=0&fromMenu=Y",
-  "startedAt": "2026-10-23T14:43:52.311Z",
-  "finishedAt": "2026-10-23T14:45:16.711Z",
+  "startedAt": "2026-10-24T07:46:10.358Z",
+  "finishedAt": "2026-10-24T07:47:30.704Z",
   "discoveredPages": 73,
   "requestedPages": 73,
   "downloadedPages": 73,
   "failedPages": [],
   "eventCount": 723,
+  "deliveryModes": {
+    "in-person": 514,
+    "webinar": 148,
+    "self-paced": 61
+  },
   "pageDelayMs": 500,
   "pages": [
     {

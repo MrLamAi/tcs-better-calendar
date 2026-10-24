@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { join, resolve } from "node:path";
@@ -8,10 +8,14 @@ import { join, resolve } from "node:path";
 const ROOT = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const SOURCE_ROOT = "https://tcs.edb.gov.hk/tcs/portal/publiccalendar/searchPublicCal";
 const FIRST_PAGE_URL = `${SOURCE_ROOT}/load.htm?pdType=0&fromMenu=Y`;
+const DETAIL_BASE_URL = "https://tcs.edb.gov.hk/tcs/admin/courses/previewCourse/forPortal.htm";
 const RAW_DIR = join(ROOT, "data", "raw");
 const PAGE_DELAY_MS = Number(process.env.TCS_PAGE_DELAY_MS || 500);
 const MAX_RETRIES = Number(process.env.TCS_MAX_RETRIES || 3);
 const FORCED_PAGE_COUNT = Number(process.env.TCS_PAGES || 0) || null;
+const DETAIL_CONCURRENCY = Number(process.env.TCS_DETAIL_CONCURRENCY || 12);
+const REFRESH_LIST_PAGES = process.env.TCS_REFRESH_PAGES === "1";
+const SKIP_DETAILS = process.env.TCS_SKIP_DETAILS === "1";
 const cookieJar = new Map();
 
 function sleep(ms) {
@@ -19,21 +23,23 @@ function sleep(ms) {
 }
 
 function decodeEntities(value) {
-  const named = { amp: "&", apos: "'", gt: ">", lt: "<", nbsp: " ", quot: '"' };
-  return value
+  const named = { amp: "&", apos: "'", gt: ">", lt: "<", nbsp: " ", quot: '"', bull: "•", ndash: "–", mdash: "—" };
+  return String(value || "")
     .replace(/&#(x[\da-f]+|\d+);/gi, (_, code) => String.fromCodePoint(code.toLowerCase().startsWith("x") ? parseInt(code.slice(1), 16) : Number(code)))
     .replace(/&([a-z]+);/gi, (match, name) => named[name.toLowerCase()] ?? match);
 }
 
 function cleanText(html) {
   return decodeEntities(
-    html
+    String(html || "")
       .replace(/<!--[\s\S]*?-->/g, "")
       .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "")
       .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, "")
       .replace(/<br\s*\/?>/gi, "\n")
       .replace(/<\/div\s*>/gi, "\n")
       .replace(/<\/p\s*>/gi, "\n")
+      .replace(/<\/tr\s*>/gi, "\n")
+      .replace(/<\/li\s*>/gi, "\n")
       .replace(/<[^>]+>/g, " ")
   )
     .replace(/\u00a0/g, " ")
@@ -85,7 +91,7 @@ function findCells(rowHtml) {
 }
 
 function datesIn(value) {
-  return [...value.matchAll(/\d{4}\/\d{2}\/\d{2}/g)].map((match) => match[0].replaceAll("/", "-"));
+  return [...String(value || "").matchAll(/\d{4}\/\d{2}\/\d{2}/g)].map((match) => match[0].replaceAll("/", "-"));
 }
 
 function toIsoDate(value) {
@@ -99,7 +105,7 @@ function getCell(cells, label) {
 }
 
 function labelledValue(text, label) {
-  const line = text.split("\n").find((item) => item.toLowerCase().startsWith(`${label.toLowerCase()}:`));
+  const line = String(text || "").split("\n").find((item) => item.toLowerCase().startsWith(`${label.toLowerCase()}:`));
   return line ? line.slice(label.length + 1).trim() : "";
 }
 
@@ -121,30 +127,40 @@ function absoluteUrl(href) {
 }
 
 function categoriesFor(event) {
-  const haystack = [event.title, event.subject, event.level, event.participantGroup].join(" ").toUpperCase();
+  const haystack = [
+    event.title,
+    event.titleZh,
+    event.subject,
+    event.subjectZh,
+    event.level,
+    event.levelZh,
+    event.participantGroup,
+    event.participantGroupZh
+  ].filter(Boolean).join(" ").toUpperCase();
   const categories = [];
   if (haystack.includes("SECONDARY") || haystack.includes("中學")) categories.push("Secondary");
-  if (/(?:^|\W)(AI|A\.I\.|ICT)(?:$|\W)|ROBOT|INFORMATION|COMPUTER|CODING|TECHNOLOGY/.test(haystack)) categories.push("IT/AI");
-  if (haystack.includes("CITIZENSHIP AND SOCIAL DEVELOPMENT") || haystack.includes("CITIZENSHIP, ECONOMICS AND SOCIETY") || /\bCSD\b/.test(haystack) || haystack.includes("公民與社會發展")) categories.push("CSD");
+  if (/(?:^|\W)(AI|A\.I\.|ICT)(?:$|\W)|ROBOT|INFORMATION|COMPUTER|CODING|TECHNOLOGY|人工智能|資訊科技|數字教育|編程/.test(haystack)) categories.push("IT/AI");
+  if (haystack.includes("CITIZENSHIP AND SOCIAL DEVELOPMENT") || haystack.includes("CITIZENSHIP, ECONOMICS AND SOCIETY") || /\bCSD\b/.test(haystack) || haystack.includes("公民與社會發展") || haystack.includes("公民、經濟與社會")) categories.push("CSD");
   if (haystack.includes("STEAM") || haystack.includes("STEM")) categories.push("STEAM");
   return categories.length ? [...new Set(categories)] : ["Other"];
 }
 
 function subjectTagsFor(event) {
   const subject = String(event.subject || "").trim();
-  const haystack = [subject, event.title, event.summary].join(" ").toUpperCase();
+  const subjectZh = String(event.subjectZh || "").trim();
+  const haystack = [subject, subjectZh, event.title, event.titleZh, event.summary, event.summaryZh].filter(Boolean).join(" ").toUpperCase();
   const tags = [];
-  const isGeneral = !subject || /^(ALL|NOT APPLICABLE|全部|不適用)$/i.test(subject);
+  const isGeneral = (!subject && !subjectZh) || /^(ALL|NOT APPLICABLE|全部|不適用)$/i.test(subject || subjectZh);
 
   if (isGeneral) tags.push("general");
-  if (/ENGLISH LANGUAGE|ENGLISH TEACH|ENGLISH CLASSROOM|ENGLISH LEARNING|ENGLISH SPEAKING|PRIMARY ENGLISH|SECONDARY ENGLISH|ENGLISH TEACHERS|TEACHERS USING ENGLISH|英語|英文/.test(haystack)) tags.push("english");
-  if (/CHINESE LANGUAGE|CHINESE LITERATURE|\bCHINESE\b|中國語文|中文/.test(haystack)) tags.push("chinese");
+  if (/ENGLISH LANGUAGE|ENGLISH TEACH|ENGLISH CLASSROOM|ENGLISH LEARNING|ENGLISH SPEAKING|PRIMARY ENGLISH|SECONDARY ENGLISH|ENGLISH TEACHERS|TEACHERS USING ENGLISH|英語|英文|英國語文/.test(haystack)) tags.push("english");
+  if (/CHINESE LANGUAGE|CHINESE LITERATURE|\bCHINESE\b|中國語文|中國文學|中文|普通話|PUTONGHUA/.test(haystack)) tags.push("chinese");
   if (/MATHEMATICS|數學/.test(haystack)) tags.push("mathematics");
-  if (/BIOLOGY|CHEMISTRY|PHYSICS|SCIENCE|GENERAL STUDIES|PRIMARY SCIENCE|自然科學|科學|常識/.test(haystack)) tags.push("science");
-  if (/ICT|INFORMATION & COMMUNICATION|COMPUTER|CODING|DIGITAL|TECHNOLOGY|AI|A\.I\.|數字教育|資訊科技|人工智能/.test(haystack)) tags.push("ict");
+  if (/BIOLOGY|CHEMISTRY|PHYSICS|SCIENCE|GENERAL STUDIES|PRIMARY SCIENCE|自然科學|科學|常識|生物|化學|物理/.test(haystack)) tags.push("science");
+  if (/ICT|INFORMATION & COMMUNICATION|COMPUTER|CODING|DIGITAL|TECHNOLOGY|AI|A\.I\.|數字教育|資訊科技|人工智能|電腦/.test(haystack)) tags.push("ict");
   if (/STEAM|STEM/.test(haystack)) tags.push("steam");
-  if (/CITIZENSHIP|SOCIAL DEVELOPMENT|MORAL|NATIONAL EDUCATION|公民|國民教育|價值教育/.test(haystack)) tags.push("values");
-  if (/HISTORY|GEOGRAPHY|HUMANITIES|歷史|地理|人文/.test(haystack)) tags.push("humanities");
+  if (/CITIZENSHIP|SOCIAL DEVELOPMENT|MORAL|NATIONAL EDUCATION|公民|國民教育|價值教育|價值觀教育|德育/.test(haystack)) tags.push("values");
+  if (/HISTORY|GEOGRAPHY|HUMANITIES|歷史|地理|人文|中國歷史|經濟|ECONOMICS/.test(haystack)) tags.push("humanities");
   if (/VISUAL ARTS|MUSIC|ARTS|視覺藝術|音樂|藝術/.test(haystack)) tags.push("arts");
   if (/PHYSICAL|HEALTH|PE\b|體育|健康/.test(haystack)) tags.push("health");
 
@@ -169,14 +185,16 @@ function parsePage(html, pageNumber, pageUrl) {
     const participantText = participantCell.text;
     const courseId = findCourseId(courseCell);
     const applyHref = findHref(courseCell.inner, "\\/apply\\.htm");
-    const detailHref = courseCell.inner.match(/loadRealPopup\(['"]([^'"]*previewCourse[^'"]*)['"]/i)?.[1] || "";
+    const detailHref = courseCell.inner.match(/loadRealPopup\(['"]([^'"]*previewCourse[^'"]*)['"]/i)?.[1] || `/tcs/admin/courses/previewCourse/forPortal.htm?courseId=${courseId}&lang=en`;
     const subject = labelledValue(participantText, "Subject/Function");
     const level = labelledValue(participantText, "Level");
     const post = labelledValue(participantText, "Post");
     const event = {
       courseId,
       title,
+      titleZh: "",
       summary: [subject && `Subject: ${subject}`, post && `Post: ${post}`].filter(Boolean).join(" · ") || "EDB professional learning activity",
+      summaryZh: "",
       category: "Other",
       categories: [],
       eventStart: eventDates[0] || "",
@@ -185,23 +203,177 @@ function parsePage(html, pageNumber, pageUrl) {
       closingDate: closingDates[0] || "",
       closingDateEnd: closingDates[closingDates.length - 1] || closingDates[0] || "",
       level,
+      levelZh: "",
       subject,
+      subjectZh: "",
       subjectTags: [],
       post,
+      postZh: "",
       participantGroup: [level, post].filter(Boolean).join(" · ") || "See TCS course details",
+      participantGroupZh: "",
       format: applyHref ? "Online application" : "TCS course details",
+      formatZh: applyHref ? "網上報名" : "參閱 TCS 詳情",
+      deliveryMode: "in-person",
       financeType: labelledValue(participantText, "Finance Type"),
+      financeTypeZh: "",
       lastUpdated: toIsoDate(issueCell.text),
       badge: /\bnew\b/i.test(title) ? "NEW" : /\b(updated|re-run)\b/i.test(title) ? "UPDATED" : "",
       applyUrl: absoluteUrl(applyHref || detailHref),
+      detailUrlEn: `${DETAIL_BASE_URL}?courseId=${courseId}&lang=en`,
+      detailUrlZh: `${DETAIL_BASE_URL}?courseId=${courseId}&lang=zh`,
       sourceUrl: pageUrl,
-      sourcePage: pageNumber
+      sourcePage: pageNumber,
+      details: null
     };
     event.categories = categoriesFor(event);
     event.category = event.categories[0];
     event.subjectTags = subjectTagsFor(event);
     return event;
   }).filter((event) => event.courseId && event.title);
+}
+
+function parseDetailSections(html) {
+  const sections = new Map();
+  const blocks = String(html || "").split(/<div\b[^>]*class=["'][^"']*\bcourse_detail\b[^"']*["'][^>]*>/i).slice(1);
+  for (const block of blocks) {
+    const titleMatch = block.match(/class=["'][^"']*\bdetail_title\b[^"']*["'][^>]*>([\s\S]*?)<\/(?:div|a)>/i);
+    if (!titleMatch) continue;
+    const title = cleanText(titleMatch[1]);
+    const contentStart = block.search(/<div\b[^>]*class=["'][^"']*\bdetail_content\b[^"']*["'][^>]*>/i);
+    if (contentStart < 0) continue;
+    const contentDiv = extractBalancedDiv(block, contentStart);
+    const openMatch = contentDiv.match(/^<div\b[^>]*>/i);
+    const innerHtml = openMatch ? contentDiv.slice(openMatch[0].length, -6) : contentDiv;
+    if (!sections.has(title)) {
+      sections.set(title, { title, innerHtml, text: cleanText(innerHtml) });
+    }
+  }
+  return sections;
+}
+
+function parseCourseSessions(html) {
+  const tableMatch = String(html || "").match(/<table\b[^>]*id=["']firstCourseTable["'][^>]*>([\s\S]*?)<\/table>/i);
+  if (!tableMatch) return [];
+  const tbodyMatch = tableMatch[1].match(/<tbody\b[^>]*>([\s\S]*?)<\/tbody>/i);
+  const bodyHtml = tbodyMatch ? tbodyMatch[1] : tableMatch[1];
+  const rows = [...bodyHtml.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)];
+  const sessions = [];
+  for (const row of rows) {
+    const tds = [...row[1].matchAll(/<td\b([^>]*)>([\s\S]*?)<\/td>/gi)].map((m) => ({
+      attrs: m[1],
+      title: attribute(`<td ${m[1]}>`, "data-title").trim(),
+      text: cleanText(m[2])
+    }));
+    if (!tds.length) continue;
+    const byTitle = (prefix) => tds.find((td) => td.title.toLowerCase().startsWith(prefix.toLowerCase()))?.text || "";
+    const eventId = byTitle("Event (ID)") || byTitle("場次(編號)") || tds[0]?.text || "";
+    const date = byTitle("Date") || byTitle("舉行日期") || "";
+    const duration = byTitle("Number of Event Days") || byTitle("No. of Event Days") || byTitle("場次日數") || byTitle("Hours") || byTitle("時數") || "";
+    const venue = byTitle("Venue") || byTitle("地點") || "";
+    const speaker = byTitle("Speaker") || byTitle("講者") || "";
+    const quota = byTitle("Max.") || byTitle("參加人數上限") || "";
+    const closingRaw = byTitle("Closing date") || byTitle("截止日期") || "";
+    const closingDates = datesIn(closingRaw);
+    const remark = byTitle("Remark") || byTitle("備註") || "";
+    if (eventId || date || venue) {
+      sessions.push({
+        eventId: eventId.replace(/\s+/g, " ").trim(),
+        date: date.replace(/\s+/g, " ").trim(),
+        duration: duration.replace(/\s+/g, " ").trim(),
+        venue,
+        speaker,
+        quota: quota.replace(/\s+/g, " ").trim(),
+        closingDate: closingDates[0] || closingRaw.replace(/^(Applicant|申請人)\s*/i, "").trim(),
+        remark
+      });
+    }
+  }
+  return sessions;
+}
+
+function parseDetailPage(html) {
+  const sections = parseDetailSections(html);
+  const getText = (...keys) => {
+    for (const k of keys) {
+      for (const [secTitle, sec] of sections.entries()) {
+        if (secTitle.toLowerCase() === k.toLowerCase() || secTitle.toLowerCase().startsWith(k.toLowerCase())) {
+          return sec.text;
+        }
+      }
+    }
+    return "";
+  };
+
+  const title = getText("Course Title", "課程名稱");
+  const organisingDivision = getText("Organising Division", "主辦科別");
+  const participantText = getText("Participant Group", "參加對象");
+  const objective = getText("Objective(s)", "活動目標");
+  const description = getText("Programme Description", "活動詳情");
+  const background = getText("Background", "背景");
+  const medium = getText("Medium of instruction", "講授語言");
+  const cpdText = getText("CPD Elements for Teacher", "持續專業發展(老師適用)");
+  const contentArea = getText("Content Area", "活動內容");
+  const sessions = parseCourseSessions(html);
+
+  const financeType = labelledValue(participantText, "Finance Type") || labelledValue(participantText, "資助種類");
+  const level = labelledValue(participantText, "Level") || labelledValue(participantText, "教學程度");
+  const subject = labelledValue(participantText, "Subject/Function") || labelledValue(participantText, "科目/功能");
+  const post = labelledValue(participantText, "Post") || labelledValue(participantText, "職位");
+
+  return {
+    title,
+    organisingDivision,
+    financeType,
+    level,
+    subject,
+    post,
+    objective,
+    description,
+    background,
+    medium,
+    cpdText,
+    contentArea,
+    sessions
+  };
+}
+
+function classifyDeliveryMode(event, enDetail, zhDetail) {
+  const titles = [event.title, event.titleZh, enDetail?.title, zhDetail?.title].filter(Boolean).join(" ");
+  const venues = [
+    ...(enDetail?.sessions || []).map((s) => s.venue),
+    ...(zhDetail?.sessions || []).map((s) => s.venue)
+  ].filter(Boolean).join(" ");
+  const speakers = [
+    ...(enDetail?.sessions || []).map((s) => s.speaker),
+    ...(zhDetail?.sessions || []).map((s) => s.speaker)
+  ].filter(Boolean).join(" ");
+  const remarksAndDesc = [
+    enDetail?.description,
+    zhDetail?.description,
+    ...(enDetail?.sessions || []).map((s) => s.remark),
+    ...(zhDetail?.sessions || []).map((s) => s.remark)
+  ].filter(Boolean).join(" ");
+
+  const allText = `${titles} ${venues} ${speakers} ${remarksAndDesc}`;
+
+  // 1. Self-paced / Recorded online course (網上自學 / 錄播課程)
+  if (
+    /self-learning|recorded\s+course|vle\s+course|e-Services\s+Portal|edcity\s+vle|網上自學|自學課程|網上錄播|網上錄影|教育城\s*VLE|個人公餘時間|個人的公餘時間/i.test(allText) ||
+    (/online\s+mode|網上模式/i.test(speakers) && !/zoom|teams|webinar|實時|會議室/i.test(allText)) ||
+    (/online\s+course|網上課程/i.test(titles) && !/webinar|zoom|teams|online\s+talk|網上講座|實時|研討會/i.test(titles))
+  ) {
+    return "self-paced";
+  }
+
+  // 2. Live Webinar / Real-time online session (實時網上講座 / Webinar)
+  if (
+    /webinar|zoom|microsoft\s+teams|google\s+meet|online\s+(?:teacher’s\s+|teacher's\s+)?talk|online\s+briefing|online\s+seminar|online\s+workshop|online\s+lecture|live\s+broadcast|網上講座|網上研討會|網上簡介會|網上工作坊|網上會議室|實時網上|視像會議|直播/i.test(allText) ||
+    /online\s+course|網上課程|online|網上|zoom|teams/i.test(venues)
+  ) {
+    return "webinar";
+  }
+
+  return "in-person";
 }
 
 function discoverPageCount(html) {
@@ -243,25 +415,27 @@ async function fetchPage(url, options = {}) {
         body: options.body,
         headers: {
           Accept: "text/html,application/xhtml+xml",
-          "User-Agent": "tcs-better-calendar/0.2 (+public-calendar snapshot)",
+          "User-Agent": "tcs-better-calendar/0.3 (+public-calendar bilingual snapshot)",
           ...(options.body ? { "Content-Type": "application/x-www-form-urlencoded", Referer: options.referer || FIRST_PAGE_URL } : {}),
-          ...(cookieHeader ? { Cookie: cookieHeader } : {})
+          ...(cookieHeader && !options.stateless ? { Cookie: cookieHeader } : {})
         },
         redirect: "follow"
       });
-      const setCookies = typeof response.headers.getSetCookie === "function"
-        ? response.headers.getSetCookie()
-        : (response.headers.get("set-cookie") || "").split(/,(?=[A-Za-z0-9_]+=)/);
-      for (const setCookie of setCookies) {
-        const cookie = setCookie.match(/^\s*([^=;]+)=([^;]*)/);
-        if (cookie) cookieJar.set(cookie[1], cookie[2]);
+      if (!options.stateless) {
+        const setCookies = typeof response.headers.getSetCookie === "function"
+          ? response.headers.getSetCookie()
+          : (response.headers.get("set-cookie") || "").split(/,(?=[A-Za-z0-9_]+=)/);
+        for (const setCookie of setCookies) {
+          const cookie = setCookie.match(/^\s*([^=;]+)=([^;]*)/);
+          if (cookie) cookieJar.set(cookie[1], cookie[2]);
+        }
       }
       const html = await response.text();
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return { status: response.status, html, finalUrl: response.url || url };
     } catch (error) {
       lastError = error;
-      if (attempt < MAX_RETRIES) await sleep(1000 * attempt);
+      if (attempt < MAX_RETRIES) await sleep(800 * attempt);
     }
   }
   throw lastError;
@@ -271,25 +445,136 @@ async function writeText(path, content) {
   await writeFile(path, content, "utf8");
 }
 
+async function loadExistingPages() {
+  try {
+    const manifestRaw = await readFile(join(ROOT, "data", "manifest.json"), "utf8");
+    const manifest = JSON.parse(manifestRaw);
+    const pages = [];
+    for (const p of manifest.pages || []) {
+      const html = await readFile(join(ROOT, p.file), "utf8");
+      pages.push({ page: p.page, url: p.url, finalUrl: p.finalUrl || p.url, status: p.status || 200, html });
+    }
+    if (pages.length) return { pages, discoveredPages: manifest.discoveredPages || pages.length };
+  } catch {
+    // Fallback to live download
+  }
+  return null;
+}
+
+async function enrichEventsWithBilingualDetails(events) {
+  let completed = 0;
+  const total = events.length;
+  const queue = [...events];
+
+  async function worker() {
+    while (queue.length > 0) {
+      const event = queue.shift();
+      if (!event) break;
+      try {
+        const [enRes, zhRes] = await Promise.all([
+          fetchPage(`${DETAIL_BASE_URL}?courseId=${encodeURIComponent(event.courseId)}&lang=en`, { stateless: true }),
+          fetchPage(`${DETAIL_BASE_URL}?courseId=${encodeURIComponent(event.courseId)}&lang=zh`, { stateless: true })
+        ]);
+        const enDetail = parseDetailPage(enRes.html);
+        const zhDetail = parseDetailPage(zhRes.html);
+
+        if (zhDetail.title) event.titleZh = zhDetail.title;
+        if (enDetail.title && !event.title) event.title = enDetail.title;
+
+        event.levelZh = zhDetail.level || event.level;
+        event.subjectZh = zhDetail.subject || event.subject;
+        event.postZh = zhDetail.post || event.post;
+        event.financeTypeZh = zhDetail.financeType || event.financeType;
+        event.participantGroupZh = [event.levelZh, event.postZh].filter(Boolean).join(" · ") || "請參閱 TCS 課程詳情";
+        event.summaryZh = [
+          event.subjectZh && `科目：${event.subjectZh}`,
+          event.postZh && `對象：${event.postZh}`
+        ].filter(Boolean).join(" · ") || "教育局教師專業發展活動";
+
+        event.deliveryMode = classifyDeliveryMode(event, enDetail, zhDetail);
+
+        const firstVenueEn = enDetail.sessions?.[0]?.venue?.split("\n")[0]?.trim() || "";
+        const firstVenueZh = zhDetail.sessions?.[0]?.venue?.split("\n")[0]?.trim() || "";
+        if (firstVenueEn) event.format = firstVenueEn;
+        if (firstVenueZh) event.formatZh = firstVenueZh;
+
+        if (!event.badge && /新辦|\bnew\b/i.test(`${event.title} ${event.titleZh}`)) {
+          event.badge = "NEW";
+        } else if (!event.badge && /重辦|修訂|\b(updated|re-run)\b/i.test(`${event.title} ${event.titleZh}`)) {
+          event.badge = "UPDATED";
+        }
+
+        event.details = {
+          en: {
+            organisingDivision: enDetail.organisingDivision,
+            objective: enDetail.objective,
+            description: enDetail.description,
+            background: enDetail.background,
+            medium: enDetail.medium,
+            cpd: enDetail.cpdText,
+            contentArea: enDetail.contentArea,
+            sessions: enDetail.sessions
+          },
+          zh: {
+            organisingDivision: zhDetail.organisingDivision,
+            objective: zhDetail.objective,
+            description: zhDetail.description,
+            background: zhDetail.background,
+            medium: zhDetail.medium,
+            cpd: zhDetail.cpdText,
+            contentArea: zhDetail.contentArea,
+            sessions: zhDetail.sessions
+          }
+        };
+
+        event.categories = categoriesFor(event);
+        event.category = event.categories[0];
+        event.subjectTags = subjectTagsFor(event);
+      } catch (error) {
+        process.stderr.write(`Detail fetch warning for ${event.courseId}: ${error}\n`);
+      }
+      completed += 1;
+      if (completed % 50 === 0 || completed === total) {
+        process.stdout.write(`Enriched bilingual details: ${completed}/${total}\n`);
+      }
+    }
+  }
+
+  await Promise.all(Array.from({ length: DETAIL_CONCURRENCY }, () => worker()));
+}
+
 async function main() {
   await mkdir(RAW_DIR, { recursive: true });
   const startedAt = new Date().toISOString();
-  const first = await fetchPage(FIRST_PAGE_URL);
-  const discoveredPages = discoverPageCount(first.html);
-  const pageCount = FORCED_PAGE_COUNT || discoveredPages;
-  if (!pageCount) throw new Error("Could not discover the TCS page count from the first page");
-  const pageState = formStateFromFirstPage(first.html);
 
-  const pages = [{ page: 1, url: FIRST_PAGE_URL, ...first }];
-  for (let page = 2; page <= pageCount; page += 1) {
-    await sleep(PAGE_DELAY_MS);
-    const url = `${SOURCE_ROOT}/search.htm?pageNo=${page}`;
-    try {
-      pages.push({ page, url, ...(await fetchPage(url, { method: "POST", body: pageState.toString(), referer: FIRST_PAGE_URL })) });
-      process.stdout.write(`Downloaded page ${page}/${pageCount}\n`);
-    } catch (error) {
-      pages.push({ page, url, status: null, error: String(error) });
-      process.stderr.write(`Failed page ${page}/${pageCount}: ${error}\n`);
+  let pages = [];
+  let discoveredPages = 0;
+  let pageCount = 0;
+
+  const cached = !REFRESH_LIST_PAGES ? await loadExistingPages() : null;
+  if (cached && cached.pages.length > 0) {
+    pages = cached.pages;
+    discoveredPages = cached.discoveredPages;
+    pageCount = pages.length;
+    process.stdout.write(`Loaded ${pages.length} cached raw list pages from data/raw/.\n`);
+  } else {
+    const first = await fetchPage(FIRST_PAGE_URL);
+    discoveredPages = discoverPageCount(first.html);
+    pageCount = FORCED_PAGE_COUNT || discoveredPages;
+    if (!pageCount) throw new Error("Could not discover the TCS page count from the first page");
+    const pageState = formStateFromFirstPage(first.html);
+
+    pages = [{ page: 1, url: FIRST_PAGE_URL, ...first }];
+    for (let page = 2; page <= pageCount; page += 1) {
+      await sleep(PAGE_DELAY_MS);
+      const url = `${SOURCE_ROOT}/search.htm?pageNo=${page}`;
+      try {
+        pages.push({ page, url, ...(await fetchPage(url, { method: "POST", body: pageState.toString(), referer: FIRST_PAGE_URL })) });
+        process.stdout.write(`Downloaded page ${page}/${pageCount}\n`);
+      } catch (error) {
+        pages.push({ page, url, status: null, error: String(error) });
+        process.stderr.write(`Failed page ${page}/${pageCount}: ${error}\n`);
+      }
     }
   }
 
@@ -298,7 +583,7 @@ async function main() {
   for (const page of pages) {
     const filename = `tcs-page-${String(page.page).padStart(3, "0")}.html`;
     if (page.html) {
-      await writeText(join(RAW_DIR, filename), page.html);
+      if (!cached) await writeText(join(RAW_DIR, filename), page.html);
       const pageEvents = parsePage(page.html, page.page, page.finalUrl || page.url);
       parsed.push(...pageEvents);
       manifestPages.push({ page: page.page, url: page.url, finalUrl: page.finalUrl || page.url, status: page.status, bytes: Buffer.byteLength(page.html), sha256: createHash("sha256").update(page.html).digest("hex"), events: pageEvents.length, file: `data/raw/${filename}` });
@@ -308,7 +593,18 @@ async function main() {
   }
 
   const deduped = [...new Map(parsed.map((event) => [event.courseId, event])).values()].sort((a, b) => a.eventStart.localeCompare(b.eventStart) || a.courseId.localeCompare(b.courseId));
+
+  if (!SKIP_DETAILS) {
+    process.stdout.write(`Fetching bilingual course details (EN + ZH) for ${deduped.length} events...\n`);
+    await enrichEventsWithBilingualDetails(deduped);
+  }
+
   const finishedAt = new Date().toISOString();
+  const modeCounts = deduped.reduce((acc, ev) => {
+    acc[ev.deliveryMode] = (acc[ev.deliveryMode] || 0) + 1;
+    return acc;
+  }, {});
+
   const meta = {
     source: FIRST_PAGE_URL,
     startedAt,
@@ -318,6 +614,7 @@ async function main() {
     downloadedPages: pages.filter((page) => page.html).length,
     failedPages: pages.filter((page) => !page.html).map((page) => page.page),
     eventCount: deduped.length,
+    deliveryModes: modeCounts,
     pageDelayMs: PAGE_DELAY_MS,
     pages: manifestPages
   };
@@ -325,7 +622,7 @@ async function main() {
   await writeText(join(ROOT, "data", "tcs-events.js"), `window.TCS_DATA_META = ${JSON.stringify(meta)};\nwindow.TCS_EVENTS = ${JSON.stringify(deduped)};\n`);
   await writeText(join(ROOT, "data", "manifest.json"), JSON.stringify(meta, null, 2) + "\n");
 
-  process.stdout.write(`\nSnapshot complete: ${meta.downloadedPages}/${meta.requestedPages} pages, ${meta.eventCount} unique events.\n`);
+  process.stdout.write(`\nSnapshot complete: ${meta.downloadedPages}/${meta.requestedPages} pages, ${meta.eventCount} unique events. Delivery modes: ${JSON.stringify(modeCounts)}\n`);
   if (meta.failedPages.length) process.exitCode = 1;
 }
 
@@ -336,4 +633,4 @@ if (process.env.TCS_SKIP_MAIN !== "1") {
   });
 }
 
-export { cleanText, findCells, findRowBlocks, parsePage };
+export { cleanText, findCells, findRowBlocks, parsePage, parseDetailPage, classifyDeliveryMode };

@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en-HK">
+<html lang="zh-HK">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="A calmer way to browse Hong Kong EDB TCS professional learning events." />
-    <title>TCS Better Calendar</title>
+    <meta name="description" content="更清晰、更高效地瀏覽香港教育局 TCS 教師專業發展活動。" />
+    <title>TCS Better Calendar · 教師專業發展行事曆</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -13,109 +13,217 @@
   <body>
     <div class="site-shell">
       <header class="topbar">
-        <a class="brand" href="#top" aria-label="TCS Better Calendar home">
+        <a class="brand" href="#intro" id="brand-home" aria-label="TCS Better Calendar home">
           <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
-          <span class="brand-copy"><strong>TCS Better Calendar</strong><small>EDB professional learning</small></span>
+          <span class="brand-copy"><strong>TCS Better Calendar</strong><small data-i18n="brandSubtitle">教育局教師專業發展</small></span>
         </a>
+        <nav class="topbar-nav" aria-label="Page navigation">
+          <button class="nav-tab is-active" type="button" data-page="intro" data-i18n="navIntro">簡介首頁</button>
+          <button class="nav-tab" type="button" data-page="workspace" data-i18n="navWorkspace">活動列表與月曆</button>
+        </nav>
         <div class="topbar-meta">
-          <span class="status-dot"><i></i> <span id="source-status">Loading source…</span></span>
+          <span class="status-dot"><i></i> <span id="source-status">載入資料中…</span></span>
           <div class="language-toggle" role="group" aria-label="Language">
-            <button class="language-button is-active" type="button" data-language="en">EN</button>
-            <button class="language-button" type="button" data-language="zh">中</button>
+            <button class="language-button is-active" type="button" data-language="zh">中</button>
+            <button class="language-button" type="button" data-language="en">EN</button>
           </div>
-          <span class="version">v0.2</span>
+          <span class="version">v0.3</span>
         </div>
       </header>
 
       <main id="top">
-        <section class="hero" aria-labelledby="page-title">
-          <div class="hero-copy">
-            <p class="eyebrow" data-i18n="heroEyebrow">A clearer route to what is next</p>
-            <h1 id="page-title" data-i18n="heroTitle">Find the right learning event, faster.</h1>
-            <p class="hero-description" data-i18n="heroDescription">One focused view for Hong Kong teachers exploring professional learning across technology, curriculum and school development.</p>
-            <div class="hero-actions">
-              <a class="primary-button" href="#events"><span data-i18n="browseEvents">Browse events</span> <span aria-hidden="true">↓</span></a>
-              <button class="text-button" id="data-contract-button" type="button"><span data-i18n="viewDataContract">View data contract</span> <span aria-hidden="true">↗</span></button>
+        <!-- 獨立首頁（Intro Page） -->
+        <div id="intro-page" class="page-view">
+          <section class="hero" aria-labelledby="page-title">
+            <div class="hero-copy">
+              <p class="eyebrow" data-i18n="heroEyebrow">更清晰地找到下一步</p>
+              <h1 id="page-title" data-i18n="heroTitle">更快找到適合你的培訓活動。</h1>
+              <p class="hero-description" data-i18n="heroDescription">為香港教師整理教育局 TCS 專業學習活動，支援中英雙語、月曆檢視、活動詳情預覽及「免親身出席／網上課程」篩選。</p>
+              <div class="hero-actions">
+                <button class="primary-button" id="enter-workspace-btn" type="button">
+                  <span data-i18n="browseEvents">進入活動行事曆</span> <span aria-hidden="true">→</span>
+                </button>
+                <button class="secondary-button" id="enter-calendar-btn" type="button">
+                  <span data-i18n="openCalendarView">開啟月曆檢視</span> <span aria-hidden="true">▦</span>
+                </button>
+                <button class="text-button" id="data-contract-button" type="button">
+                  <span data-i18n="viewDataContract">查看資料結構</span> <span aria-hidden="true">↗</span>
+                </button>
+              </div>
             </div>
-          </div>
-          <div class="hero-note" aria-label="Prototype note">
-            <div class="note-kicker"><span class="pulse"></span> <span data-i18n="syncLane">Sync lane</span></div>
-            <p data-i18n="syncDescription">Downloaded TCS pages are normalized behind one source boundary, ready for a scheduled Apps Script sync.</p>
-            <div class="note-footer"><span data-i18n="lastSync">Last sync</span><strong id="sync-note">Loading…</strong></div>
-          </div>
-        </section>
-
-        <section class="stats-row" aria-label="Calendar summary">
-          <div class="stat-card"><span class="stat-label" data-i18n="visibleEvents">Visible events</span><strong id="stat-visible">—</strong><span class="stat-context" data-i18n="inThisView">in this view</span></div>
-          <div class="stat-card"><span class="stat-label" data-i18n="subjectGroups">Subject groups</span><strong id="stat-subject-groups">—</strong><span class="stat-context" data-i18n="toExplore">to explore</span></div>
-          <div class="stat-card stat-card-accent"><span class="stat-label" data-i18n="closingSoon">Closing soon</span><strong id="stat-closing">—</strong><span class="stat-context" data-i18n="withinSevenDays">within 7 days</span></div>
-          <div class="stat-card stat-card-dark"><span class="stat-label" data-i18n="dataSource">Data source</span><strong id="stat-source">—</strong><span class="stat-context" data-i18n="normalizedSnapshot">normalized snapshot</span></div>
-        </section>
-
-        <section class="workspace" id="events" aria-labelledby="events-heading">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow" data-i18n="browseCalendar">Browse the calendar</p>
-              <h2 id="events-heading" data-i18n="eventsHeading">Opportunities worth a closer look</h2>
+            <div class="hero-note" aria-label="Prototype note">
+              <div class="note-kicker"><span class="pulse"></span> <span data-i18n="syncLane">同步狀態</span></div>
+              <p data-i18n="syncDescription">已擷取最新中英雙語 TCS 活動與詳情頁面，並自動識別網上自學、實時網上講座及實體課程。</p>
+              <div class="note-footer"><span data-i18n="lastSync">最近同步</span><strong id="sync-note">載入中…</strong></div>
             </div>
-            <p class="section-caption" data-i18n="sectionCaption">A compact list for scanning more events at once. Details and application links can grow with the live source.</p>
+          </section>
+
+          <section class="stats-row" aria-label="Calendar summary">
+            <div class="stat-card"><span class="stat-label" data-i18n="totalEventsLabel">活動總數</span><strong id="stat-total">—</strong><span class="stat-context" data-i18n="inDatabase">已收錄活動</span></div>
+            <div class="stat-card"><span class="stat-label" data-i18n="nonLiveEventsLabel">網上／自學活動</span><strong id="stat-nonlive">—</strong><span class="stat-context" data-i18n="nonLiveContext">免親身到場或網上進行</span></div>
+            <div class="stat-card stat-card-accent"><span class="stat-label" data-i18n="closingSoon">即將截止</span><strong id="stat-closing">—</strong><span class="stat-context" data-i18n="withinSevenDays">七日內截止</span></div>
+            <div class="stat-card stat-card-dark"><span class="stat-label" data-i18n="dataSource">資料來源</span><strong id="stat-source">—</strong><span class="stat-context" data-i18n="normalizedSnapshot">中英雙語快照</span></div>
+          </section>
+
+          <section class="intro-features" aria-label="Key features">
+            <div class="feature-card">
+              <span class="feature-icon" aria-hidden="true">⇄</span>
+              <h3 data-i18n="featureBilingualTitle">中英雙語同步</h3>
+              <p data-i18n="featureBilingualDesc">預設繁體中文介面與活動內容，一鍵切換中英文課程名稱、對象與詳情。</p>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon" aria-hidden="true">▦</span>
+              <h3 data-i18n="featureCalendarTitle">列表與月曆雙視圖</h3>
+              <p data-i18n="featureCalendarDesc">除密集列表外，提供月曆檢視按月份及日期直觀掌握每日培訓活動。</p>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon" aria-hidden="true">◎</span>
+              <h3 data-i18n="featureModeTitle">活動模式分類</h3>
+              <p data-i18n="featureModeDesc">自動區分「網上自學／錄播」、「實時網上講座 (Webinar)」及「需親身出席 (實體)」。</p>
+            </div>
+          </section>
+        </div>
+
+        <!-- 獨立活動工作區頁面（Workspace Page） -->
+        <section class="workspace page-view" id="workspace-page" hidden aria-labelledby="events-heading">
+          <div class="workspace-header">
+            <div class="workspace-title-group">
+              <button class="back-intro-button" id="back-to-intro" type="button">
+                <span aria-hidden="true">←</span> <span data-i18n="backToIntro">返回簡介首頁</span>
+              </button>
+              <h2 id="events-heading" data-i18n="eventsHeading">探索培訓活動</h2>
+            </div>
+
+            <div class="view-switcher" role="tablist" aria-label="View mode">
+              <button class="view-button is-active" type="button" data-view="list" role="tab" aria-selected="true">
+                <span aria-hidden="true">☰</span> <span data-i18n="listView">列表檢視</span>
+              </button>
+              <button class="view-button" type="button" data-view="calendar" role="tab" aria-selected="false">
+                <span aria-hidden="true">▦</span> <span data-i18n="calendarView">月曆檢視</span>
+              </button>
+            </div>
           </div>
 
           <div class="filter-panel" aria-label="Event filters">
-            <label class="search-field">
-              <span class="sr-only" data-i18n="searchEvents">Search events</span>
-              <span class="search-icon" aria-hidden="true">⌕</span>
-              <input id="search-input" type="search" data-i18n-placeholder="searchPlaceholder" placeholder="Search by title, topic, subject or audience" autocomplete="off" />
-              <kbd>/</kbd>
-            </label>
-            <div class="filter-divider" aria-hidden="true"></div>
-            <div class="filter-group category-filters" role="group" aria-label="Category">
-              <button class="filter-chip is-active" type="button" data-category="All" data-i18n="categoryAll">All</button>
-              <button class="filter-chip" type="button" data-category="Secondary" data-i18n="categorySecondary">Secondary</button>
-              <button class="filter-chip" type="button" data-category="IT/AI" data-i18n="categoryItAi">IT/AI</button>
-              <button class="filter-chip" type="button" data-category="CSD" data-i18n="categoryCsd">CSD</button>
-              <button class="filter-chip" type="button" data-category="STEAM" data-i18n="categorySteam">STEAM</button>
+            <div class="filter-top-row">
+              <label class="search-field">
+                <span class="sr-only" data-i18n="searchEvents">搜尋活動</span>
+                <span class="search-icon" aria-hidden="true">⌕</span>
+                <input id="search-input" type="search" data-i18n-placeholder="searchPlaceholder" placeholder="搜尋活動編號、標題、主題、科目、地點或對象" autocomplete="off" />
+                <kbd>/</kbd>
+              </label>
+              <div class="filter-divider" aria-hidden="true"></div>
+              <div class="filter-group category-filters" role="group" aria-label="Category">
+                <button class="filter-chip is-active" type="button" data-category="All" data-i18n="categoryAll">全部</button>
+                <button class="filter-chip" type="button" data-category="Secondary" data-i18n="categorySecondary">中學</button>
+                <button class="filter-chip" type="button" data-category="IT/AI" data-i18n="categoryItAi">資訊科技／AI</button>
+                <button class="filter-chip" type="button" data-category="CSD" data-i18n="categoryCsd">公民與社會發展</button>
+                <button class="filter-chip" type="button" data-category="STEAM" data-i18n="categorySteam">STEAM</button>
+              </div>
             </div>
+
             <div class="filter-selects">
-              <label class="select-wrap"><span data-i18n="level">Level</span><select id="level-select"></select></label>
-              <label class="select-wrap"><span data-i18n="subject">Subject</span><select id="subject-select"></select></label>
-              <label class="select-wrap date-wrap"><span data-i18n="specificDate">Specific date</span><input id="event-date-input" type="date" /></label>
-              <label class="select-wrap"><span data-i18n="deadline">Deadline</span><select id="deadline-select"></select></label>
-              <label class="select-wrap"><span data-i18n="sort">Sort</span><select id="sort-select"></select></label>
-              <button class="clear-button" id="clear-filters" type="button" data-i18n="clear">Clear</button>
+              <label class="select-wrap"><span data-i18n="deliveryModeLabel">上課模式</span><select id="mode-select"></select></label>
+              <label class="select-wrap"><span data-i18n="level">教育階段</span><select id="level-select"></select></label>
+              <label class="select-wrap"><span data-i18n="subject">科目</span><select id="subject-select"></select></label>
+              <label class="select-wrap date-wrap"><span data-i18n="specificDate">指定活動日期</span><input id="event-date-input" type="date" /></label>
+              <label class="select-wrap"><span data-i18n="deadline">截止日期</span><select id="deadline-select"></select></label>
+              <label class="select-wrap"><span data-i18n="sort">排序</span><select id="sort-select"></select></label>
+              <button class="clear-button" id="clear-filters" type="button" data-i18n="clear">重設</button>
             </div>
           </div>
 
           <div class="profile-panel" aria-label="Teacher profile">
             <div class="profile-copy">
               <span class="profile-icon" aria-hidden="true">◎</span>
-              <div><strong data-i18n="myProfile">My teacher profile</strong><span data-i18n="profileDescription">Choose your teaching subject to keep relevant events in view.</span></div>
+              <div><strong data-i18n="myProfile">我的教師設定</strong><span data-i18n="profileDescription">選擇你任教的科目及上課偏好，自動篩選相關活動。</span></div>
             </div>
-            <label class="select-wrap profile-select-wrap"><span data-i18n="iTeach">I teach</span><select id="profile-select"></select></label>
-            <label class="profile-check"><input id="include-general" type="checkbox" checked /><span data-i18n="includeGeneral">Include non-subject-specific events</span></label>
+            <label class="select-wrap profile-select-wrap"><span data-i18n="iTeach">我任教</span><select id="profile-select"></select></label>
+            <div class="profile-checks">
+              <label class="profile-check"><input id="include-general" type="checkbox" checked /><span data-i18n="includeGeneral">包括非特定科目活動</span></label>
+              <label class="profile-check highlight-check"><input id="only-non-live" type="checkbox" /><span data-i18n="onlyNonLive">只顯示免親身出席／網上活動</span></label>
+            </div>
           </div>
 
-          <div class="results-bar"><p id="results-summary" aria-live="polite">Loading events…</p><p class="results-source" id="results-source"><span class="source-led"></span> Source: loading</p></div>
-          <div id="event-grid" class="event-list" aria-live="polite"></div>
-          <div id="empty-state" class="empty-state" hidden>
-            <div class="empty-icon" aria-hidden="true">⌕</div>
-            <h3 data-i18n="noEvents">No events match this view</h3>
-            <p data-i18n="noEventsDescription">Try a broader deadline window or clear one of the filters.</p>
-            <button class="primary-button" id="empty-clear" type="button" data-i18n="resetFilters">Reset filters</button>
+          <div class="results-bar">
+            <p id="results-summary" aria-live="polite">載入活動中…</p>
+            <p class="results-source" id="results-source"><span class="source-led"></span> 資料來源：載入中</p>
+          </div>
+
+          <!-- 列表檢視 -->
+          <div id="list-view-container">
+            <div id="event-grid" class="event-list" aria-live="polite"></div>
+            <div id="empty-state" class="empty-state" hidden>
+              <div class="empty-icon" aria-hidden="true">⌕</div>
+              <h3 data-i18n="noEvents">沒有符合條件的活動</h3>
+              <p data-i18n="noEventsDescription">可以放寬截止日期、改選其他上課模式或科目，或重設篩選條件。</p>
+              <button class="primary-button" id="empty-clear" type="button" data-i18n="resetFilters">重設篩選</button>
+            </div>
+          </div>
+
+          <!-- 月曆檢視 -->
+          <div id="calendar-view-container" class="calendar-container" hidden>
+            <div class="calendar-toolbar">
+              <div class="calendar-nav">
+                <button class="cal-nav-btn" id="cal-prev-month" type="button" aria-label="Previous month">←</button>
+                <h3 id="cal-month-title" class="cal-month-title">2026年10月</h3>
+                <button class="cal-nav-btn" id="cal-next-month" type="button" aria-label="Next month">→</button>
+              </div>
+              <div class="calendar-toolbar-right">
+                <span class="cal-legend">
+                  <span class="legend-item"><i class="dot-self-paced"></i> <span data-i18n="modeSelfPaced">網上自學／錄播</span></span>
+                  <span class="legend-item"><i class="dot-webinar"></i> <span data-i18n="modeWebinar">實時網上講座</span></span>
+                  <span class="legend-item"><i class="dot-in-person"></i> <span data-i18n="modeInPerson">實體出席</span></span>
+                </span>
+                <button class="cal-today-btn" id="cal-today-btn" type="button" data-i18n="calToday">本月</button>
+              </div>
+            </div>
+            <div class="calendar-weekdays" id="calendar-weekdays"></div>
+            <div class="calendar-grid" id="calendar-grid"></div>
+            <div class="calendar-day-drawer" id="calendar-day-drawer" hidden>
+              <div class="day-drawer-header">
+                <h4 id="day-drawer-title"></h4>
+                <button class="close-drawer-btn" id="close-day-drawer" type="button">×</button>
+              </div>
+              <div id="day-drawer-list" class="event-list"></div>
+            </div>
           </div>
         </section>
 
         <section class="contract-panel" id="data-contract" hidden aria-labelledby="contract-heading">
           <div>
-            <p class="eyebrow" data-i18n="dataContract">Data contract</p>
-            <h2 id="contract-heading" data-i18n="contractHeading">A small interface between source and experience.</h2>
+            <p class="eyebrow" data-i18n="dataContract">資料結構</p>
+            <h2 id="contract-heading" data-i18n="contractHeading">連接資料來源與使用體驗的小型介面。</h2>
           </div>
-          <p data-i18n-html="contractDescription">The UI reads normalized event objects with stable fields for <code>courseId</code>, <code>title</code>, <code>categories</code>, <code>subjectTags</code>, <code>eventStart</code>, <code>eventEnd</code>, <code>closingDate</code>, <code>level</code>, <code>participantGroup</code>, <code>lastUpdated</code> and <code>badge</code>. The current source is a downloaded TCS snapshot; Apps Script can replace it with a scheduled Sheet/API response later.</p>
+          <p data-i18n-html="contractDescription">介面會讀取統一格式的活動資料，包括 <code>courseId</code>、<code>title</code>、<code>titleZh</code>、<code>deliveryMode</code>、<code>categories</code>、<code>subjectTags</code>、<code>eventStart</code>、<code>eventEnd</code>、<code>closingDate</code> 及雙語 <code>details</code>（目標、內容、場次、講授語言）。</p>
           <button class="icon-button" id="close-contract" type="button" aria-label="Close data contract">×</button>
         </section>
       </main>
 
-      <footer class="footer"><span data-i18n="footerTitle">TCS Better Calendar · prototype</span><span data-i18n="footerDescription">Designed for a future Google Sites + Apps Script deployment</span></footer>
+      <!-- 活動詳情 Modal -->
+      <div class="modal-backdrop" id="detail-modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-course-title">
+        <div class="modal-card">
+          <div class="modal-header">
+            <div class="modal-badges" id="modal-badges"></div>
+            <button class="modal-close" id="modal-close-btn" type="button" aria-label="Close details">×</button>
+          </div>
+          <h3 class="modal-title" id="modal-course-title"></h3>
+          <p class="modal-subtitle" id="modal-course-subtitle"></p>
+
+          <div class="modal-body" id="modal-body"></div>
+
+          <div class="modal-footer">
+            <a class="secondary-button" id="modal-edb-link" href="#" target="_blank" rel="noreferrer">
+              <span data-i18n="openEdbDetail">於 EDB 查看原始詳情</span> ↗
+            </a>
+            <a class="primary-button" id="modal-apply-link" href="#" target="_blank" rel="noreferrer">
+              <span data-i18n="openEvent">前往報名／開啟活動</span> ↗
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <footer class="footer"><span data-i18n="footerTitle">TCS Better Calendar · 雙語升級版</span><span data-i18n="footerDescription">支援中英雙語、月曆檢視及課程詳情預覽</span></footer>
     </div>
 
     <script src="data/tcs-events.js"></script>
