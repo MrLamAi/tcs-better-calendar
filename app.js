@@ -9,7 +9,13 @@
   const storedProfile = window.localStorage ? localStorage.getItem("tcs-profile") : "";
   const storedGeneral = window.localStorage ? localStorage.getItem("tcs-include-general") : null;
   const storedNonLive = window.localStorage ? localStorage.getItem("tcs-only-non-live") : null;
-  const todayIso = (dataMeta.finishedAt || "2026-10-24T00:00:00+08:00").slice(0, 10);
+  const nowHk = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Hong_Kong",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }).format(new Date());
+  const todayIso = /^\d{4}-\d{2}-\d{2}$/.test(nowHk) ? nowHk : (dataMeta.finishedAt || "2026-10-24T00:00:00+08:00").slice(0, 10);
   const today = new Date(todayIso + "T00:00:00+08:00");
 
   const translations = {
@@ -302,8 +308,8 @@
     { value: "30", key: "nextThirtyDays" }
   ];
   const sortDefinitions = [
-    { value: "closing", key: "closingDate" },
     { value: "event", key: "eventDate" },
+    { value: "closing", key: "closingDate" },
     { value: "newest", key: "newestAdded" },
     { value: "mode", key: "modeSort" }
   ];
@@ -319,7 +325,7 @@
     mode: "all",
     deadline: "all",
     eventDate: "",
-    sort: "closing",
+    sort: "event",
     level: "all",
     subject: "all",
     profile: subjectDefinitions.some(function (item) { return item.value === storedProfile; }) ? storedProfile : "all",
@@ -484,11 +490,80 @@
     return keys;
   }
 
+  function computeActiveSchedule(event) {
+    const rawSessions = (event.details && (event.details.zh?.sessions || event.details.en?.sessions)) || [];
+    const rangeRegex = /(\d{4})\/(\d{2})\/(\d{2})(?:\s*\([^)]*\))?(?:\s*-\s*(\d{4})\/(\d{2})\/(\d{2}))?/g;
+    const validRanges = [];
+    const validClosingDates = [];
+
+    if (rawSessions.length) {
+      rawSessions.forEach(function (s) {
+        const sClosing = (s.closingDate || "").replaceAll("/", "-").match(/\d{4}-\d{2}-\d{2}/)?.[0] || event.closingDateEnd || event.closingDate || "";
+        if (sClosing && sClosing < todayIso) return; // 此場次報名截止日已過，自動略過
+        if (sClosing) validClosingDates.push(sClosing);
+
+        let m;
+        rangeRegex.lastIndex = 0;
+        while ((m = rangeRegex.exec(String(s.date || ""))) !== null) {
+          const startIso = `${m[1]}-${m[2]}-${m[3]}`;
+          const endIso = m[4] ? `${m[4]}-${m[5]}-${m[6]}` : startIso;
+          if (endIso >= todayIso) {
+            validRanges.push({ start: startIso, end: endIso });
+          }
+        }
+      });
+    }
+
+    if (!validRanges.length) {
+      const period = String(event.eventPeriod || "");
+      let m;
+      rangeRegex.lastIndex = 0;
+      while ((m = rangeRegex.exec(period)) !== null) {
+        const startIso = `${m[1]}-${m[2]}-${m[3]}`;
+        const endIso = m[4] ? `${m[4]}-${m[5]}-${m[6]}` : startIso;
+        if (endIso >= todayIso) {
+          validRanges.push({ start: startIso, end: endIso });
+        }
+      }
+    }
+
+    if (!validRanges.length && event.eventStart) {
+      const endIso = event.eventEnd || event.eventStart;
+      if (endIso >= todayIso) {
+        validRanges.push({ start: event.eventStart, end: endIso });
+      }
+    }
+
+    const fallbackClosing = [event.closingDate, event.closingDateEnd]
+      .filter(function (d) { return d && d >= todayIso; })
+      .sort()[0] || "";
+    const activeClosingDate = validClosingDates.sort()[0] || fallbackClosing;
+    const sortedStarts = validRanges.map(function (r) { return r.start; }).sort();
+    const sortedEnds = validRanges.map(function (r) { return r.end; }).sort();
+
+    return {
+      isExpired: !activeClosingDate || validRanges.length === 0,
+      activeClosingDate: activeClosingDate,
+      activeEventStart: sortedStarts[0] || event.eventStart || "",
+      activeEventEnd: sortedEnds[sortedEnds.length - 1] || sortedStarts[0] || event.eventEnd || "",
+      activeRanges: validRanges
+    };
+  }
+
   const events = sourceEvents.map(function (event) {
+    const schedule = computeActiveSchedule(event);
     return Object.assign({}, event, {
       subjectTags: subjectTagsFor(event),
-      deliveryMode: inferDeliveryMode(event)
+      deliveryMode: inferDeliveryMode(event),
+      closingDate: schedule.activeClosingDate || event.closingDate,
+      eventStart: schedule.activeEventStart || event.eventStart,
+      eventEnd: schedule.activeEventEnd || event.eventEnd,
+      activeRanges: schedule.activeRanges,
+      isExpired: schedule.isExpired
     });
+  }).filter(function (event) {
+    // 自動隱藏報名截止日已過的活動
+    return !event.isExpired && event.closingDate >= todayIso;
   });
 
   function applyTranslations() {
@@ -583,9 +658,13 @@
     const subjectMatch = state.subject === "all" || tags.includes(state.subject);
     const levelMatch = state.level === "all" || levelKeys(event).includes(state.level);
     const modeMatch = matchesMode(event);
-    const eventDateMatch = ignoreSpecificDate || !state.eventDate || (event.eventStart && event.eventEnd && state.eventDate >= event.eventStart && state.eventDate <= event.eventEnd);
+    const eventDateMatch = ignoreSpecificDate || !state.eventDate || (
+      Array.isArray(event.activeRanges) && event.activeRanges.length
+        ? event.activeRanges.some(function (r) { return state.eventDate >= r.start && state.eventDate <= r.end; })
+        : (event.eventStart && event.eventEnd && state.eventDate >= event.eventStart && state.eventDate <= event.eventEnd)
+    );
     const days = daysUntil(event.closingDate);
-    const windowMatch = state.deadline === "all" || (days >= 0 && days <= Number(state.deadline));
+    const windowMatch = days >= 0 && (state.deadline === "all" || days <= Number(state.deadline));
     return categoryMatch && profileMatch && subjectMatch && levelMatch && modeMatch && eventDateMatch && windowMatch && (!query || searchText.indexOf(query) !== -1);
   }
 
@@ -601,9 +680,10 @@
         const diff = modeRank(a.deliveryMode) - modeRank(b.deliveryMode);
         if (diff !== 0) return diff;
       }
-      if (state.sort === "event") return asDate(a.eventStart) - asDate(b.eventStart);
+      if (state.sort === "closing") return asDate(a.closingDate) - asDate(b.closingDate);
       if (state.sort === "newest") return asDate(b.lastUpdated) - asDate(a.lastUpdated);
-      return asDate(a.closingDate) - asDate(b.closingDate);
+      // 預設按活動舉行日期（Event Date）排序
+      return asDate(a.eventStart) - asDate(b.eventStart);
     });
   }
 
@@ -638,28 +718,24 @@
 
   function parseEventActiveDates(event, year, month) {
     const monthPrefix = String(year) + "-" + String(month + 1).padStart(2, "0");
-    const period = String(event.eventPeriod || "");
     const activeDays = new Set();
-
-    // Parse explicit ranges or single dates in eventPeriod e.g. "2026/12/09-2027/01/09 2027/02/24-2027/03/20"
-    const tokenRegex = /(\d{4})\/(\d{2})\/(\d{2})(?:\s*-\s*(\d{4})\/(\d{2})\/(\d{2}))?/g;
-    let m;
-    let matchedAny = false;
     const monthStart = new Date(year, month, 1);
     const monthEnd = new Date(year, month + 1, 0);
+    const ranges = Array.isArray(event.activeRanges) && event.activeRanges.length
+      ? event.activeRanges
+      : (event.eventStart ? [{ start: event.eventStart, end: event.eventEnd || event.eventStart }] : []);
 
-    while ((m = tokenRegex.exec(period)) !== null) {
-      matchedAny = true;
-      const sDate = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
-      const eDate = m[4] ? new Date(Number(m[4]), Number(m[5]) - 1, Number(m[6])) : sDate;
+    ranges.forEach(function (range) {
+      const sParts = range.start.split("-").map(Number);
+      const eParts = (range.end || range.start).split("-").map(Number);
+      const sDate = new Date(sParts[0], sParts[1] - 1, sParts[2]);
+      const eDate = new Date(eParts[0], eParts[1] - 1, eParts[2]);
       const spanDays = Math.round((eDate - sDate) / 86400000);
 
-      // If a course spans more than 14 days (e.g. a 2-month self-learning window), mark its start and end date rather than flooding every day of the month
+      // 若為長達 14 日以上的網上自學期，於月曆標示該活動的開始日與結束日
       if (spanDays > 14) {
-        const sIso = `${m[1]}-${m[2]}-${m[3]}`;
-        const eIso = m[4] ? `${m[4]}-${m[5]}-${m[6]}` : sIso;
-        if (sIso.startsWith(monthPrefix)) activeDays.add(sIso);
-        if (eIso.startsWith(monthPrefix)) activeDays.add(eIso);
+        if (range.start.startsWith(monthPrefix)) activeDays.add(range.start);
+        if (range.end && range.end.startsWith(monthPrefix)) activeDays.add(range.end);
       } else {
         const cur = new Date(Math.max(sDate.getTime(), monthStart.getTime()));
         const end = new Date(Math.min(eDate.getTime(), monthEnd.getTime()));
@@ -669,12 +745,7 @@
           cur.setDate(cur.getDate() + 1);
         }
       }
-    }
-
-    if (!matchedAny && event.eventStart) {
-      if (event.eventStart.startsWith(monthPrefix)) activeDays.add(event.eventStart);
-      if (event.eventEnd && event.eventEnd.startsWith(monthPrefix)) activeDays.add(event.eventEnd);
-    }
+    });
 
     return [...activeDays];
   }
@@ -802,7 +873,12 @@
         );
       }
       if (Array.isArray(locDetail.sessions) && locDetail.sessions.length) {
-        const rows = locDetail.sessions.map(function (s) {
+        const activeSessions = locDetail.sessions.filter(function (s) {
+          const sClosing = (s.closingDate || "").replaceAll("/", "-").match(/\d{4}-\d{2}-\d{2}/)?.[0] || "";
+          return !sClosing || sClosing >= todayIso;
+        });
+        const sessionsToRender = activeSessions.length ? activeSessions : locDetail.sessions;
+        const rows = sessionsToRender.map(function (s) {
           return "<tr>" +
             "<td><strong>" + escapeHtml(s.eventId) + "</strong></td>" +
             "<td>" + escapeHtml(s.date) + "</td>" +
@@ -928,7 +1004,7 @@
     state.mode = "all";
     state.deadline = "all";
     state.eventDate = "";
-    state.sort = "closing";
+    state.sort = "event";
     state.level = "all";
     state.subject = "all";
     state.onlyNonLive = false;
