@@ -379,6 +379,7 @@
     closing: document.getElementById("stat-closing"),
     search: document.getElementById("search-input"),
     mobileFilterToggle: document.getElementById("mobile-filter-toggle"),
+    filterSummaryText: document.getElementById("filter-summary-text"),
     collapsibleFilters: document.getElementById("collapsible-filters"),
     activeFilterCount: document.getElementById("active-filter-count"),
     startTimeSlider: document.getElementById("start-time-slider"),
@@ -405,12 +406,16 @@
     calNextMonth: document.getElementById("cal-next-month"),
     calTodayBtn: document.getElementById("cal-today-btn"),
     calMonthTitle: document.getElementById("cal-month-title"),
+    calMonthJumps: document.getElementById("calendar-month-jumps"),
     calWeekdays: document.getElementById("calendar-weekdays"),
     calGrid: document.getElementById("calendar-grid"),
     calDayDrawer: document.getElementById("calendar-day-drawer"),
     dayDrawerTitle: document.getElementById("day-drawer-title"),
+    dayDrawerSubtitle: document.getElementById("day-drawer-subtitle"),
     dayDrawerList: document.getElementById("day-drawer-list"),
     closeDayDrawer: document.getElementById("close-day-drawer"),
+    dayPopupPrev: document.getElementById("day-popup-prev"),
+    dayPopupNext: document.getElementById("day-popup-next"),
     detailModal: document.getElementById("detail-modal"),
     modalBadges: document.getElementById("modal-badges"),
     modalTitle: document.getElementById("modal-course-title"),
@@ -872,6 +877,14 @@
     return [...activeDays];
   }
 
+  function addDaysIso(iso, delta) {
+    const parts = String(iso || "").split("-").map(Number);
+    if (parts.length !== 3) return iso;
+    const d = new Date(parts[0], parts[1] - 1, parts[2]);
+    d.setDate(d.getDate() + delta);
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  }
+
   function renderCalendar(filteredEvents) {
     const year = state.calYear;
     const month = state.calMonth;
@@ -880,6 +893,36 @@
       year: "numeric",
       month: "long"
     }).format(monthDate);
+
+    // 仿照 amfinder m-jump：顯示有活動的月份快速跳轉按鈕
+    if (elements.calMonthJumps) {
+      const monthCounts = new Map();
+      filteredEvents.forEach(function (ev) {
+        const ranges = Array.isArray(ev.activeRanges) && ev.activeRanges.length
+          ? ev.activeRanges
+          : (ev.eventStart ? [{ start: ev.eventStart, end: ev.eventEnd || ev.eventStart }] : []);
+        ranges.forEach(function (r) {
+          const ym = (r.start || "").slice(0, 7);
+          if (ym && ym >= todayIso.slice(0, 7)) {
+            monthCounts.set(ym, (monthCounts.get(ym) || 0) + 1);
+          }
+        });
+      });
+      const currentYm = `${year}-${String(month + 1).padStart(2, "0")}`;
+      if (!monthCounts.has(currentYm)) monthCounts.set(currentYm, 0);
+      const sortedYms = [...monthCounts.keys()].sort().slice(0, 12);
+      elements.calMonthJumps.innerHTML = sortedYms.map(function (ym) {
+        const [y, m] = ym.split("-").map(Number);
+        const isCurrent = y === year && (m - 1) === month;
+        const hasEv = (monthCounts.get(ym) || 0) > 0;
+        const label = state.locale === "zh"
+          ? `${m}月${y !== today.getFullYear() ? " '" + String(y).slice(2) : ""}`
+          : `${new Date(y, m - 1, 1).toLocaleString("en-HK", { month: "short" })}${y !== today.getFullYear() ? " '" + String(y).slice(2) : ""}`;
+        return '<button type="button" class="cal-mjump-btn' + (isCurrent ? " is-active" : "") + '" data-jump-ym="' + ym + '">' +
+          escapeHtml(label) + (hasEv ? '<i class="mjump-dot"></i>' : "") +
+          "</button>";
+      }).join("");
+    }
 
     const weekdays = translations[state.locale].weekdays || translations.zh.weekdays;
     elements.calWeekdays.innerHTML = weekdays.map(function (d) {
@@ -904,7 +947,7 @@
 
     const cells = [];
     for (let i = 0; i < firstDayIndex; i += 1) {
-      cells.push('<div class="cal-cell is-empty"></div>');
+      cells.push('<div class="cal-cell is-empty" aria-hidden="true"></div>');
     }
 
     for (let d = 1; d <= daysInMonth; d += 1) {
@@ -912,58 +955,70 @@
       const dayEvents = dayMap.get(iso) || [];
       const isToday = iso === todayIso;
       const isSelected = iso === state.selectedCalDate;
-      const previewItems = dayEvents.slice(0, 3).map(function (ev) {
-        const modeClass = "cal-pill-" + (ev.deliveryMode || "in-person");
-        const shortTime = ev.startTime ? ev.startTime + " " : "";
-        return '<button type="button" class="cal-event-pill ' + modeClass + '" data-detail-id="' + escapeHtml(ev.courseId) + '" title="' + escapeHtml((shortTime + eventTitle(ev)).trim()) + '">' +
-          (shortTime ? '<span class="cal-pill-time">' + escapeHtml(ev.startTime) + "</span> " : "") +
-          escapeHtml(eventTitle(ev)) +
-          "</button>";
-      }).join("");
-      const moreHtml = dayEvents.length > 3
-        ? '<button type="button" class="cal-more-btn" data-cal-date="' + iso + '">+' + (dayEvents.length - 3) + " " + escapeHtml(t("calMore")) + "</button>"
-        : "";
-      const mobileDotsHtml = dayEvents.slice(0, 5).map(function (ev) {
-        return '<i class="cal-dot dot-' + escapeHtml(ev.deliveryMode || "in-person") + '"></i>';
-      }).join("");
+      const isPast = iso < todayIso;
+
+      // 統計當日各上課模式的活動數量（顏色點 + 數字）
+      const counts = { "self-paced": 0, webinar: 0, "in-person": 0 };
+      dayEvents.forEach(function (ev) {
+        const m = ev.deliveryMode || "in-person";
+        counts[m] = (counts[m] || 0) + 1;
+      });
+
+      const modeCountBadges = ["self-paced", "webinar", "in-person"]
+        .filter(function (m) { return counts[m] > 0; })
+        .map(function (m) {
+          return '<span class="cal-mode-stat stat-' + m + '"><i class="dot-' + m + '"></i><b>' + counts[m] + "</b></span>";
+        })
+        .join("");
 
       cells.push(
-        '<div class="cal-cell' + (isToday ? " is-today" : "") + (isSelected ? " is-selected" : "") + (dayEvents.length ? " has-events" : "") + '" data-cal-date="' + iso + '">' +
+        '<button type="button" class="cal-cell' +
+        (isToday ? " is-today" : "") +
+        (isSelected ? " is-selected" : "") +
+        (isPast ? " is-past" : "") +
+        (dayEvents.length ? " has-events" : "") +
+        '" data-cal-date="' + iso + '">' +
         '<div class="cal-cell-header">' +
-        '<button type="button" class="cal-day-num" data-cal-date="' + iso + '">' + d + "</button>" +
-        (dayEvents.length ? '<span class="cal-day-count">' + dayEvents.length + "</span>" : "") +
+        '<span class="cal-day-num">' + d + "</span>" +
+        (dayEvents.length ? '<span class="cal-total-pill">' + dayEvents.length + "</span>" : "") +
         "</div>" +
-        '<div class="cal-cell-dots" aria-hidden="true">' + mobileDotsHtml + "</div>" +
-        '<div class="cal-cell-events">' + previewItems + moreHtml + "</div>" +
-        "</div>"
+        '<div class="cal-cell-stats">' + modeCountBadges + "</div>" +
+        "</button>"
       );
     }
 
     elements.calGrid.innerHTML = cells.join("");
 
-    // 若用戶未選取日期或選取日期不在本月，預設選取今天（如在本月且有活動）或本月第一個有活動的日子
-    if (!state.selectedCalDate || !dayMap.has(state.selectedCalDate)) {
-      if (dayMap.has(todayIso) && (dayMap.get(todayIso) || []).length > 0) {
-        state.selectedCalDate = todayIso;
-      } else {
-        for (const [k, list] of dayMap.entries()) {
-          if (list.length > 0) {
-            state.selectedCalDate = k;
-            break;
-          }
-        }
+    // 當用戶點擊某一日（state.selectedCalDate 非空）時，以獨立 Pop-up 視窗顯示當日活動清單
+    if (state.selectedCalDate) {
+      let dayEvents = dayMap.get(state.selectedCalDate);
+      if (!dayEvents) {
+        const selParts = state.selectedCalDate.split("-").map(Number);
+        dayEvents = filteredEvents.filter(function (ev) {
+          return parseEventActiveDates(ev, selParts[0], selParts[1] - 1).includes(state.selectedCalDate);
+        });
       }
-    }
-
-    if (state.selectedCalDate && dayMap.has(state.selectedCalDate)) {
-      const dayEvents = dayMap.get(state.selectedCalDate) || [];
+      const selDateObj = asDate(state.selectedCalDate);
+      const wdName = weekdays[selDateObj.getDay()] || "";
       elements.calDayDrawer.hidden = false;
-      elements.dayDrawerTitle.textContent = formatDate(state.selectedCalDate, true) + " (" + dayEvents.length + " " + t("events") + ")";
+      document.body.classList.add("has-day-popup");
+      elements.dayDrawerTitle.textContent = formatDate(state.selectedCalDate, true) + (wdName ? " (" + wdName + ")" : "");
+      if (elements.dayDrawerSubtitle) {
+        const cSelf = dayEvents.filter(function (e) { return e.deliveryMode === "self-paced"; }).length;
+        const cWeb = dayEvents.filter(function (e) { return e.deliveryMode === "webinar"; }).length;
+        const cPer = dayEvents.filter(function (e) { return e.deliveryMode === "in-person"; }).length;
+        const parts = [dayEvents.length + " " + t("events")];
+        if (cSelf) parts.push((state.locale === "zh" ? "自學 " : "Self-paced ") + cSelf);
+        if (cWeb) parts.push((state.locale === "zh" ? "網課 " : "Webinar ") + cWeb);
+        if (cPer) parts.push((state.locale === "zh" ? "實體 " : "In-person ") + cPer);
+        elements.dayDrawerSubtitle.textContent = parts.join(" · ");
+      }
       elements.dayDrawerList.innerHTML = dayEvents.length
         ? dayEvents.map(listTemplate).join("")
-        : '<p class="drawer-empty">' + escapeHtml(t("noEvents")) + "</p>";
+        : '<div class="drawer-empty"><span class="empty-big">📅</span><p>' + escapeHtml(t("noEvents")) + "</p></div>";
     } else {
       elements.calDayDrawer.hidden = true;
+      document.body.classList.remove("has-day-popup");
     }
   }
 
@@ -1104,6 +1159,9 @@
 
   function countActiveAdvancedFilters() {
     let count = 0;
+    if (state.category !== "All") count += 1;
+    if (state.timeSlot !== "all") count += 1;
+    if (state.minStartMinutes > 480) count += 1;
     if (state.mode !== "all") count += 1;
     if (state.level !== "all") count += 1;
     if (state.subject !== "all") count += 1;
@@ -1112,6 +1170,34 @@
     if (state.profile !== "all") count += 1;
     if (state.onlyNonLive) count += 1;
     return count;
+  }
+
+  function buildFilterSummaryText() {
+    const parts = [];
+    if (state.category !== "All") parts.push(categoryLabel(state.category));
+    if (state.timeSlot === "am") parts.push(t("timeSlotAm"));
+    else if (state.timeSlot === "pm") parts.push(t("timeSlotPm"));
+    else if (state.timeSlot === "after-school") parts.push(t("timeSlotAfterSchool"));
+    if (state.minStartMinutes > 480) parts.push("≥" + minutesToClock(state.minStartMinutes));
+    if (state.mode !== "all") parts.push(deliveryLabel(state.mode));
+    if (state.level !== "all") parts.push(levelLabel(state.level));
+    if (state.subject !== "all") parts.push(subjectLabel(state.subject));
+    if (state.onlyNonLive) parts.push(state.locale === "zh" ? "僅自學/網課" : "Online only");
+    return parts.length ? parts.slice(0, 3).join(" · ") : t("filterToggle");
+  }
+
+  function shiftSelectedCalDay(deltaDays) {
+    if (!state.selectedCalDate) return;
+    const d = asDate(state.selectedCalDate);
+    if (Number.isNaN(d.getTime())) return;
+    d.setDate(d.getDate() + deltaDays);
+    const y = d.getFullYear();
+    const m = d.getMonth();
+    const day = d.getDate();
+    state.selectedCalDate = y + "-" + String(m + 1).padStart(2, "0") + "-" + String(day).padStart(2, "0");
+    state.calYear = y;
+    state.calMonth = m;
+    render();
   }
 
   function render() {
@@ -1140,9 +1226,13 @@
         : minutesToClock(state.minStartMinutes) + "+";
     }
     if (elements.collapsibleFilters && elements.mobileFilterToggle) {
+      elements.collapsibleFilters.hidden = !state.mobileFiltersOpen;
       elements.collapsibleFilters.classList.toggle("is-open", state.mobileFiltersOpen);
       elements.mobileFilterToggle.classList.toggle("is-open", state.mobileFiltersOpen);
       elements.mobileFilterToggle.setAttribute("aria-expanded", String(state.mobileFiltersOpen));
+    }
+    if (elements.filterSummaryText) {
+      elements.filterSummaryText.textContent = buildFilterSummaryText();
     }
     if (elements.activeFilterCount) {
       const advCount = countActiveAdvancedFilters();
@@ -1151,6 +1241,10 @@
     }
     elements.listViewContainer.hidden = state.view !== "list";
     elements.calendarViewContainer.hidden = state.view !== "calendar";
+    if (state.view !== "calendar" && elements.calDayDrawer) {
+      elements.calDayDrawer.hidden = true;
+      document.body.classList.remove("has-day-popup");
+    }
 
     const visibleEvents = getVisibleEvents(false);
     const closingCount = events.filter(isClosingSoon).length;
@@ -1331,8 +1425,26 @@
     state.selectedCalDate = "";
     render();
   });
+  if (elements.dayPopupPrev) {
+    elements.dayPopupPrev.addEventListener("click", function () {
+      shiftSelectedCalDay(-1);
+    });
+  }
+  if (elements.dayPopupNext) {
+    elements.dayPopupNext.addEventListener("click", function () {
+      shiftSelectedCalDay(1);
+    });
+  }
+  if (elements.calDayDrawer) {
+    elements.calDayDrawer.addEventListener("click", function (event) {
+      if (event.target === elements.calDayDrawer) {
+        state.selectedCalDate = "";
+        render();
+      }
+    });
+  }
 
-  // Delegated click handlers for Detail Modal & Calendar cells
+  // Delegated click handlers for Detail Modal, Month Jumps & Calendar cells
   document.addEventListener("click", function (event) {
     const detailTrigger = event.target.closest("[data-detail-id]");
     if (detailTrigger) {
@@ -1341,11 +1453,19 @@
       openDetailModal(detailTrigger.dataset.detailId);
       return;
     }
+    const jumpBtn = event.target.closest("[data-jump-ym]");
+    if (jumpBtn) {
+      const ym = jumpBtn.dataset.jumpYm.split("-").map(Number);
+      state.calYear = ym[0];
+      state.calMonth = ym[1];
+      state.selectedCalDate = "";
+      render();
+      return;
+    }
     const calCell = event.target.closest("[data-cal-date]");
     if (calCell && elements.calendarViewContainer && !elements.calendarViewContainer.hidden) {
       state.selectedCalDate = calCell.dataset.calDate;
       render();
-      elements.calDayDrawer.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
   });
 
@@ -1367,7 +1487,10 @@
     }
     if (event.key === "Escape") {
       if (!elements.detailModal.hidden) closeDetailModal();
-      else if (!elements.contract.hidden) elements.contract.hidden = true;
+      else if (state.selectedCalDate) {
+        state.selectedCalDate = "";
+        render();
+      } else if (!elements.contract.hidden) elements.contract.hidden = true;
     }
   });
 

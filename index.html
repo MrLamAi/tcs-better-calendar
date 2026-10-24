@@ -104,18 +104,24 @@
             </div>
           </div>
 
-          <div class="filter-panel" aria-label="Event filters">
-            <div class="filter-top-row">
-              <label class="search-field">
+          <!-- 精簡可收合篩選列（仿照 amfinder h-filters，預設收埋得一行摘要，唔阻礙畫面） -->
+          <section class="filter-bar-collapsible" aria-label="Event filters">
+            <div class="filter-summary-row">
+              <label class="compact-search-field">
                 <span class="sr-only" data-i18n="searchEvents">搜尋活動</span>
                 <span class="search-icon" aria-hidden="true">⌕</span>
                 <input id="search-input" type="search" data-i18n-placeholder="searchPlaceholder" placeholder="搜尋活動編號、標題、主題、科目、地點或對象" autocomplete="off" />
                 <kbd>/</kbd>
               </label>
-              <button class="mobile-filter-toggle" id="mobile-filter-toggle" type="button" aria-expanded="false" aria-controls="collapsible-filters">
-                <span aria-hidden="true">⚙</span> <span data-i18n="filterToggle">篩選與設定</span> <span class="filter-badge" id="active-filter-count" hidden>0</span>
+              <button class="filter-drawer-toggle" id="mobile-filter-toggle" type="button" aria-expanded="false" aria-controls="collapsible-filters">
+                <span class="filter-ico" aria-hidden="true">⚲</span>
+                <span class="filter-sum-text" id="filter-summary-text" data-i18n="filterToggle">篩選與設定</span>
+                <span class="filter-badge" id="active-filter-count" hidden>0</span>
+                <span class="filter-chev" aria-hidden="true">▾</span>
               </button>
-              <div class="filter-divider" aria-hidden="true"></div>
+            </div>
+
+            <div class="collapsible-filters" id="collapsible-filters" hidden>
               <div class="filter-group category-filters" role="group" aria-label="Category">
                 <button class="filter-chip is-active" type="button" data-category="All" data-i18n="categoryAll">全部</button>
                 <button class="filter-chip" type="button" data-category="Secondary" data-i18n="categorySecondary">中學</button>
@@ -123,29 +129,27 @@
                 <button class="filter-chip" type="button" data-category="CSD" data-i18n="categoryCsd">公民與社會發展</button>
                 <button class="filter-chip" type="button" data-category="STEAM" data-i18n="categorySteam">STEAM</button>
               </div>
-            </div>
 
-            <!-- 時間篩選列：時段快選 + 指定時間後開始 Slider -->
-            <div class="time-filter-bar" aria-label="Event time filter">
-              <div class="time-slot-group" role="group" aria-label="Time slot">
-                <span class="time-bar-label" data-i18n="eventTimeLabel">活動時間</span>
-                <div class="time-chips">
-                  <button class="time-chip is-active" type="button" data-timeslot="all" data-i18n="timeAll">所有時段</button>
-                  <button class="time-chip" type="button" data-timeslot="am" data-i18n="timeAm">只看上午 (AM)</button>
-                  <button class="time-chip" type="button" data-timeslot="pm" data-i18n="timePm">只看下午／課後 (PM)</button>
-                  <button class="time-chip" type="button" data-timeslot="after-school" data-i18n="timeAfterSchool">15:30 後開始</button>
+              <!-- 時間篩選列：時段快選 + 指定時間後開始 Slider -->
+              <div class="time-filter-bar" aria-label="Event time filter">
+                <div class="time-slot-group" role="group" aria-label="Time slot">
+                  <span class="time-bar-label" data-i18n="eventTimeLabel">活動時間</span>
+                  <div class="time-chips">
+                    <button class="time-chip is-active" type="button" data-timeslot="all" data-i18n="timeAll">所有時段</button>
+                    <button class="time-chip" type="button" data-timeslot="am" data-i18n="timeAm">只看上午 (AM)</button>
+                    <button class="time-chip" type="button" data-timeslot="pm" data-i18n="timePm">只看下午／課後 (PM)</button>
+                    <button class="time-chip" type="button" data-timeslot="after-school" data-i18n="timeAfterSchool">15:30 後開始</button>
+                  </div>
+                </div>
+                <div class="time-slider-wrap">
+                  <label for="start-time-slider" class="time-slider-label">
+                    <span data-i18n="startTimeAfter">最早開始時間：</span>
+                    <strong id="start-time-display">不限 (全日)</strong>
+                  </label>
+                  <input id="start-time-slider" class="time-slider" type="range" min="480" max="1080" step="30" value="480" />
                 </div>
               </div>
-              <div class="time-slider-wrap">
-                <label for="start-time-slider" class="time-slider-label">
-                  <span data-i18n="startTimeAfter">最早開始時間：</span>
-                  <strong id="start-time-display">不限 (08:00+)</strong>
-                </label>
-                <input id="start-time-slider" class="time-slider" type="range" min="480" max="1080" step="30" value="480" />
-              </div>
-            </div>
 
-            <div class="collapsible-filters" id="collapsible-filters">
               <div class="filter-selects">
                 <label class="select-wrap"><span data-i18n="deliveryModeLabel">上課模式</span><select id="mode-select"></select></label>
                 <label class="select-wrap"><span data-i18n="level">教育階段</span><select id="level-select"></select></label>
@@ -168,7 +172,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </section>
 
           <div class="results-bar">
             <p id="results-summary" aria-live="polite">載入活動中…</p>
@@ -186,13 +190,13 @@
             </div>
           </div>
 
-          <!-- 月曆檢視 -->
+          <!-- 月曆檢視（只顯示月曆格；點擊日子會以 Pop-up 彈出當日活動列表） -->
           <div id="calendar-view-container" class="calendar-container" hidden>
             <div class="calendar-toolbar">
               <div class="calendar-nav">
-                <button class="cal-nav-btn" id="cal-prev-month" type="button" aria-label="Previous month">←</button>
+                <button class="cal-nav-btn" id="cal-prev-month" type="button" aria-label="Previous month">‹</button>
                 <h3 id="cal-month-title" class="cal-month-title">2026年10月</h3>
-                <button class="cal-nav-btn" id="cal-next-month" type="button" aria-label="Next month">→</button>
+                <button class="cal-nav-btn" id="cal-next-month" type="button" aria-label="Next month">›</button>
               </div>
               <div class="calendar-toolbar-right">
                 <span class="cal-legend">
@@ -203,17 +207,27 @@
                 <button class="cal-today-btn" id="cal-today-btn" type="button" data-i18n="calToday">本月</button>
               </div>
             </div>
+            <div class="calendar-month-jumps" id="calendar-month-jumps"></div>
             <div class="calendar-weekdays" id="calendar-weekdays"></div>
             <div class="calendar-grid" id="calendar-grid"></div>
-            <div class="calendar-day-drawer" id="calendar-day-drawer" hidden>
-              <div class="day-drawer-header">
-                <h4 id="day-drawer-title"></h4>
-                <button class="close-drawer-btn" id="close-day-drawer" type="button">×</button>
-              </div>
-              <div id="day-drawer-list" class="event-list"></div>
-            </div>
           </div>
         </section>
+
+        <!-- 獨立單日活動列表 Pop-up（仿照 amfinder h-sheet / pop-up 設計） -->
+        <div class="day-popup-backdrop" id="calendar-day-drawer" hidden role="dialog" aria-modal="true" aria-labelledby="day-drawer-title">
+          <div class="day-popup-card">
+            <div class="day-popup-header">
+              <button class="day-popup-ib close-drawer-btn" id="close-day-drawer" type="button" aria-label="關閉返回月曆">✕</button>
+              <button class="day-popup-ib" id="day-popup-prev" type="button" aria-label="前一日">‹</button>
+              <div class="day-popup-title-wrap">
+                <h4 id="day-drawer-title"></h4>
+                <p id="day-drawer-subtitle"></p>
+              </div>
+              <button class="day-popup-ib" id="day-popup-next" type="button" aria-label="後一日">›</button>
+            </div>
+            <div id="day-drawer-list" class="day-popup-body event-list"></div>
+          </div>
+        </div>
 
         <section class="contract-panel" id="data-contract" hidden aria-labelledby="contract-heading">
           <div>
