@@ -18,8 +18,9 @@
           <span class="brand-copy"><strong>TCS Better Calendar</strong><small data-i18n="brandSubtitle">教育局教師專業發展</small></span>
         </a>
         <nav class="topbar-nav" aria-label="Page navigation">
-          <button class="nav-tab is-active" type="button" data-page="intro" data-i18n="navIntro">簡介首頁</button>
-          <button class="nav-tab" type="button" data-page="workspace" data-i18n="navWorkspace">活動列表與月曆</button>
+          <button class="nav-tab is-active" type="button" data-nav="intro"><span class="nav-ico" aria-hidden="true">⌂</span><span data-i18n="navIntro">首頁</span></button>
+          <button class="nav-tab" type="button" data-nav="list"><span class="nav-ico" aria-hidden="true">☰</span><span data-i18n="navList">活動列表</span></button>
+          <button class="nav-tab" type="button" data-nav="calendar"><span class="nav-ico" aria-hidden="true">▦</span><span data-i18n="navCalendar">月曆</span></button>
         </nav>
         <div class="topbar-meta">
           <span class="status-dot"><i></i> <span id="source-status">載入資料中…</span></span>
@@ -87,21 +88,7 @@
         <!-- 獨立活動工作區頁面（Workspace Page） -->
         <section class="workspace page-view" id="workspace-page" hidden aria-labelledby="events-heading">
           <div class="workspace-header">
-            <div class="workspace-title-group">
-              <button class="back-intro-button" id="back-to-intro" type="button">
-                <span aria-hidden="true">←</span> <span data-i18n="backToIntro">返回簡介首頁</span>
-              </button>
-              <h2 id="events-heading" data-i18n="eventsHeading">探索培訓活動</h2>
-            </div>
-
-            <div class="view-switcher" role="tablist" aria-label="View mode">
-              <button class="view-button is-active" type="button" data-view="list" role="tab" aria-selected="true">
-                <span aria-hidden="true">☰</span> <span data-i18n="listView">列表檢視</span>
-              </button>
-              <button class="view-button" type="button" data-view="calendar" role="tab" aria-selected="false">
-                <span aria-hidden="true">▦</span> <span data-i18n="calendarView">月曆檢視</span>
-              </button>
-            </div>
+            <h2 id="events-heading" data-i18n="eventsHeading">探索培訓活動</h2>
           </div>
 
           <!-- 精簡可收合篩選列（仿照 amfinder h-filters，預設收埋得一行摘要，唔阻礙畫面） -->
@@ -195,7 +182,11 @@
             <div class="calendar-toolbar">
               <div class="calendar-nav">
                 <button class="cal-nav-btn" id="cal-prev-month" type="button" aria-label="Previous month">‹</button>
-                <h3 id="cal-month-title" class="cal-month-title">2026年10月</h3>
+                <div class="cal-month-select-wrap">
+                  <select id="cal-month-select" class="cal-month-select" aria-label="Select month">
+                    <option value="2026-09">2026年10月</option>
+                  </select>
+                </div>
                 <button class="cal-nav-btn" id="cal-next-month" type="button" aria-label="Next month">›</button>
               </div>
               <div class="calendar-toolbar-right">
@@ -207,7 +198,6 @@
                 <button class="cal-today-btn" id="cal-today-btn" type="button" data-i18n="calToday">本月</button>
               </div>
             </div>
-            <div class="calendar-month-jumps" id="calendar-month-jumps"></div>
             <div class="calendar-weekdays" id="calendar-weekdays"></div>
             <div class="calendar-grid" id="calendar-grid"></div>
           </div>

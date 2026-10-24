@@ -21,7 +21,9 @@
   const translations = {
     zh: {
       brandSubtitle: "教育局教師專業發展",
-      navIntro: "簡介首頁",
+      navIntro: "首頁",
+      navList: "活動列表",
+      navCalendar: "月曆",
       navWorkspace: "活動列表與月曆",
       heroEyebrow: "更清晰地找到下一步",
       heroTitle: "更快找到適合你的培訓活動。",
@@ -158,7 +160,9 @@
     },
     en: {
       brandSubtitle: "EDB professional learning",
-      navIntro: "Intro Home",
+      navIntro: "Home",
+      navList: "Events",
+      navCalendar: "Calendar",
       navWorkspace: "Events & Calendar",
       heroEyebrow: "A clearer route to what is next",
       heroTitle: "Find the right learning event, faster.",
@@ -369,6 +373,7 @@
     enterWorkspaceBtn: document.getElementById("enter-workspace-btn"),
     enterCalendarBtn: document.getElementById("enter-calendar-btn"),
     backToIntroBtn: document.getElementById("back-to-intro"),
+    eventsHeading: document.getElementById("events-heading"),
     listViewContainer: document.getElementById("list-view-container"),
     calendarViewContainer: document.getElementById("calendar-view-container"),
     grid: document.getElementById("event-grid"),
@@ -405,8 +410,7 @@
     calPrevMonth: document.getElementById("cal-prev-month"),
     calNextMonth: document.getElementById("cal-next-month"),
     calTodayBtn: document.getElementById("cal-today-btn"),
-    calMonthTitle: document.getElementById("cal-month-title"),
-    calMonthJumps: document.getElementById("calendar-month-jumps"),
+    calMonthSelect: document.getElementById("cal-month-select"),
     calWeekdays: document.getElementById("calendar-weekdays"),
     calGrid: document.getElementById("calendar-grid"),
     calDayDrawer: document.getElementById("calendar-day-drawer"),
@@ -889,39 +893,40 @@
     const year = state.calYear;
     const month = state.calMonth;
     const monthDate = new Date(year, month, 1);
-    elements.calMonthTitle.textContent = new Intl.DateTimeFormat(state.locale === "zh" ? "zh-HK" : "en-HK", {
-      year: "numeric",
-      month: "long"
-    }).format(monthDate);
 
-    // 仿照 amfinder m-jump：顯示有活動的月份快速跳轉按鈕
-    if (elements.calMonthJumps) {
-      const monthCounts = new Map();
+    // 左右箭咀中間改為 Pull-down Menu 選擇月份
+    if (elements.calMonthSelect) {
+      const monthSet = new Set();
+      // 預設提供今個月起計未來 12 個月
+      for (let offset = -1; offset <= 11; offset += 1) {
+        const d = new Date(today.getFullYear(), today.getMonth() + offset, 1);
+        monthSet.add(`${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`);
+      }
+      // 加上所有有活動嘅月份
       filteredEvents.forEach(function (ev) {
         const ranges = Array.isArray(ev.activeRanges) && ev.activeRanges.length
           ? ev.activeRanges
           : (ev.eventStart ? [{ start: ev.eventStart, end: ev.eventEnd || ev.eventStart }] : []);
         ranges.forEach(function (r) {
           const ym = (r.start || "").slice(0, 7);
-          if (ym && ym >= todayIso.slice(0, 7)) {
-            monthCounts.set(ym, (monthCounts.get(ym) || 0) + 1);
+          if (ym && ym >= "2026-01" && ym <= "2028-12") {
+            monthSet.add(ym);
           }
         });
       });
       const currentYm = `${year}-${String(month + 1).padStart(2, "0")}`;
-      if (!monthCounts.has(currentYm)) monthCounts.set(currentYm, 0);
-      const sortedYms = [...monthCounts.keys()].sort().slice(0, 12);
-      elements.calMonthJumps.innerHTML = sortedYms.map(function (ym) {
+      monthSet.add(currentYm);
+      const sortedYms = [...monthSet].sort();
+      const fmt = new Intl.DateTimeFormat(state.locale === "zh" ? "zh-HK" : "en-HK", {
+        year: "numeric",
+        month: "long"
+      });
+      elements.calMonthSelect.innerHTML = sortedYms.map(function (ym) {
         const [y, m] = ym.split("-").map(Number);
-        const isCurrent = y === year && (m - 1) === month;
-        const hasEv = (monthCounts.get(ym) || 0) > 0;
-        const label = state.locale === "zh"
-          ? `${m}月${y !== today.getFullYear() ? " '" + String(y).slice(2) : ""}`
-          : `${new Date(y, m - 1, 1).toLocaleString("en-HK", { month: "short" })}${y !== today.getFullYear() ? " '" + String(y).slice(2) : ""}`;
-        return '<button type="button" class="cal-mjump-btn' + (isCurrent ? " is-active" : "") + '" data-jump-ym="' + ym + '">' +
-          escapeHtml(label) + (hasEv ? '<i class="mjump-dot"></i>' : "") +
-          "</button>";
+        const label = fmt.format(new Date(y, m - 1, 1));
+        return '<option value="' + ym + '"' + (ym === currentYm ? " selected" : "") + ">" + escapeHtml(label) + "</option>";
       }).join("");
+      elements.calMonthSelect.value = currentYm;
     }
 
     const weekdays = translations[state.locale].weekdays || translations.zh.weekdays;
@@ -1136,24 +1141,12 @@
   function setPage(page, viewOverride) {
     state.page = page === "workspace" ? "workspace" : "intro";
     if (viewOverride) state.view = viewOverride;
-    elements.introPage.hidden = state.page !== "intro";
-    elements.workspacePage.hidden = state.page !== "workspace";
-    document.querySelectorAll("[data-page]").forEach(function (btn) {
-      btn.classList.toggle("is-active", btn.dataset.page === state.page);
-    });
     window.scrollTo({ top: 0, behavior: "smooth" });
     render();
   }
 
   function setView(view) {
     state.view = view === "calendar" ? "calendar" : "list";
-    document.querySelectorAll("[data-view]").forEach(function (btn) {
-      const active = btn.dataset.view === state.view;
-      btn.classList.toggle("is-active", active);
-      btn.setAttribute("aria-selected", String(active));
-    });
-    elements.listViewContainer.hidden = state.view !== "list";
-    elements.calendarViewContainer.hidden = state.view !== "calendar";
     render();
   }
 
@@ -1206,14 +1199,16 @@
 
     elements.introPage.hidden = state.page !== "intro";
     elements.workspacePage.hidden = state.page !== "workspace";
-    document.querySelectorAll("[data-page]").forEach(function (btn) {
-      btn.classList.toggle("is-active", btn.dataset.page === state.page);
-    });
-    document.querySelectorAll("[data-view]").forEach(function (btn) {
-      const active = btn.dataset.view === state.view;
+    const activeNav = state.page === "intro" ? "intro" : state.view;
+    document.querySelectorAll("[data-nav]").forEach(function (btn) {
+      const active = btn.dataset.nav === activeNav;
       btn.classList.toggle("is-active", active);
-      btn.setAttribute("aria-selected", String(active));
+      if (active) btn.setAttribute("aria-current", "page");
+      else btn.removeAttribute("aria-current");
     });
+    if (elements.eventsHeading) {
+      elements.eventsHeading.textContent = state.view === "calendar" ? t("calendarView") : t("eventsHeading");
+    }
     document.querySelectorAll("[data-timeslot]").forEach(function (btn) {
       btn.classList.toggle("is-active", btn.dataset.timeslot === state.timeSlot);
     });
@@ -1302,9 +1297,13 @@
     render();
   }
 
-  // Page & View navigation listeners
-  document.querySelectorAll("[data-page]").forEach(function (btn) {
-    btn.addEventListener("click", function () { setPage(btn.dataset.page); });
+  // Page & View navigation listeners（頁首統一導覽：首頁／活動列表／月曆）
+  document.querySelectorAll("[data-nav]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      const target = btn.dataset.nav;
+      if (target === "intro") setPage("intro");
+      else setPage("workspace", target === "calendar" ? "calendar" : "list");
+    });
   });
   elements.brandHome.addEventListener("click", function (e) {
     e.preventDefault();
@@ -1315,12 +1314,6 @@
   });
   elements.enterCalendarBtn.addEventListener("click", function () {
     setPage("workspace", "calendar");
-  });
-  elements.backToIntroBtn.addEventListener("click", function () {
-    setPage("intro");
-  });
-  document.querySelectorAll("[data-view]").forEach(function (btn) {
-    btn.addEventListener("click", function () { setView(btn.dataset.view); });
   });
 
   // Language & Filter listeners
@@ -1415,6 +1408,17 @@
     state.selectedCalDate = "";
     render();
   });
+  if (elements.calMonthSelect) {
+    elements.calMonthSelect.addEventListener("change", function (event) {
+      const parts = String(event.target.value || "").split("-").map(Number);
+      if (parts.length === 2 && !Number.isNaN(parts[0]) && !Number.isNaN(parts[1])) {
+        state.calYear = parts[0];
+        state.calMonth = parts[1] - 1;
+        state.selectedCalDate = "";
+        render();
+      }
+    });
+  }
   elements.calTodayBtn.addEventListener("click", function () {
     state.calYear = today.getFullYear();
     state.calMonth = today.getMonth();
@@ -1444,22 +1448,13 @@
     });
   }
 
-  // Delegated click handlers for Detail Modal, Month Jumps & Calendar cells
+  // Delegated click handlers for Detail Modal & Calendar cells
   document.addEventListener("click", function (event) {
     const detailTrigger = event.target.closest("[data-detail-id]");
     if (detailTrigger) {
       event.preventDefault();
       event.stopPropagation();
       openDetailModal(detailTrigger.dataset.detailId);
-      return;
-    }
-    const jumpBtn = event.target.closest("[data-jump-ym]");
-    if (jumpBtn) {
-      const ym = jumpBtn.dataset.jumpYm.split("-").map(Number);
-      state.calYear = ym[0];
-      state.calMonth = ym[1];
-      state.selectedCalDate = "";
-      render();
       return;
     }
     const calCell = event.target.closest("[data-cal-date]");
