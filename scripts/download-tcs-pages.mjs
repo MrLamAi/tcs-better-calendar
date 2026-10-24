@@ -251,6 +251,44 @@ function parseDetailSections(html) {
   return sections;
 }
 
+function normalizeClockTime(rawHour, rawMin, rawMeridiem) {
+  let hour = Number(rawHour);
+  const minute = Number(rawMin || 0);
+  if (!Number.isFinite(hour) || !Number.isFinite(minute) || hour > 24 || minute > 59) return "";
+  const mer = String(rawMeridiem || "").toLowerCase().replace(/\./g, "").trim();
+  if (mer === "pm" || mer === "下午" || mer === "晚上") {
+    if (hour < 12) hour += 12;
+  } else if (mer === "am" || mer === "上午") {
+    if (hour === 12) hour = 0;
+  }
+  return `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
+}
+
+function extractTimeSlotsFromText(text) {
+  const input = String(text || "");
+  const slots = [];
+  const seen = new Set();
+
+  // Pattern 1: HH:MM [am/pm] - HH:MM [am/pm] (also supports Chinese 上午/下午 before time)
+  const rangePattern = /(?:(上午|下午|晚上)\s*)?(\d{1,2})[:.](\d{2})\s*(a\.?m\.?|p\.?m\.?)?\s*(?:-|–|—|to|至)\s*(?:(上午|下午|晚上)\s*)?(\d{1,2})[:.](\d{2})\s*(a\.?m\.?|p\.?m\.?)?/gi;
+  let match;
+  while ((match = rangePattern.exec(input))) {
+    const [, mer1Prefix, h1, m1, mer1Suffix, mer2Prefix, h2, m2, mer2Suffix] = match;
+    const mer2 = mer2Suffix || mer2Prefix || "";
+    const mer1 = mer1Suffix || mer1Prefix || "";
+    const startTime = normalizeClockTime(h1, m1, mer1);
+    const endTime = normalizeClockTime(h2, m2, mer2);
+    if (startTime && endTime) {
+      const key = `${startTime}-${endTime}`;
+      if (!seen.has(key)) {
+        seen.add(key);
+        slots.push({ startTime, endTime, display: `${startTime} - ${endTime}` });
+      }
+    }
+  }
+  return slots;
+}
+
 function parseCourseSessions(html) {
   const tableMatch = String(html || "").match(/<table\b[^>]*id=["']firstCourseTable["'][^>]*>([\s\S]*?)<\/table>/i);
   if (!tableMatch) return [];
@@ -258,27 +296,59 @@ function parseCourseSessions(html) {
   const bodyHtml = tbodyMatch ? tbodyMatch[1] : tableMatch[1];
   const rows = [...bodyHtml.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)];
   const sessions = [];
+  let lastEventId = "";
+  let lastQuota = "";
+
   for (const row of rows) {
     const tds = [...row[1].matchAll(/<td\b([^>]*)>([\s\S]*?)<\/td>/gi)].map((m) => ({
       attrs: m[1],
       title: attribute(`<td ${m[1]}>`, "data-title").trim(),
+      isHiddenMobile: /\bmobile-course-display-hide\b/i.test(m[1]),
       text: cleanText(m[2])
     }));
     if (!tds.length) continue;
     const byTitle = (prefix) => tds.find((td) => td.title.toLowerCase().startsWith(prefix.toLowerCase()))?.text || "";
-    const eventId = byTitle("Event (ID)") || byTitle("場次(編號)") || tds[0]?.text || "";
-    const date = byTitle("Date") || byTitle("舉行日期") || "";
-    const duration = byTitle("Number of Event Days") || byTitle("No. of Event Days") || byTitle("場次日數") || byTitle("Hours") || byTitle("時數") || "";
+    const rawEventId = byTitle("Event (ID)") || byTitle("場次(編號)");
+    if (rawEventId) lastEventId = rawEventId;
+    const eventId = rawEventId || lastEventId || tds[0]?.text || "";
+
+    const sessionNo = byTitle("Session") || byTitle("節次") || "";
+    const dateIdx = tds.findIndex((td) => /^(Date|舉行日期)/i.test(td.title));
+    const date = (dateIdx >= 0 ? tds[dateIdx].text : byTitle("Date") || byTitle("舉行日期") || "").replace(/\s+/g, " ").trim();
+
+    let rawTimeCell = byTitle("Time") || byTitle("時間") || "";
+    if (!rawTimeCell && dateIdx >= 0 && tds[dateIdx + 1] && !tds[dateIdx + 1].title && !tds[dateIdx + 1].isHiddenMobile) {
+      rawTimeCell = tds[dateIdx + 1].text;
+    }
+
+    const duration = byTitle("Number of Event Days") || byTitle("No. of Event Days") || byTitle("場次日數") || byTitle("Number of Hours") || byTitle("No. of Hours") || byTitle("Hours") || byTitle("時數") || "";
     const venue = byTitle("Venue") || byTitle("地點") || "";
     const speaker = byTitle("Speaker") || byTitle("講者") || "";
-    const quota = byTitle("Max.") || byTitle("參加人數上限") || "";
+    const rawQuota = byTitle("Max.") || byTitle("參加人數上限");
+    if (rawQuota) lastQuota = rawQuota;
+    const quota = rawQuota || lastQuota || "";
     const closingRaw = byTitle("Closing date") || byTitle("截止日期") || "";
     const closingDates = datesIn(closingRaw);
     const remark = byTitle("Remark") || byTitle("備註") || "";
+
+    let slots = extractTimeSlotsFromText(rawTimeCell);
+    if (!slots.length) {
+      slots = extractTimeSlotsFromText(`${venue}\n${remark}`);
+    }
+    const startTime = slots[0]?.startTime || "";
+    const endTime = slots[slots.length - 1]?.endTime || "";
+    const time = slots.length
+      ? slots.map((s) => s.display).join(" / ")
+      : rawTimeCell.replace(/\s+/g, " ").trim();
+
     if (eventId || date || venue) {
       sessions.push({
         eventId: eventId.replace(/\s+/g, " ").trim(),
-        date: date.replace(/\s+/g, " ").trim(),
+        sessionNo: sessionNo.replace(/\s+/g, " ").trim(),
+        date,
+        time,
+        startTime,
+        endTime,
         duration: duration.replace(/\s+/g, " ").trim(),
         venue,
         speaker,
@@ -497,6 +567,13 @@ async function enrichEventsWithBilingualDetails(events) {
         const firstVenueZh = zhDetail.sessions?.[0]?.venue?.split("\n")[0]?.trim() || "";
         if (firstVenueEn) event.format = firstVenueEn;
         if (firstVenueZh) event.formatZh = firstVenueZh;
+
+        const allSessions = [...(enDetail.sessions || []), ...(zhDetail.sessions || [])];
+        const sessionTimes = [...new Set(allSessions.map((s) => s.time).filter(Boolean))];
+        const firstTimedSession = allSessions.find((s) => s.startTime);
+        event.startTime = firstTimedSession?.startTime || "";
+        event.endTime = firstTimedSession?.endTime || "";
+        event.timeSummary = sessionTimes.slice(0, 2).join(" · ");
 
         if (!event.badge && /新辦|\bnew\b/i.test(`${event.title} ${event.titleZh}`)) {
           event.badge = "NEW";

@@ -112,6 +112,9 @@
                 <input id="search-input" type="search" data-i18n-placeholder="searchPlaceholder" placeholder="搜尋活動編號、標題、主題、科目、地點或對象" autocomplete="off" />
                 <kbd>/</kbd>
               </label>
+              <button class="mobile-filter-toggle" id="mobile-filter-toggle" type="button" aria-expanded="false" aria-controls="collapsible-filters">
+                <span aria-hidden="true">⚙</span> <span data-i18n="filterToggle">篩選與設定</span> <span class="filter-badge" id="active-filter-count" hidden>0</span>
+              </button>
               <div class="filter-divider" aria-hidden="true"></div>
               <div class="filter-group category-filters" role="group" aria-label="Category">
                 <button class="filter-chip is-active" type="button" data-category="All" data-i18n="categoryAll">全部</button>
@@ -122,26 +125,48 @@
               </div>
             </div>
 
-            <div class="filter-selects">
-              <label class="select-wrap"><span data-i18n="deliveryModeLabel">上課模式</span><select id="mode-select"></select></label>
-              <label class="select-wrap"><span data-i18n="level">教育階段</span><select id="level-select"></select></label>
-              <label class="select-wrap"><span data-i18n="subject">科目</span><select id="subject-select"></select></label>
-              <label class="select-wrap date-wrap"><span data-i18n="specificDate">指定活動日期</span><input id="event-date-input" type="date" /></label>
-              <label class="select-wrap"><span data-i18n="deadline">截止日期</span><select id="deadline-select"></select></label>
-              <label class="select-wrap"><span data-i18n="sort">排序</span><select id="sort-select"></select></label>
-              <button class="clear-button" id="clear-filters" type="button" data-i18n="clear">重設</button>
+            <!-- 時間篩選列：時段快選 + 指定時間後開始 Slider -->
+            <div class="time-filter-bar" aria-label="Event time filter">
+              <div class="time-slot-group" role="group" aria-label="Time slot">
+                <span class="time-bar-label" data-i18n="eventTimeLabel">活動時間</span>
+                <div class="time-chips">
+                  <button class="time-chip is-active" type="button" data-timeslot="all" data-i18n="timeAll">所有時段</button>
+                  <button class="time-chip" type="button" data-timeslot="am" data-i18n="timeAm">只看上午 (AM)</button>
+                  <button class="time-chip" type="button" data-timeslot="pm" data-i18n="timePm">只看下午／課後 (PM)</button>
+                  <button class="time-chip" type="button" data-timeslot="after-school" data-i18n="timeAfterSchool">15:30 後開始</button>
+                </div>
+              </div>
+              <div class="time-slider-wrap">
+                <label for="start-time-slider" class="time-slider-label">
+                  <span data-i18n="startTimeAfter">最早開始時間：</span>
+                  <strong id="start-time-display">不限 (08:00+)</strong>
+                </label>
+                <input id="start-time-slider" class="time-slider" type="range" min="480" max="1080" step="30" value="480" />
+              </div>
             </div>
-          </div>
 
-          <div class="profile-panel" aria-label="Teacher profile">
-            <div class="profile-copy">
-              <span class="profile-icon" aria-hidden="true">◎</span>
-              <div><strong data-i18n="myProfile">我的教師設定</strong><span data-i18n="profileDescription">選擇你任教的科目及上課偏好，自動篩選相關活動。</span></div>
-            </div>
-            <label class="select-wrap profile-select-wrap"><span data-i18n="iTeach">我任教</span><select id="profile-select"></select></label>
-            <div class="profile-checks">
-              <label class="profile-check"><input id="include-general" type="checkbox" checked /><span data-i18n="includeGeneral">包括非特定科目活動</span></label>
-              <label class="profile-check highlight-check"><input id="only-non-live" type="checkbox" /><span data-i18n="onlyNonLive">只顯示免親身出席／網上活動</span></label>
+            <div class="collapsible-filters" id="collapsible-filters">
+              <div class="filter-selects">
+                <label class="select-wrap"><span data-i18n="deliveryModeLabel">上課模式</span><select id="mode-select"></select></label>
+                <label class="select-wrap"><span data-i18n="level">教育階段</span><select id="level-select"></select></label>
+                <label class="select-wrap"><span data-i18n="subject">科目</span><select id="subject-select"></select></label>
+                <label class="select-wrap date-wrap"><span data-i18n="specificDate">指定活動日期</span><input id="event-date-input" type="date" /></label>
+                <label class="select-wrap"><span data-i18n="deadline">截止日期</span><select id="deadline-select"></select></label>
+                <label class="select-wrap"><span data-i18n="sort">排序</span><select id="sort-select"></select></label>
+                <button class="clear-button" id="clear-filters" type="button" data-i18n="clear">重設</button>
+              </div>
+
+              <div class="profile-panel" aria-label="Teacher profile">
+                <div class="profile-copy">
+                  <span class="profile-icon" aria-hidden="true">◎</span>
+                  <div><strong data-i18n="myProfile">我的教師設定</strong><span data-i18n="profileDescription">選擇你任教的科目及上課偏好，自動篩選相關活動。</span></div>
+                </div>
+                <label class="select-wrap profile-select-wrap"><span data-i18n="iTeach">我任教</span><select id="profile-select"></select></label>
+                <div class="profile-checks">
+                  <label class="profile-check"><input id="include-general" type="checkbox" checked /><span data-i18n="includeGeneral">包括非特定科目活動</span></label>
+                  <label class="profile-check highlight-check"><input id="only-non-live" type="checkbox" /><span data-i18n="onlyNonLive">只顯示免親身出席／網上活動</span></label>
+                </div>
+              </div>
             </div>
           </div>
 

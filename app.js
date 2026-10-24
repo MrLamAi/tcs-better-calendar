@@ -57,6 +57,16 @@
       categoryItAi: "資訊科技／AI",
       categoryCsd: "公民與社會發展",
       categorySteam: "STEAM",
+      filterToggle: "篩選與設定",
+      eventTimeLabel: "活動時間",
+      timeAll: "所有時段",
+      timeAm: "只看上午 (AM)",
+      timePm: "只看下午／課後 (PM)",
+      timeAfterSchool: "15:30 後開始",
+      startTimeAfter: "最早開始時間：",
+      timeAnyLimit: "不限 (全日)",
+      timeFlexible: "自訂時間（網上自學）",
+      timeTba: "時間請參閱詳情",
       deliveryModeLabel: "上課模式",
       modeAll: "全部模式",
       modeNonInPerson: "所有網上／免到場 (自學+Webinar)",
@@ -130,9 +140,10 @@
       modalObjective: "課程目標",
       modalDescription: "活動內容與詳情",
       modalBackground: "背景",
-      modalSessions: "活動場次、地點與講者",
+      modalSessions: "活動場次、時間、地點與講者",
       modalSessionId: "場次",
-      modalSessionDate: "日期／時間",
+      modalSessionDate: "舉行日期",
+      modalSessionTime: "活動時間",
       modalSessionVenue: "地點／模式",
       modalSessionSpeaker: "講者／導師",
       modalSessionQuota: "名額",
@@ -183,6 +194,16 @@
       categoryItAi: "IT / AI",
       categoryCsd: "CSD",
       categorySteam: "STEAM",
+      filterToggle: "Filters & Profile",
+      eventTimeLabel: "Event Time",
+      timeAll: "All times",
+      timeAm: "AM Only",
+      timePm: "PM / After-school",
+      timeAfterSchool: "Starts 15:30+",
+      startTimeAfter: "Starts at or after:",
+      timeAnyLimit: "Any time",
+      timeFlexible: "Flexible (Self-paced)",
+      timeTba: "See details for time",
       deliveryModeLabel: "Delivery Mode",
       modeAll: "All modes",
       modeNonInPerson: "All Online (Self-paced + Webinar)",
@@ -256,9 +277,10 @@
       modalObjective: "Objective(s)",
       modalDescription: "Programme Description",
       modalBackground: "Background",
-      modalSessions: "Sessions, Venue & Speakers",
+      modalSessions: "Sessions, Time, Venue & Speakers",
       modalSessionId: "Session",
       modalSessionDate: "Date",
+      modalSessionTime: "Time",
       modalSessionVenue: "Venue / Mode",
       modalSessionSpeaker: "Speaker(s)",
       modalSessionQuota: "Quota",
@@ -334,7 +356,10 @@
     calYear: today.getFullYear(),
     calMonth: today.getMonth(),
     selectedCalDate: "",
-    activeModalCourseId: ""
+    activeModalCourseId: "",
+    timeSlot: "all",
+    minStartMinutes: 480,
+    mobileFiltersOpen: false
   };
 
   const elements = {
@@ -353,6 +378,11 @@
     statNonLive: document.getElementById("stat-nonlive"),
     closing: document.getElementById("stat-closing"),
     search: document.getElementById("search-input"),
+    mobileFilterToggle: document.getElementById("mobile-filter-toggle"),
+    collapsibleFilters: document.getElementById("collapsible-filters"),
+    activeFilterCount: document.getElementById("active-filter-count"),
+    startTimeSlider: document.getElementById("start-time-slider"),
+    startTimeDisplay: document.getElementById("start-time-display"),
     mode: document.getElementById("mode-select"),
     level: document.getElementById("level-select"),
     subject: document.getElementById("subject-select"),
@@ -490,11 +520,26 @@
     return keys;
   }
 
+  function parseClockToMinutes(clockStr) {
+    const m = String(clockStr || "").match(/^(\d{1,2}):(\d{2})$/);
+    if (!m) return null;
+    return Number(m[1]) * 60 + Number(m[2]);
+  }
+
+  function minutesToClock(mins) {
+    const h = Math.floor(mins / 60);
+    const m = mins % 60;
+    return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+  }
+
   function computeActiveSchedule(event) {
     const rawSessions = (event.details && (event.details.zh?.sessions || event.details.en?.sessions)) || [];
     const rangeRegex = /(\d{4})\/(\d{2})\/(\d{2})(?:\s*\([^)]*\))?(?:\s*-\s*(\d{4})\/(\d{2})\/(\d{2}))?/g;
     const validRanges = [];
     const validClosingDates = [];
+    const activeTimes = [];
+    const activeStartMinutesList = [];
+    const activeEndMinutesList = [];
 
     if (rawSessions.length) {
       rawSessions.forEach(function (s) {
@@ -502,13 +547,19 @@
         if (sClosing && sClosing < todayIso) return; // 此場次報名截止日已過，自動略過
         if (sClosing) validClosingDates.push(sClosing);
 
+        if (s.time && !activeTimes.includes(s.time)) activeTimes.push(s.time);
+        const sMin = parseClockToMinutes(s.startTime);
+        const eMin = parseClockToMinutes(s.endTime);
+        if (sMin !== null) activeStartMinutesList.push(sMin);
+        if (eMin !== null) activeEndMinutesList.push(eMin);
+
         let m;
         rangeRegex.lastIndex = 0;
         while ((m = rangeRegex.exec(String(s.date || ""))) !== null) {
           const startIso = `${m[1]}-${m[2]}-${m[3]}`;
           const endIso = m[4] ? `${m[4]}-${m[5]}-${m[6]}` : startIso;
           if (endIso >= todayIso) {
-            validRanges.push({ start: startIso, end: endIso });
+            validRanges.push({ start: startIso, end: endIso, time: s.time || "", startTime: s.startTime || "", endTime: s.endTime || "" });
           }
         }
       });
@@ -522,7 +573,7 @@
         const startIso = `${m[1]}-${m[2]}-${m[3]}`;
         const endIso = m[4] ? `${m[4]}-${m[5]}-${m[6]}` : startIso;
         if (endIso >= todayIso) {
-          validRanges.push({ start: startIso, end: endIso });
+          validRanges.push({ start: startIso, end: endIso, time: event.timeSummary || "", startTime: event.startTime || "", endTime: event.endTime || "" });
         }
       }
     }
@@ -530,8 +581,17 @@
     if (!validRanges.length && event.eventStart) {
       const endIso = event.eventEnd || event.eventStart;
       if (endIso >= todayIso) {
-        validRanges.push({ start: event.eventStart, end: endIso });
+        validRanges.push({ start: event.eventStart, end: endIso, time: event.timeSummary || "", startTime: event.startTime || "", endTime: event.endTime || "" });
       }
+    }
+
+    if (!activeStartMinutesList.length && event.startTime) {
+      const sMin = parseClockToMinutes(event.startTime);
+      if (sMin !== null) activeStartMinutesList.push(sMin);
+    }
+    if (!activeEndMinutesList.length && event.endTime) {
+      const eMin = parseClockToMinutes(event.endTime);
+      if (eMin !== null) activeEndMinutesList.push(eMin);
     }
 
     const fallbackClosing = [event.closingDate, event.closingDateEnd]
@@ -540,13 +600,20 @@
     const activeClosingDate = validClosingDates.sort()[0] || fallbackClosing;
     const sortedStarts = validRanges.map(function (r) { return r.start; }).sort();
     const sortedEnds = validRanges.map(function (r) { return r.end; }).sort();
+    const startMins = activeStartMinutesList.length ? Math.min.apply(null, activeStartMinutesList) : null;
+    const endMins = activeEndMinutesList.length ? Math.max.apply(null, activeEndMinutesList) : null;
 
     return {
       isExpired: !activeClosingDate || validRanges.length === 0,
       activeClosingDate: activeClosingDate,
       activeEventStart: sortedStarts[0] || event.eventStart || "",
       activeEventEnd: sortedEnds[sortedEnds.length - 1] || sortedStarts[0] || event.eventEnd || "",
-      activeRanges: validRanges
+      activeRanges: validRanges,
+      activeTimeSummary: activeTimes.slice(0, 2).join(" · ") || event.timeSummary || "",
+      activeStartMinutes: startMins,
+      activeEndMinutes: endMins,
+      activeStartMinutesList: activeStartMinutesList,
+      activeEndMinutesList: activeEndMinutesList
     };
   }
 
@@ -559,6 +626,11 @@
       eventStart: schedule.activeEventStart || event.eventStart,
       eventEnd: schedule.activeEventEnd || event.eventEnd,
       activeRanges: schedule.activeRanges,
+      timeSummary: schedule.activeTimeSummary,
+      startMinutes: schedule.activeStartMinutes,
+      endMinutes: schedule.activeEndMinutes,
+      startMinutesList: schedule.activeStartMinutesList,
+      endMinutesList: schedule.activeEndMinutesList,
       isExpired: schedule.isExpired
     });
   }).filter(function (event) {
@@ -632,6 +704,45 @@
     return mode === state.mode;
   }
 
+  function matchesTime(event) {
+    const slot = state.timeSlot;
+    const minMins = Number(state.minStartMinutes) || 480;
+    const isFilteringByTime = slot !== "all" || minMins > 480;
+    if (!isFilteringByTime) return true;
+
+    const starts = Array.isArray(event.startMinutesList) && event.startMinutesList.length
+      ? event.startMinutesList
+      : (event.startMinutes != null ? [event.startMinutes] : []);
+    const ends = Array.isArray(event.endMinutesList) && event.endMinutesList.length
+      ? event.endMinutesList
+      : (event.endMinutes != null ? [event.endMinutes] : []);
+
+    // 若用戶啟用了時間篩選，只保留具備對應開始時間的活動
+    if (!starts.length) return false;
+
+    if (minMins > 480) {
+      const hasSessionAfterMin = starts.some(function (sMin) { return sMin >= minMins; });
+      if (!hasSessionAfterMin) return false;
+    }
+
+    if (slot === "am") {
+      // 上午活動：開始時間 < 12:00 (720 mins)，且結束時間 <= 13:30 (810 mins)
+      return starts.some(function (sMin, idx) {
+        const eMin = ends[idx] != null ? ends[idx] : sMin + 180;
+        return sMin < 720 && eMin <= 810;
+      });
+    }
+    if (slot === "pm") {
+      // 下午／課後活動：開始時間 >= 12:00 (720 mins)
+      return starts.some(function (sMin) { return sMin >= 720; });
+    }
+    if (slot === "after-school") {
+      // 放學後活動：開始時間 >= 15:30 (930 mins)
+      return starts.some(function (sMin) { return sMin >= 930; });
+    }
+    return true;
+  }
+
   function matches(event, ignoreSpecificDate) {
     const query = state.query.trim().toLowerCase();
     const tags = subjectTagsFor(event);
@@ -651,13 +762,15 @@
       event.participantGroup,
       event.participantGroupZh,
       event.format,
-      event.formatZh
+      event.formatZh,
+      event.timeSummary
     ].filter(Boolean).join(" ").toLowerCase();
     const categoryMatch = state.category === "All" || (event.categories || [event.category]).includes(state.category) || event.category === state.category;
     const profileMatch = state.profile === "all" || tags.includes(state.profile) || (state.includeGeneral && tags.includes("general"));
     const subjectMatch = state.subject === "all" || tags.includes(state.subject);
     const levelMatch = state.level === "all" || levelKeys(event).includes(state.level);
     const modeMatch = matchesMode(event);
+    const timeMatch = matchesTime(event);
     const eventDateMatch = ignoreSpecificDate || !state.eventDate || (
       Array.isArray(event.activeRanges) && event.activeRanges.length
         ? event.activeRanges.some(function (r) { return state.eventDate >= r.start && state.eventDate <= r.end; })
@@ -665,7 +778,7 @@
     );
     const days = daysUntil(event.closingDate);
     const windowMatch = days >= 0 && (state.deadline === "all" || days <= Number(state.deadline));
-    return categoryMatch && profileMatch && subjectMatch && levelMatch && modeMatch && eventDateMatch && windowMatch && (!query || searchText.indexOf(query) !== -1);
+    return categoryMatch && profileMatch && subjectMatch && levelMatch && modeMatch && timeMatch && eventDateMatch && windowMatch && (!query || searchText.indexOf(query) !== -1);
   }
 
   function modeRank(mode) {
@@ -687,6 +800,13 @@
     });
   }
 
+  function formatEventTimeLabel(event) {
+    if (event.timeSummary) return event.timeSummary;
+    if (event.startTime && event.endTime) return event.startTime + " - " + event.endTime;
+    if (event.deliveryMode === "self-paced") return t("timeFlexible");
+    return "";
+  }
+
   function listTemplate(event) {
     const tags = subjectTagsFor(event);
     const visibleTags = tags.length ? tags : ["general"];
@@ -701,9 +821,11 @@
     const soon = isClosingSoon(event);
     const title = eventTitle(event);
     const metaLine = [eventParticipantGroup(event), eventFormat(event)].filter(Boolean).join(" · ");
+    const timeLabel = formatEventTimeLabel(event);
+    const timeHtml = timeLabel ? '<span class="row-time-badge">◷ ' + escapeHtml(timeLabel) + "</span>" : "";
 
     return '<article class="event-row" data-course-id="' + escapeHtml(event.courseId) + '">' +
-      '<div class="row-date"><span class="row-date-label">' + escapeHtml(t("eventDate")) + "</span><strong>" + escapeHtml(formatDate(event.eventStart, false)) + "</strong><span>" + escapeHtml(event.eventStart !== event.eventEnd ? "→ " + formatDate(event.eventEnd, false) : "") + "</span></div>" +
+      '<div class="row-date"><span class="row-date-label">' + escapeHtml(t("eventDate")) + "</span><strong>" + escapeHtml(formatDate(event.eventStart, false)) + "</strong><span>" + escapeHtml(event.eventStart !== event.eventEnd ? "→ " + formatDate(event.eventEnd, false) : "") + "</span>" + timeHtml + "</div>" +
       '<div class="row-main"><div class="row-heading"><span class="category-label" data-category="' + escapeHtml(event.category) + '">' + escapeHtml(categoryLabel(event.category)) + "</span>" + getBadges(event) + '<span class="event-id">' + escapeHtml(event.courseId) + "</span></div>" +
       '<h3><button type="button" class="row-title-btn" data-detail-id="' + escapeHtml(event.courseId) + '">' + escapeHtml(title) + "</button></h3>" +
       '<div class="event-subjects"><span class="detail-label">' + escapeHtml(t("subjectLabel")) + '</span><span class="subject-tag-list">' + subjectTags + "</span>" + originalSubjectHtml + "</div>" +
@@ -792,13 +914,18 @@
       const isSelected = iso === state.selectedCalDate;
       const previewItems = dayEvents.slice(0, 3).map(function (ev) {
         const modeClass = "cal-pill-" + (ev.deliveryMode || "in-person");
-        return '<button type="button" class="cal-event-pill ' + modeClass + '" data-detail-id="' + escapeHtml(ev.courseId) + '" title="' + escapeHtml(eventTitle(ev)) + '">' +
+        const shortTime = ev.startTime ? ev.startTime + " " : "";
+        return '<button type="button" class="cal-event-pill ' + modeClass + '" data-detail-id="' + escapeHtml(ev.courseId) + '" title="' + escapeHtml((shortTime + eventTitle(ev)).trim()) + '">' +
+          (shortTime ? '<span class="cal-pill-time">' + escapeHtml(ev.startTime) + "</span> " : "") +
           escapeHtml(eventTitle(ev)) +
           "</button>";
       }).join("");
       const moreHtml = dayEvents.length > 3
         ? '<button type="button" class="cal-more-btn" data-cal-date="' + iso + '">+' + (dayEvents.length - 3) + " " + escapeHtml(t("calMore")) + "</button>"
         : "";
+      const mobileDotsHtml = dayEvents.slice(0, 5).map(function (ev) {
+        return '<i class="cal-dot dot-' + escapeHtml(ev.deliveryMode || "in-person") + '"></i>';
+      }).join("");
 
       cells.push(
         '<div class="cal-cell' + (isToday ? " is-today" : "") + (isSelected ? " is-selected" : "") + (dayEvents.length ? " has-events" : "") + '" data-cal-date="' + iso + '">' +
@@ -806,12 +933,27 @@
         '<button type="button" class="cal-day-num" data-cal-date="' + iso + '">' + d + "</button>" +
         (dayEvents.length ? '<span class="cal-day-count">' + dayEvents.length + "</span>" : "") +
         "</div>" +
+        '<div class="cal-cell-dots" aria-hidden="true">' + mobileDotsHtml + "</div>" +
         '<div class="cal-cell-events">' + previewItems + moreHtml + "</div>" +
         "</div>"
       );
     }
 
     elements.calGrid.innerHTML = cells.join("");
+
+    // 若用戶未選取日期或選取日期不在本月，預設選取今天（如在本月且有活動）或本月第一個有活動的日子
+    if (!state.selectedCalDate || !dayMap.has(state.selectedCalDate)) {
+      if (dayMap.has(todayIso) && (dayMap.get(todayIso) || []).length > 0) {
+        state.selectedCalDate = todayIso;
+      } else {
+        for (const [k, list] of dayMap.entries()) {
+          if (list.length > 0) {
+            state.selectedCalDate = k;
+            break;
+          }
+        }
+      }
+    }
 
     if (state.selectedCalDate && dayMap.has(state.selectedCalDate)) {
       const dayEvents = dayMap.get(state.selectedCalDate) || [];
@@ -844,6 +986,10 @@
 
     // Summary meta chips
     const metaItems = [];
+    const timeLabel = formatEventTimeLabel(event);
+    if (timeLabel) {
+      metaItems.push('<div class="modal-meta-card"><span>' + escapeHtml(t("eventTimeLabel")) + "</span><strong>◷ " + escapeHtml(timeLabel) + "</strong></div>");
+    }
     if (locDetail && locDetail.medium) {
       metaItems.push('<div class="modal-meta-card"><span>' + escapeHtml(t("modalMetaMedium")) + "</span><strong>" + escapeHtml(locDetail.medium) + "</strong></div>");
     }
@@ -879,14 +1025,17 @@
         });
         const sessionsToRender = activeSessions.length ? activeSessions : locDetail.sessions;
         const rows = sessionsToRender.map(function (s) {
+          const sessionTitle = s.sessionNo ? (s.eventId + " (#" + s.sessionNo + ")") : s.eventId;
+          const sTime = s.time || (s.startTime && s.endTime ? (s.startTime + " - " + s.endTime) : "—");
           return "<tr>" +
-            "<td><strong>" + escapeHtml(s.eventId) + "</strong></td>" +
-            "<td>" + escapeHtml(s.date) + "</td>" +
-            "<td>" + escapeHtml(s.venue).replace(/\n/g, "<br>") + "</td>" +
-            "<td>" + escapeHtml(s.speaker).replace(/\n/g, "<br>") + "</td>" +
-            "<td>" + escapeHtml(s.quota) + "</td>" +
-            "<td>" + escapeHtml(s.closingDate) + "</td>" +
-            "<td>" + escapeHtml(s.remark).replace(/\n/g, "<br>") + "</td>" +
+            '<td data-label="' + escapeHtml(t("modalSessionId")) + '"><strong>' + escapeHtml(sessionTitle) + "</strong></td>" +
+            '<td data-label="' + escapeHtml(t("modalSessionDate")) + '">' + escapeHtml(s.date) + "</td>" +
+            '<td data-label="' + escapeHtml(t("modalSessionTime")) + '"><span class="session-time-pill">' + escapeHtml(sTime) + "</span></td>" +
+            '<td data-label="' + escapeHtml(t("modalSessionVenue")) + '">' + escapeHtml(s.venue).replace(/\n/g, "<br>") + "</td>" +
+            '<td data-label="' + escapeHtml(t("modalSessionSpeaker")) + '">' + escapeHtml(s.speaker).replace(/\n/g, "<br>") + "</td>" +
+            '<td data-label="' + escapeHtml(t("modalSessionQuota")) + '">' + escapeHtml(s.quota) + "</td>" +
+            '<td data-label="' + escapeHtml(t("modalSessionDeadline")) + '">' + escapeHtml(s.closingDate) + "</td>" +
+            '<td data-label="' + escapeHtml(t("modalSessionRemark")) + '">' + escapeHtml(s.remark || "—").replace(/\n/g, "<br>") + "</td>" +
             "</tr>";
         }).join("");
         sectionsHtml.push(
@@ -895,6 +1044,7 @@
           "<thead><tr>" +
           "<th>" + escapeHtml(t("modalSessionId")) + "</th>" +
           "<th>" + escapeHtml(t("modalSessionDate")) + "</th>" +
+          "<th>" + escapeHtml(t("modalSessionTime")) + "</th>" +
           "<th>" + escapeHtml(t("modalSessionVenue")) + "</th>" +
           "<th>" + escapeHtml(t("modalSessionSpeaker")) + "</th>" +
           "<th>" + escapeHtml(t("modalSessionQuota")) + "</th>" +
@@ -952,6 +1102,18 @@
     render();
   }
 
+  function countActiveAdvancedFilters() {
+    let count = 0;
+    if (state.mode !== "all") count += 1;
+    if (state.level !== "all") count += 1;
+    if (state.subject !== "all") count += 1;
+    if (state.eventDate) count += 1;
+    if (state.deadline !== "all") count += 1;
+    if (state.profile !== "all") count += 1;
+    if (state.onlyNonLive) count += 1;
+    return count;
+  }
+
   function render() {
     applyTranslations();
     populateControls();
@@ -966,6 +1128,27 @@
       btn.classList.toggle("is-active", active);
       btn.setAttribute("aria-selected", String(active));
     });
+    document.querySelectorAll("[data-timeslot]").forEach(function (btn) {
+      btn.classList.toggle("is-active", btn.dataset.timeslot === state.timeSlot);
+    });
+    if (elements.startTimeSlider) {
+      elements.startTimeSlider.value = String(state.minStartMinutes);
+    }
+    if (elements.startTimeDisplay) {
+      elements.startTimeDisplay.textContent = state.minStartMinutes <= 480
+        ? t("timeAnyLimit")
+        : minutesToClock(state.minStartMinutes) + "+";
+    }
+    if (elements.collapsibleFilters && elements.mobileFilterToggle) {
+      elements.collapsibleFilters.classList.toggle("is-open", state.mobileFiltersOpen);
+      elements.mobileFilterToggle.classList.toggle("is-open", state.mobileFiltersOpen);
+      elements.mobileFilterToggle.setAttribute("aria-expanded", String(state.mobileFiltersOpen));
+    }
+    if (elements.activeFilterCount) {
+      const advCount = countActiveAdvancedFilters();
+      elements.activeFilterCount.hidden = advCount === 0;
+      elements.activeFilterCount.textContent = String(advCount);
+    }
     elements.listViewContainer.hidden = state.view !== "list";
     elements.calendarViewContainer.hidden = state.view !== "calendar";
 
@@ -1007,11 +1190,15 @@
     state.sort = "event";
     state.level = "all";
     state.subject = "all";
+    state.timeSlot = "all";
+    state.minStartMinutes = 480;
     state.onlyNonLive = false;
     if (window.localStorage) localStorage.setItem("tcs-only-non-live", "false");
     elements.search.value = "";
     elements.eventDate.value = "";
+    if (elements.startTimeSlider) elements.startTimeSlider.value = "480";
     document.querySelectorAll("[data-category]").forEach(function (button) { button.classList.toggle("is-active", button.dataset.category === "All"); });
+    document.querySelectorAll("[data-timeslot]").forEach(function (button) { button.classList.toggle("is-active", button.dataset.timeslot === "all"); });
     render();
   }
 
@@ -1053,6 +1240,34 @@
       render();
     });
   });
+  document.querySelectorAll("[data-timeslot]").forEach(function (button) {
+    button.addEventListener("click", function () {
+      state.timeSlot = button.dataset.timeslot;
+      if (state.timeSlot === "after-school" && state.minStartMinutes < 930) {
+        state.minStartMinutes = 930;
+      } else if (state.timeSlot === "pm" && state.minStartMinutes < 720) {
+        state.minStartMinutes = 720;
+      } else if (state.timeSlot === "am" || state.timeSlot === "all") {
+        state.minStartMinutes = 480;
+      }
+      render();
+    });
+  });
+  if (elements.startTimeSlider) {
+    elements.startTimeSlider.addEventListener("input", function (event) {
+      state.minStartMinutes = Number(event.target.value) || 480;
+      if (state.minStartMinutes > 480 && state.timeSlot === "am") {
+        state.timeSlot = "all";
+      }
+      render();
+    });
+  }
+  if (elements.mobileFilterToggle) {
+    elements.mobileFilterToggle.addEventListener("click", function () {
+      state.mobileFiltersOpen = !state.mobileFiltersOpen;
+      render();
+    });
+  }
   elements.search.addEventListener("input", function (event) { state.query = event.target.value; render(); });
   elements.mode.addEventListener("change", function (event) { state.mode = event.target.value; render(); });
   elements.level.addEventListener("change", function (event) { state.level = event.target.value; render(); });
