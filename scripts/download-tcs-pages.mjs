@@ -620,6 +620,76 @@ async function enrichEventsWithBilingualDetails(events) {
   await Promise.all(Array.from({ length: DETAIL_CONCURRENCY }, () => worker()));
 }
 
+// Professional Ladder CPD requirements (values of TCS `cpdrequirement` select).
+const CPD_REQUIREMENT_IDS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"];
+const CPD_MAP_PATH = join(ROOT, "data", "cpd-map.json");
+const REFRESH_CPD = process.env.TCS_REFRESH_CPD === "1";
+const CPD_MAX_AGE_MS = Number(process.env.TCS_CPD_MAX_AGE_HOURS || 20) * 3600 * 1000;
+
+function searchFormState(html) {
+  const start = html.indexOf('id="searchPublicCalForm"');
+  const form = start >= 0 ? html.slice(start, html.indexOf("</form>", start)) : html;
+  const params = new URLSearchParams();
+  for (const input of form.matchAll(/<input\b[^>]*>/gi)) {
+    const name = attribute(input[0], "name");
+    if (!name || params.has(name) || /type\s*=\s*["']?(radio|checkbox)/i.test(input[0])) continue;
+    params.set(name, attribute(input[0], "value"));
+  }
+  for (const select of form.matchAll(/<select\b[^>]*name\s*=\s*["']([^"']+)["'][^>]*>([\s\S]*?)<\/select>/gi)) {
+    if (params.has(select[1])) continue;
+    const option = select[2].match(/<option\b[^>]*selected[^>]*>/i) || select[2].match(/<option\b[^>]*>/i);
+    params.set(select[1], option ? attribute(option[0], "value") : "");
+  }
+  return params;
+}
+
+async function scrapeCpdMap() {
+  if (!REFRESH_CPD) {
+    try {
+      const cached = JSON.parse(await readFile(CPD_MAP_PATH, "utf8"));
+      if (Date.now() - new Date(cached.fetchedAt).getTime() < CPD_MAX_AGE_MS) {
+        process.stdout.write(`Using cached CPD map from ${cached.fetchedAt}.\n`);
+        return cached;
+      }
+    } catch {
+      // no cache yet
+    }
+  }
+  const map = {};
+  for (const id of CPD_REQUIREMENT_IDS) {
+    cookieJar.clear();
+    const first = await fetchPage(FIRST_PAGE_URL);
+    const state = searchFormState(first.html);
+    state.set("cpdrequirement", id);
+    const body = state.toString();
+    const firstResult = await fetchPage(`${SOURCE_ROOT}/search.htm`, { method: "POST", body });
+    const pageCount = discoverPageCount(firstResult.html) || 1;
+    const ids = new Set(parsePage(firstResult.html, 1, "").map((event) => event.courseId));
+    for (let page = 2; page <= pageCount; page += 1) {
+      await sleep(PAGE_DELAY_MS);
+      const result = await fetchPage(`${SOURCE_ROOT}/search.htm?pageNo=${page}`, { method: "POST", body });
+      for (const event of parsePage(result.html, page, "")) ids.add(event.courseId);
+    }
+    map[id] = [...ids].filter(Boolean);
+    process.stdout.write(`CPD requirement ${id}: ${map[id].length} courses (${pageCount} pages)\n`);
+    await sleep(PAGE_DELAY_MS);
+  }
+  const result = { fetchedAt: new Date().toISOString(), map };
+  await writeText(CPD_MAP_PATH, JSON.stringify(result, null, 2) + "\n");
+  return result;
+}
+
+function applyCpdMap(events, cpd) {
+  const byCourse = new Map();
+  for (const [id, courseIds] of Object.entries(cpd.map || {})) {
+    for (const courseId of courseIds) {
+      if (!byCourse.has(courseId)) byCourse.set(courseId, []);
+      byCourse.get(courseId).push(id);
+    }
+  }
+  for (const event of events) event.cpdRequirements = byCourse.get(event.courseId) || [];
+}
+
 async function main() {
   await mkdir(RAW_DIR, { recursive: true });
   const startedAt = new Date().toISOString();
@@ -676,6 +746,17 @@ async function main() {
     await enrichEventsWithBilingualDetails(deduped);
   }
 
+  try {
+    applyCpdMap(deduped, await scrapeCpdMap());
+  } catch (error) {
+    process.stderr.write(`CPD map warning: ${error}\n`);
+    try {
+      applyCpdMap(deduped, JSON.parse(await readFile(CPD_MAP_PATH, "utf8")));
+    } catch {
+      for (const event of deduped) event.cpdRequirements = [];
+    }
+  }
+
   const finishedAt = new Date().toISOString();
   const modeCounts = deduped.reduce((acc, ev) => {
     acc[ev.deliveryMode] = (acc[ev.deliveryMode] || 0) + 1;
@@ -710,4 +791,4 @@ if (process.env.TCS_SKIP_MAIN !== "1") {
   });
 }
 
-export { cleanText, findCells, findRowBlocks, parsePage, parseDetailPage, classifyDeliveryMode };
+export { cleanText, findCells, findRowBlocks, parsePage, parseDetailPage, classifyDeliveryMode, scrapeCpdMap, applyCpdMap };

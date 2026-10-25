@@ -128,16 +128,22 @@
                 </div>
 
                 <div class="fs-row">
+                  <label class="fs-label" for="cpd-select" data-i18n="fCpd">專業階梯</label>
+                  <label class="select-wrap cpd-wrap"><select id="cpd-select" aria-label="CPD Requirements under the Professional Ladder for Teachers"></select></label>
+                </div>
+
+                <div class="fs-row">
                   <span class="fs-label" data-i18n="fTime">時段</span>
                   <div class="fs-scroll time-chips" role="group" aria-label="Time slot">
                     <button class="filter-chip time-chip is-active" type="button" data-timeslot="all" data-i18n="timeAll">全部</button>
                     <button class="filter-chip time-chip" type="button" data-timeslot="am" data-i18n="timeAm">上午</button>
                     <button class="filter-chip time-chip" type="button" data-timeslot="pm" data-i18n="timePm">下午</button>
                     <button class="filter-chip time-chip" type="button" data-timeslot="after-school" data-i18n="timeAfterSchool">15:30後</button>
+                    <button class="filter-chip time-chip" type="button" data-timeslot="custom" data-i18n="timeCustom">自訂</button>
                   </div>
                 </div>
 
-                <div class="fs-row">
+                <div class="fs-row" id="start-time-row" hidden>
                   <label class="fs-label" for="start-time-slider" data-i18n="fStart">開始於</label>
                   <div class="fs-slider">
                     <input id="start-time-slider" class="time-slider" type="range" min="480" max="1080" step="30" value="480" />

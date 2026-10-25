@@ -62,6 +62,9 @@
       filterToggle: "篩選",
       eventTimeLabel: "活動時間",
       fCategory: "類別",
+      fCpd: "專業階梯",
+      cpdAll: "-- 全選 --",
+      cpdAny: "所有專業階梯課程",
       fTime: "時段",
       fStart: "開始於",
       fApply: "顯示 {n} 個活動",
@@ -70,6 +73,7 @@
       timeAm: "上午",
       timePm: "下午",
       timeAfterSchool: "15:30後",
+      timeCustom: "自訂",
       startTimeAfter: "最早開始時間：",
       timeAnyLimit: "不限",
       timeFlexible: "自訂時間（網上自學）",
@@ -206,6 +210,9 @@
       filterToggle: "Filters",
       eventTimeLabel: "Event Time",
       fCategory: "Category",
+      fCpd: "Prof. Ladder",
+      cpdAll: "-- All --",
+      cpdAny: "Any CPD requirement",
       fTime: "Time",
       fStart: "Starts",
       fApply: "Show {n} events",
@@ -214,6 +221,7 @@
       timeAm: "AM",
       timePm: "PM",
       timeAfterSchool: "After 15:30",
+      timeCustom: "Custom",
       startTimeAfter: "Starts at or after:",
       timeAnyLimit: "Any",
       timeFlexible: "Flexible (Self-paced)",
@@ -350,7 +358,46 @@
     { value: "mode", key: "modeSort" }
   ];
 
+  // 教師專業階梯下的持續專業發展要求 (TCS `cpdrequirement` ids)
+  const cpdTaxonomy = [
+    { id: "1", group: true, zh: "新入職教師核心培訓", en: "Core Training for Newly-joined Teachers" },
+    { id: "2", parent: "1", zh: "核心培訓一（教師專業身份）", en: "Core 1: Professional Identity" },
+    { id: "3", parent: "1", zh: "核心培訓二（教師專業學習）", en: "Core 2: Professional Learning" },
+    { id: "4", parent: "1", zh: "新入職教師選修培訓", en: "Elective Training for New Teachers" },
+    { id: "5", group: true, zh: "優化在職教師培訓", en: "Enhanced Training for Serving Teachers" },
+    { id: "6", parent: "5", zh: "範疇一：教師專業角色、價值觀及操守", en: "Domain 1: Roles, Values & Conduct" },
+    { id: "7", parent: "5", zh: "範疇二：本地、國家及國際教育議題", en: "Domain 2: Local, National & Global Issues" },
+    { id: "8", group: true, zh: "晉升培訓核心部分（SGM / PSM）", en: "Promotion Core (SGM / PSM)", full: "適用於晉升至資助學校高級學位教師/小學學位教師或官立學校相應之職級" },
+    { id: "9", parent: "8", zh: "專業操守、價值觀及教育政策", en: "Conduct, Values & Education Policy" },
+    { id: "10", parent: "8", zh: "學校領導的視野及成長", en: "Vision & Growth in School Leadership" },
+    { id: "11", parent: "8", zh: "領導能力的反思和實踐", en: "Reflection & Practice of Leadership" },
+    { id: "12", group: true, zh: "晉升培訓核心部分（PGM / SPSM）", en: "Promotion Core (PGM / SPSM)", full: "適用於晉升至資助學校首席學位教師/高級小學學位教師或官立學校相應之職級" },
+    { id: "13", parent: "12", zh: "專業操守、價值觀及教育政策", en: "Conduct, Values & Education Policy" },
+    { id: "14", parent: "12", zh: "學校行政及管理", en: "School Administration & Management" },
+    { id: "15", group: true, zh: "晉升培訓內地學習團", en: "Promotion Mainland Study Tour", full: "適用於晉升至 PSM / SPSM / SGM / PGM 或官立學校相應之職級" }
+  ];
+
+  function cpdLabel(id) {
+    const item = cpdTaxonomy.find(function (entry) { return entry.id === id; });
+    if (!item) return id;
+    return state.locale === "zh" ? item.zh : item.en;
+  }
+
+  function cpdIdsFor(selection) {
+    // A group selection matches the group id itself plus all its children.
+    return [selection].concat(cpdTaxonomy.filter(function (item) { return item.parent === selection; }).map(function (item) { return item.id; }));
+  }
+
+  function matchesCpd(event) {
+    if (state.cpd === "all") return true;
+    const tags = event.cpdRequirements || [];
+    if (state.cpd === "any") return tags.length > 0;
+    const wanted = cpdIdsFor(state.cpd);
+    return tags.some(function (id) { return wanted.indexOf(id) !== -1; });
+  }
+
   const initialHash = window.location.hash;
+  const initialCpd = new URLSearchParams(window.location.search).get("cpd");
   const state = {
     // 預設繁體中文 ('zh')
     locale: storedLanguage === "en" ? "en" : "zh",
@@ -358,6 +405,7 @@
     view: initialHash === "#calendar" ? "calendar" : "list",
     query: "",
     category: "All",
+    cpd: initialCpd && (initialCpd === "any" || cpdTaxonomy.some(function (item) { return item.id === initialCpd; })) ? initialCpd : "all",
     mode: "all",
     deadline: "all",
     eventDate: "",
@@ -684,6 +732,7 @@
     populateSelect(elements.profile, subjectDefinitions);
     populateSelect(elements.deadline, deadlineDefinitions);
     populateSelect(elements.sort, sortDefinitions);
+    populateCpdSelect();
     elements.mode.value = state.mode;
     elements.level.value = state.level;
     elements.subject.value = state.subject;
@@ -692,6 +741,56 @@
     elements.sort.value = state.sort;
     elements.includeGeneral.checked = state.includeGeneral;
     elements.onlyNonLive.checked = state.onlyNonLive;
+  }
+
+  function populateCpdSelect() {
+    const select = document.getElementById("cpd-select");
+    if (!select) return;
+    const counts = {};
+    let anyCount = 0;
+    events.forEach(function (event) {
+      const tags = event.cpdRequirements || [];
+      if (tags.length) anyCount += 1;
+      const seen = {};
+      tags.forEach(function (id) {
+        const item = cpdTaxonomy.find(function (entry) { return entry.id === id; });
+        [id, item && item.parent].forEach(function (key) {
+          if (key && !seen[key]) { seen[key] = true; counts[key] = (counts[key] || 0) + 1; }
+        });
+      });
+    });
+    function option(value, label, count, title) {
+      return '<option value="' + escapeHtml(value) + '"' + (title ? ' title="' + escapeHtml(title) + '"' : "") + ">" + escapeHtml(label) + (count != null ? " (" + count + ")" : "") + "</option>";
+    }
+    let html = option("all", t("cpdAll")) + option("any", t("cpdAny"), anyCount);
+    cpdTaxonomy.filter(function (item) { return item.group; }).forEach(function (group) {
+      const children = cpdTaxonomy.filter(function (item) { return item.parent === group.id; });
+      const groupLabel = state.locale === "zh" ? group.zh : group.en;
+      html += '<optgroup label="' + escapeHtml(groupLabel) + '">';
+      html += option(group.id, (children.length ? (state.locale === "zh" ? "全部 · " : "All · ") : "") + groupLabel, counts[group.id] || 0, group.full);
+      children.forEach(function (child) {
+        html += option(child.id, "　" + (state.locale === "zh" ? child.zh : child.en), counts[child.id] || 0);
+      });
+      html += "</optgroup>";
+    });
+    select.innerHTML = html;
+    select.value = state.cpd;
+  }
+
+  function cpdBadgesHtml(event) {
+    const tags = event.cpdRequirements || [];
+    if (!tags.length) return "";
+    return tags.filter(function (id) {
+      // Prefer leaf tags; skip a group tag when one of its children is present.
+      return !tags.some(function (other) {
+        const item = cpdTaxonomy.find(function (entry) { return entry.id === other; });
+        return item && item.parent === id;
+      });
+    }).map(function (id) {
+      const item = cpdTaxonomy.find(function (entry) { return entry.id === id; }) || {};
+      const groupId = item.parent || id;
+      return '<span class="badge badge-cpd badge-cpd-' + escapeHtml(groupId) + '" title="' + escapeHtml(cpdLabel(groupId)) + '">' + escapeHtml(cpdLabel(id)) + "</span>";
+    }).join("");
   }
 
   function categoryLabel(category) {
@@ -715,6 +814,7 @@
     if (event.badge === "NEW") badges.push('<span class="badge badge-new">' + escapeHtml(t("newBadge")) + "</span>");
     if (event.badge === "UPDATED") badges.push('<span class="badge badge-updated">' + escapeHtml(t("updatedBadge")) + "</span>");
     if (isClosingSoon(event)) badges.push('<span class="badge badge-closing">' + escapeHtml(t("closingBadge")) + "</span>");
+    badges.push(cpdBadgesHtml(event));
     return badges.join("");
   }
 
@@ -729,7 +829,7 @@
   function matchesTime(event) {
     const slot = state.timeSlot;
     const minMins = Number(state.minStartMinutes) || 480;
-    const isFilteringByTime = slot !== "all" || minMins > 480;
+    const isFilteringByTime = (slot !== "all" && slot !== "custom") || minMins > 480;
     if (!isFilteringByTime) return true;
 
     const starts = Array.isArray(event.startMinutesList) && event.startMinutesList.length
@@ -800,7 +900,7 @@
     );
     const days = daysUntil(event.closingDate);
     const windowMatch = days >= 0 && (state.deadline === "all" || days <= Number(state.deadline));
-    return categoryMatch && profileMatch && subjectMatch && levelMatch && modeMatch && timeMatch && eventDateMatch && windowMatch && (!query || searchText.indexOf(query) !== -1);
+    return categoryMatch && matchesCpd(event) && profileMatch && subjectMatch && levelMatch && modeMatch && timeMatch && eventDateMatch && windowMatch && (!query || searchText.indexOf(query) !== -1);
   }
 
   function modeRank(mode) {
@@ -1166,7 +1266,8 @@
   function countActiveAdvancedFilters() {
     let count = 0;
     if (state.category !== "All") count += 1;
-    if (state.timeSlot !== "all") count += 1;
+    if (state.cpd !== "all") count += 1;
+    if (state.timeSlot !== "all" && state.timeSlot !== "custom") count += 1;
     if (state.minStartMinutes > 480) count += 1;
     if (state.mode !== "all") count += 1;
     if (state.level !== "all") count += 1;
@@ -1181,6 +1282,7 @@
   function buildFilterSummaryText() {
     const parts = [];
     if (state.category !== "All") parts.push(categoryLabel(state.category));
+    if (state.cpd !== "all") parts.push(state.cpd === "any" ? t("cpdAny") : cpdLabel(state.cpd));
     if (state.timeSlot === "am") parts.push(t("timeAm"));
     else if (state.timeSlot === "pm") parts.push(t("timePm"));
     else if (state.timeSlot === "after-school") parts.push(t("timeAfterSchool"));
@@ -1228,6 +1330,8 @@
     if (elements.startTimeSlider) {
       elements.startTimeSlider.value = String(state.minStartMinutes);
     }
+    const startTimeRow = document.getElementById("start-time-row");
+    if (startTimeRow) startTimeRow.hidden = state.timeSlot !== "custom";
     if (elements.startTimeDisplay) {
       elements.startTimeDisplay.textContent = state.minStartMinutes <= 480
         ? t("timeAnyLimit")
@@ -1288,9 +1392,19 @@
     }
   }
 
+  function syncCpdUrl() {
+    if (!window.history || !window.history.replaceState) return;
+    const url = new URL(window.location.href);
+    if (state.cpd === "all") url.searchParams.delete("cpd");
+    else url.searchParams.set("cpd", state.cpd);
+    window.history.replaceState(null, "", url.pathname + url.search + url.hash);
+  }
+
   function resetFilters() {
     state.query = "";
     state.category = "All";
+    state.cpd = "all";
+    syncCpdUrl();
     state.mode = "all";
     state.deadline = "all";
     state.eventDate = "";
@@ -1348,11 +1462,13 @@
   document.querySelectorAll("[data-timeslot]").forEach(function (button) {
     button.addEventListener("click", function () {
       state.timeSlot = button.dataset.timeslot;
-      if (state.timeSlot === "after-school" && state.minStartMinutes < 930) {
+      if (state.timeSlot === "custom") {
+        // 自訂：保留現有開始時間，只顯示滑桿
+      } else if (state.timeSlot === "after-school") {
         state.minStartMinutes = 930;
-      } else if (state.timeSlot === "pm" && state.minStartMinutes < 720) {
+      } else if (state.timeSlot === "pm") {
         state.minStartMinutes = 720;
-      } else if (state.timeSlot === "am" || state.timeSlot === "all") {
+      } else {
         state.minStartMinutes = 480;
       }
       render();
@@ -1361,9 +1477,7 @@
   if (elements.startTimeSlider) {
     elements.startTimeSlider.addEventListener("input", function (event) {
       state.minStartMinutes = Number(event.target.value) || 480;
-      if (state.minStartMinutes > 480 && state.timeSlot === "am") {
-        state.timeSlot = "all";
-      }
+      state.timeSlot = "custom";
       render();
     });
   }
@@ -1383,6 +1497,8 @@
   });
   elements.search.addEventListener("input", function (event) { state.query = event.target.value; render(); });
   elements.mode.addEventListener("change", function (event) { state.mode = event.target.value; render(); });
+  const cpdSelect = document.getElementById("cpd-select");
+  if (cpdSelect) cpdSelect.addEventListener("change", function (event) { state.cpd = event.target.value; syncCpdUrl(); render(); });
   elements.level.addEventListener("change", function (event) { state.level = event.target.value; render(); });
   elements.subject.addEventListener("change", function (event) { state.subject = event.target.value; render(); });
   elements.eventDate.addEventListener("change", function (event) {

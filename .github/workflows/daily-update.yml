@@ -1,0 +1,47 @@
+name: Daily TCS data refresh
+
+on:
+  schedule:
+    # 22:15 UTC = 06:15 Hong Kong time
+    - cron: "15 22 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tcs-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Scrape TCS (list pages, details, CPD map)
+        env:
+          TCS_REFRESH_PAGES: "1"
+          TCS_REFRESH_CPD: "1"
+        run: node scripts/download-tcs-pages.mjs
+
+      - name: Sanity check
+        run: |
+          node -e "const d=require('./data/tcs-events.json'); const n=d.events.length; console.log('events', n); if (n < 100) process.exit(1)"
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+          git add data
+          if git diff --cached --quiet; then
+            echo "No data changes."
+          else
+            git commit -m "data: daily TCS refresh $(TZ=Asia/Hong_Kong date +%F)"
+            git push
+          fi
